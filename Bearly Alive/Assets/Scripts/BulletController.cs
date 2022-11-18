@@ -16,7 +16,6 @@ public class BulletController : MonoBehaviour
     {
         bullet = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
-        print(transform.rotation);
         Movement();
         Invoke("DestoryProjectile", 5f);
     }

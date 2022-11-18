@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -34,14 +35,17 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(FireRate());
     }
 
+
     // Update is called once per frame
     void Update()
     {
+        FollowCursor();
     }
 
 
     private void FixedUpdate()
     {
+
         HorizontalMovement();
     }
 
@@ -57,28 +61,25 @@ public class PlayerController : MonoBehaviour
         Vector2 currPosition = transform.position;
         Vector2 newPosition = movement * Time.deltaTime * walkSpeed + currPosition;
 
-
-        if (movement.x < 0)
-        {
-            transform.eulerAngles = new Vector3(0f, 0f, 90f);
-        }
-        else if (movement.x > 0)
-        {
-            transform.eulerAngles = new Vector3(0f, 0f, -90f);
-        }
-        if (movement.y < 0)
-        {
-            transform.eulerAngles = new Vector3(0f, 0f, 180f);
-        }
-        else if (movement.y > 0)
-        {
-            transform.eulerAngles = new Vector3(0f, 0f, 0f);
-        }
-
-        //print(transform.rotation);
-
         player.MovePosition(newPosition);
     }
+
+
+    void FollowCursor()
+    {
+
+        //Get the Screen position of the mouse
+        Vector3 mouseOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector3 rotation = (mouseOnScreen - transform.position).normalized;
+
+        //Get the angle between the points
+        float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + -90f));
+
+    }
+
 
 
     // Handles Player's firing, Projectile Sound, reloading and Weapon's Ammo UI.
