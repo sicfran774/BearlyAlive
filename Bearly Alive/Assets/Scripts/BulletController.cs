@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public float projectileSpeed = 10f;
+    public float projectileSpeed = 4f;
 
 
     Rigidbody2D bullet;
@@ -30,30 +30,14 @@ public class BulletController : MonoBehaviour
     // Handles the direction and velocity the bullet should travel based on 
     // Player Object. GameObject's EulerAngles are initialized in playerController.
     void Movement() {
-        float xSpeed = 0f;
-        float ySpeed = 0f;
-        Vector3 direction = transform.rotation.eulerAngles;
-        print(direction);
-        if(direction.z == 90f)
-        {
-            print("Left");
-            xSpeed = projectileSpeed * -1;
-        }
-        else if(direction.z == 270f)
-        {
-            print("Right");
-            xSpeed = projectileSpeed;
-        }
-        else if(direction.z == 180f)
-        {
-            ySpeed = projectileSpeed * -1;
-        }
-        else if(direction.z == 0f)
-        {
-            ySpeed = projectileSpeed;
-        }
+        //Get the Screen position of the mouse
+        Vector3 mouseOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        bullet.velocity = new Vector3(xSpeed, ySpeed, 0f);
+        Vector3 direction = mouseOnScreen - transform.position;
+
+        //Get the angle between the points
+
+        bullet.velocity = new Vector2(direction.x, direction.y).normalized * projectileSpeed * 10;
 
     }
 
