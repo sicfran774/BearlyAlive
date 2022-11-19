@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Timeline;
 using UnityEngine;
 
@@ -17,12 +18,16 @@ public class PlayerController : MonoBehaviour
 
 
     bool playerShot = false;
+    bool playerRolled = false;
+    bool playerRolling = false;
+    public float rollSpeed = 750f;
+
 
     Vector2 movement;
 
-
     Rigidbody2D player;
     Collider2D coll;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +45,18 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         FollowCursor();
+        switch (playerRolling)
+        {
+            case false:
+                //
+                //HorizontalMovement();
+                PlayerRollAbility();
+                break;
+            case true:
+                HandleDodgeRoll();
+                break;
+
+        }
     }
 
 
@@ -55,13 +72,23 @@ public class PlayerController : MonoBehaviour
     // input
     void HorizontalMovement()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        //float jumpAxis = Input.GetAxis("Jump");
+        //if (jumpAxis > 0)
+        //{
+        //    PlayerRollAbility();
+        //}
 
-        Vector2 currPosition = transform.position;
-        Vector2 newPosition = movement * Time.deltaTime * walkSpeed + currPosition;
+        if (!playerRolling)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
 
-        player.MovePosition(newPosition);
+            Vector2 currPosition = transform.position;
+            Vector2 newPosition = movement * Time.deltaTime * walkSpeed + currPosition;
+
+            player.MovePosition(newPosition);
+        }
+
     }
 
 
@@ -79,6 +106,64 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + -90f));
 
     }
+
+    // Handles the implementation of the player's ability: Dodge Roll
+    // 2 Second Cooldown between uses
+    void PlayerRollAbility()
+    {
+        //Vector2 direction;
+       
+        float jumpAxis = Input.GetAxisRaw("Jump");
+        if (jumpAxis > 0f)
+        {
+            //DO SOMETHING
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+            if (!playerRolled)
+            {
+                print(movement);
+                // Do Roll Animation for now teleport 
+                rollSpeed = 750f;
+                playerRolling = true;
+                playerRolled = true;
+            }
+        }
+    }
+
+    // Handles Players dodge roll action. Player is not allowed to move when 
+    // player is rolling. After rollSpeed reaches below 5f, player is allowed
+    // to move and the cooldown timer begins.
+    void HandleDodgeRoll()
+    {
+        Vector2 currPosition = transform.position;
+        currPosition += movement * rollSpeed * Time.deltaTime;
+        player.MovePosition(currPosition);
+
+        rollSpeed -= rollSpeed * 10f * Time.deltaTime;
+        if(rollSpeed < 5f)
+        {
+            playerRolling = false;
+            Invoke("ResetDodgeRoll", 1.25f);
+        }
+
+
+    }
+
+
+    // No in use
+    void StartMovement()
+    {
+        playerRolling = false;
+    }
+
+    // Called by Invoke Method to allow player
+    // to perform dodge roll
+    void ResetDodgeRoll()
+    {
+        playerRolled = false;
+    }
+
+
 
 
 
