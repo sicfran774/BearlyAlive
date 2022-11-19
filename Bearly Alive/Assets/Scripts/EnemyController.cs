@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public int _MAX_HEALTH = 2;
-
+    public HudManager hud;
     int healthRemaining;
 
     Rigidbody2D enemy;
@@ -34,7 +34,13 @@ public class EnemyController : MonoBehaviour
             healthRemaining--;
             if(healthRemaining <= 0)
             {
+                //Increase score when enemy health is <=0
+                GameManager.instance.IncreaseScore(1);
+                //refresh the HUD
+                //hud.refresh();
+
                 Destroy(gameObject);
+
             }
         }
     }

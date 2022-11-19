@@ -7,6 +7,8 @@ public class HudManager : MonoBehaviour
 {
 
     public Text bulletsRemaining;
+    public Text scoreLabel;
+    public Text highScoreLabel;
 
     void Start()
     {
@@ -18,6 +20,12 @@ public class HudManager : MonoBehaviour
     public void refresh()
     {
         bulletsRemaining.text = "BulletsRemaining: " + GameManager.instance.bullets.ToString();
+
+        //Score label is updated to UI
+        scoreLabel.text = "Score: " + GameManager.instance.score;
+
+        //High score label is updated to UI
+        highScoreLabel.text = "High Score: " + GameManager.instance.highScore;
     }
 
 }

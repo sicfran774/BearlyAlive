@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
 
         playerShot = true;
         StartCoroutine(FireRate());
+
+        //Refresh HUD at the start of the game
+        hudManager.refresh();
     }
 
 
