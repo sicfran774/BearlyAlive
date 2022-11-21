@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 /*  Room generation must consist of a few things:
@@ -21,9 +22,9 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private bool playerEnteredRoom = false;
     private EnemyData[] enemyOrder;
 
-    private void Awake()
+    private void Start()
     {
-        
+        SaveEnemyLocationsIntoFile();
     }
 
     private void Update()
@@ -58,5 +59,19 @@ public class RoomManager : MonoBehaviour
             default:
                 return Instantiate(enemyOne);
         }
+    }
+
+    void SaveEnemyLocationsIntoFile()
+    {
+        EnemyData[] data = new EnemyData[100];
+        int count = 0;
+
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            data[count] = new EnemyData(enemy.GetComponent<EnemyController>(), 0);
+            Debug.Log(enemy);
+            count++;
+        }
+        EnemyPlaceScript.SaveEnemyPlacements(data);
     }
 }
