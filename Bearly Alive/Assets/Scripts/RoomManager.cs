@@ -14,12 +14,12 @@ public class RoomManager : MonoBehaviour
 {
     //must import specific enemy types
     [Header("Types of Enemies")]
-    public GameObject enemy;
+    public GameObject enemyOne;
 
     [Space(20)]
 
-    private bool playerEnteredRoom = false;
-    private string[] enemyOrder;
+    [SerializeField] private bool playerEnteredRoom = false;
+    private EnemyData[] enemyOrder;
 
     private void Awake()
     {
@@ -35,8 +35,28 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    IEnumerator PlaceEnemies(string[] enemyOrder)
+    IEnumerator PlaceEnemies(EnemyData[] enemyOrder)
     {
-        yield return null;
+        foreach(EnemyData enemy in enemyOrder)
+        {
+            if(enemy == null)
+            {
+                continue;
+            }
+
+            GameObject newEnemy = SpawnEnemy(enemy.enemyType);
+            newEnemy.transform.position = new Vector2(enemy.position[0], enemy.position[1]);
+
+            yield return new WaitForSeconds(enemy.spawnTimeForNextEnemy);
+        }
+    }
+    GameObject SpawnEnemy(string type)
+    {
+        switch (type) {
+            case "enemyOne": 
+                return Instantiate(enemyOne);
+            default:
+                return Instantiate(enemyOne);
+        }
     }
 }
