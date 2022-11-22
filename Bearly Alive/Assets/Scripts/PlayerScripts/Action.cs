@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class Action : MonoBehaviour
 {
-    private GameObject actor;
+
+    // the game object which will preform the action
+    protected GameObject actor;
 
     public Action(GameObject actor) {
         this.actor = actor;
