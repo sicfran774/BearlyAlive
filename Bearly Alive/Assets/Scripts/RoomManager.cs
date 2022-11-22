@@ -13,18 +13,24 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
+    [Header("Level Name")]
+    public string levelName;
+
+    [Space(20)]
+
     //must import specific enemy types
     [Header("Types of Enemies")]
     public GameObject enemyOne;
 
     [Space(20)]
 
-    [SerializeField] private bool playerEnteredRoom = false;
-    private EnemyData[] enemyOrder;
+    [SerializeField] public bool playerEnteredRoom = false;
+    private List<EnemyDataJson> enemyOrder;
 
     private void Start()
     {
-        SaveEnemyLocationsIntoFile();
+        //SaveEnemyLocationsIntoFile();
+        enemyOrder = EnemyPlaceScript.LoadEnemyData(Application.persistentDataPath + "/levelOne.json");
     }
 
     private void Update()
@@ -36,9 +42,9 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    IEnumerator PlaceEnemies(EnemyData[] enemyOrder)
+    IEnumerator PlaceEnemies(List<EnemyDataJson> enemyOrder)
     {
-        foreach(EnemyData enemy in enemyOrder)
+        foreach(EnemyDataJson enemy in enemyOrder)
         {
             if(enemy == null)
             {
@@ -63,14 +69,12 @@ public class RoomManager : MonoBehaviour
 
     void SaveEnemyLocationsIntoFile()
     {
-        EnemyData[] data = new EnemyData[100];
-        int count = 0;
+        List<EnemyData> data = new List<EnemyData>();
 
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            data[count] = new EnemyData(enemy.GetComponent<EnemyController>(), 0);
+            data.Add(new EnemyData(enemy, 0));
             Debug.Log(enemy);
-            count++;
         }
         EnemyPlaceScript.SaveEnemyPlacements(data);
     }

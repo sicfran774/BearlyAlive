@@ -1,14 +1,15 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class EnemyData
 {
     public string enemyType;
     public float[] position;
     public float spawnTimeForNextEnemy;
-    public EnemyData(EnemyController enemy, float spawnTime)
+
+    public EnemyData(GameObject enemy, float spawnTime)
     {
         enemyType = "enemyOne";
 
