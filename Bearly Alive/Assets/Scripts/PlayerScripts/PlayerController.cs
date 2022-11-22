@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Timeline;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -256,6 +257,27 @@ public class PlayerController : MonoBehaviour
     void TurnOffFiring()
     {
         playerShot = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        //detect that we collided with a upgrade, if that is the case:
+        // - play a upgrade collecting sound
+        // - apply ugrade to player
+        // - destroy the upgrade
+
+        //detect that we collided with a enemy, if that is the case:
+        // - play a damage sound
+        // - decrease the health of a player
+        // - destroy the playe if health reaches zero
+        //FOR NOW IAM GOING TO JUST GOING TO ASSUME DEATH WHEN PLAYER TOUCHES ENEMY
+        if(collider.gameObject.tag == "Enemy")
+        {
+            // Game over
+            print("game over");
+            SceneManager.LoadScene("GameOver");
+
+        }
     }
 
 

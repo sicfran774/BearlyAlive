@@ -72,13 +72,29 @@ public class GameManager : MonoBehaviour
     {
         //Reset score
         score = 0;
+        //reset the 
+        highScore = 0;
+
+        //reset the bullets
+        bullets = 15;
 
         //Set the current level to 1 
         currentLevel = 1;
 
         //Load scence 
+        SceneManager.LoadScene("Home");
+    }
+
+    //Allow the player to try again, this keeps the high score and curr level and rests the score 
+    public void TryAgain()
+    {
+        //reset score 
+        score = 0;
+
+        //Load scence 
         SceneManager.LoadScene("Level" + currentLevel);
     }
+
 
     //Go to next level 
     public void IncreaseLevel()
