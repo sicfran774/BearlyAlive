@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    //Variables
     public int _MAX_HEALTH = 2;
     public HudManager hud;
     int healthRemaining;
+
+    //TODO: Add scripts to reference for these
+    public GameObject player;
+    public GameObject bullet;
+    public GameObject bulletSpawnPoint;
+    private Transform bulletSpawned;
+
+    public float waitTime;
+    private float currentTime;
+    private bool shot;
 
     Rigidbody2D enemy;
     Collider2D coll;
@@ -17,12 +28,28 @@ public class EnemyController : MonoBehaviour
         enemy = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         healthRemaining = _MAX_HEALTH;
+
+        //TODO: Find a spawn location for bullet in 2D
+        //bulletSpawnPoint = GameObject.Find()
+
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        public void MoveEnemy ()
+        this.transform.LookAt(player.transform);
+
+        if(currentTime == 0)
+            Shoot();
+
+        if(shot && currentTime < waitTime)
+            currentTime += 1 * Time.deltaTime;
+
+        if(currentTime >= waitTime)
+            currentTime = 0;
+
+        /*void MoveEnemy ()
         {
             //Will need to test later, requires a pathfinding script
             int currentX = Mathf.RoundToInt(transform.position.x);
@@ -40,7 +67,7 @@ public class EnemyController : MonoBehaviour
             int yDir = nextStep.y - currentY;
 
             AttemptMove <Player> (xDir, yDir);
-        }
+        }*/
     }
 
 
@@ -63,6 +90,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void Shoot()
+    {
+        shot = true;
 
-
+        bulletSpawned = Instantiate(bullet.transform, bulletSpawnPoint.transform.position, Quaternion.identity);
+        bulletSpawned.rotation = this.transform.rotation;
+    }
 }
