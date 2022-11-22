@@ -29,9 +29,17 @@ public class EnemyController : MonoBehaviour
     // Handles Enemy's objects trigger collisions
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Bullet")
+        if(collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Sword")
         {
-            healthRemaining--;
+            if(collision.gameObject.tag == "Sword")
+            {
+                healthRemaining -= 2;
+            }
+            else
+            {
+                healthRemaining--;
+            }
+            
             if(healthRemaining <= 0)
             {
                 //Increase score when enemy health is <=0
@@ -43,6 +51,7 @@ public class EnemyController : MonoBehaviour
 
             }
         }
+
     }
 
 
