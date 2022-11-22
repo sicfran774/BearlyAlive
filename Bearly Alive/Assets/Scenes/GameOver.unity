@@ -488,7 +488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291.76, y: -33}
+  m_AnchoredPosition: {x: -109, y: -33}
   m_SizeDelta: {x: 263.93, y: 54.0992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &821416953
@@ -760,8 +760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66ceb2748cfa004a812fa7c4c2196fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 0}
-  highScore: {fileID: 0}
 --- !u!1 &1332545669
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +795,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291.25842, y: 22}
+  m_AnchoredPosition: {x: -111, y: 22}
   m_SizeDelta: {x: 262.9342, y: 54.0992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1332545671
@@ -1069,8 +1067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66ceb2748cfa004a812fa7c4c2196fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 0}
-  highScore: {fileID: 0}
 --- !u!1 &1610192141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1715965326}
   - component: {fileID: 1715965325}
+  - component: {fileID: 1715965327}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -1184,8 +1181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66ceb2748cfa004a812fa7c4c2196fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 821416953}
-  highScore: {fileID: 1332545671}
 --- !u!4 &1715965326
 Transform:
   m_ObjectHideFlags: 0
@@ -1201,3 +1196,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1715965327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715965324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f119e7794e62ae4f97ef8dc3c8d9ad5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: {fileID: 821416953}
+  highScore: {fileID: 1332545671}
