@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TreeEditor;
 using UnityEngine;
 
-public class SlashController : MonoBehaviour
+public class Slash : MonoBehaviour
 {
 
     public float slashDuration = 0.5f;
@@ -11,6 +11,9 @@ public class SlashController : MonoBehaviour
     Rigidbody2D sword;
     Collider2D coll;
     public GameObject rotatePoint;
+
+    //This method is called when the gameobject must preform
+
 
     // Makes the sword hidden when it is first initializes when the game starts
     private void Awake()
@@ -57,6 +60,5 @@ public class SlashController : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
-
 
 }

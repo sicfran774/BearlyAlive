@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
     // Player's Movement Speed
     public float walkSpeed = 5f;
 
+    //TODO this should be a member of class ChiSpit
     // Bullet Game Object
     public GameObject projectile;
 
+    //TODO this should be a member of class Slash
     // Sword Game Object
     public GameObject sword;
 
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     // Spawn Point for Bullet game objects
     //public GameObject projectileSpawner;
 
+    // This should be a member of Technique or ChiSpit
     // Bullet Firing Sound
     public AudioSource bulletSource;
 
@@ -58,9 +61,14 @@ public class PlayerController : MonoBehaviour
     // player is currently performing slash
     bool slashing = false;
 
+    // Variables to hold the two known player actions
+    private Technique[] techniques = new Technique[2];
+
     // Vector used to computer player's new position based on WASD input
     Vector2 movement;
 
+
+    // physics components
     Rigidbody2D player;
     Collider2D coll;
 
@@ -75,29 +83,24 @@ public class PlayerController : MonoBehaviour
 
         //Refresh HUD at the start of the game
         hudManager.refresh();
+
+
+        //For testing: give player starting moves
+        LearnSlingshot(1);
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        print(transform.up);
         if (!slashing)
         {
             FollowCursor();
         }
 
-        switch (playerRolling)
-        {
-            case false:
-                PlayerRollAbility();
-                HandleSlashTechnique();
-                HandleChiSpitTechnique();
-                break;
-            case true:
-                HandleDodgeRoll();
-                break;
 
-        }
+        DoActions();
     }
 
 
@@ -106,6 +109,24 @@ public class PlayerController : MonoBehaviour
         HorizontalMovement();
     }
 
+    // Checks inputs mapped to actions then calls Act() if all conditions are met
+    private void DoActions() {
+        if (!playerRolling)
+        {
+                PlayerRollAbility();
+                if (Input.GetButton("Fire1") && !techniqueCooldown)
+                {
+                    techniques[0].Act();
+                }
+                if (Input.GetButton("Fire2") && !techniqueCooldown)
+                {
+                    techniques[1].Act();
+                }
+        }else{
+                HandleDodgeRoll();
+        }
+
+    }
 
     // Handles Player's movement based on WASD Input Keys Pressed
     // If Player is performing Dodge roll, we prevent player from moving 
@@ -168,14 +189,12 @@ public class PlayerController : MonoBehaviour
     // Handles Player's slash technique.
     void HandleSlashTechnique()
     {
-        if (Input.GetButton("Fire2") && !techniqueCooldown)
-        {
-            sword.SetActive(true);
+        sword.SetActive(true);
             techniqueCooldown = true;
             slashing = true;
             Invoke("ResetTechniqueCooldown", slashCooldown);
             Invoke("ResetFollowCursor", slashCooldown - 0.4f);
-        }
+                    
     }
 
 
@@ -183,12 +202,9 @@ public class PlayerController : MonoBehaviour
     // of the Chi Spit Technique
     void HandleChiSpitTechnique()
     {
-        if (Input.GetButton("Fire1") && !techniqueCooldown)
-        {
             FireWeapon();
             techniqueCooldown = true;
             Invoke("ResetTechniqueCooldown", timeBetweenShots);
-        }
     }
 
 
@@ -251,7 +267,7 @@ public class PlayerController : MonoBehaviour
             GameManager.instance.DecreaseAmmo(1);
             hudManager.refresh();
             Instantiate(projectile, transform.position, transform.rotation);
-            print("Bullet's Remaining: " + rounds);
+            print("Bullets Remaining: " + rounds);
         }
 
         if(rounds == 0)
@@ -272,5 +288,14 @@ public class PlayerController : MonoBehaviour
         hudManager.refresh();
         CancelInvoke("Reload");
         print("Bullet's Remaining: " + rounds);
+    }
+
+///////////////////////////////////////////////
+// these methods teach the player different techniques. Use when collecting loot.
+/////////////////////////////////////////////////
+
+    // places the slingshot technique into a technique slot. slot can be 1 or 2.
+    public void LearnSlingshot(int slot) {
+        techniques[slot-1] = new Slingshot(gameObject);
     }
 }
