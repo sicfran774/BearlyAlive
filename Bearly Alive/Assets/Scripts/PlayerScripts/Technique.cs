@@ -7,11 +7,15 @@ using UnityEngine;
 public abstract class Technique : Action
 {
 
+    [Header("Technique Values")]
+    [SerializeField]
     // the ammount of damage this technique's hitbox will do to an enemy
     protected int damage;
+    [SerializeField]
     // the duration (milli seconds) untill another technique can be performed. 
     protected float cooldown;
     // this variable lets all Techniques coordinate their cooldowns.
+
     public static bool techsCooling {
         get;
         protected set;
@@ -35,6 +39,7 @@ public abstract class Technique : Action
         techsCooling = true;
         Invoke("ResetTechniqueCooldown", cooldown);
     }
+
 
     // helper method for startCooling
     private void ResetTechniqueCooldown() {
