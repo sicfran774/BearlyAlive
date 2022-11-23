@@ -9,7 +9,7 @@ public class ChiSpit : Technique
     public GameObject projectile;
 
     // Bullet Firing Sound
-    public AudioSource bulletSource;
+    //public AudioSource bulletSource;
 
     // Hud to display ammo count
     public HudManager hudManager;
@@ -17,31 +17,33 @@ public class ChiSpit : Technique
     // the ammount of shots before reloading
     public int _MAX_AMMO = 15;
 
-    
     int rounds;
- 
- 
+
+
     // to be manipulated by designer
     public const int defaultDamage = 5;
-    public const float defaultCooldown = 2f;
+    public const float defaultCooldown = 0.6f;
 
     // ALWAYS call after add component
     public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
-        base.Initialize(damage, cooldown);
-        
+        base.Initialize(defaultDamage, defaultCooldown);
+        rounds = 15;
     }
 
     // call when the actor should perform chiSpit
     public override void Act() {
+        if (!techsCooling)
+        {
             FireWeapon();
             startCooling();
+        }
     }
 
     // Act will have different behavior depending on which upgrade is set.
     public override void SetUpgrade(string newUpgrade) {
 
     }
-    
+
     // Handles Player's firing, Projectile Sound, reloading and Weapon's Ammo UI.
     // If the weapon has no ammo left, Reload Method is invoke after 2 second delay.
     // Use Left Crtl or Mouse Click to fire weapon
@@ -51,7 +53,7 @@ public class ChiSpit : Technique
         {
             // Fire Bullet
             rounds--;
-            bulletSource.Play();
+            //bulletSource.Play();
             GameManager.instance.DecreaseAmmo(1);
             hudManager.refresh();
             Instantiate(projectile, transform.position, transform.rotation);
