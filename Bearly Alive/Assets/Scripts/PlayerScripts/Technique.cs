@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Any of the player's main moves
+// Assertion: this is instantiated as a component of a GameObject with a TechHandler
 public abstract class Technique : Action
 {
 
@@ -9,20 +11,33 @@ public abstract class Technique : Action
     protected int damage;
     // the duration (milli seconds) untill another technique can be performed. 
     protected float cooldown;
+    // this variable lets all Techniques coordinate their cooldowns.
+    public static bool techsCooling {
+        get;
+        protected set;
+    }
 
-    protected string upgrade;
+    // different values of upgrade cause different actions
+    protected string upgrade = "none";
 
-    public Technique(GameObject actor, int damage, float cooldown) : base(actor) {
+    // must be called after AddComponent
+    // in the abscence of constructors, this initializes the instance's fields.
+    public virtual void Initialize(int damage = 0, float cooldown = 0) {
         this.damage = damage;
         this.cooldown = cooldown;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    // use when player installs an upgrade on a technique
     public abstract void SetUpgrade(string newUpgrade);
 
+    // use in Act to halt other actions
+    protected void startCooling() {
+        techsCooling = true;
+        Invoke("ResetTechniqueCooldown", cooldown);
+    }
+
+    // helper method for startCooling
+    private void ResetTechniqueCooldown() {
+        techsCooling = false;
+    }
 }

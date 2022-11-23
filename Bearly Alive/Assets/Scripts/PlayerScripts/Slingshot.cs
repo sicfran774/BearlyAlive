@@ -12,14 +12,15 @@ public class Slingshot : Technique
     // for applying movement to actor
     private Rigidbody2D actorBody;
 
-    public Slingshot (GameObject actor, int damage = defaultDamage, float cooldown = defaultCooldown) : base(actor, damage, cooldown) {
-        actorBody = actor.GetComponent<Rigidbody2D>();
+    public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
+        actorBody = gameObject.GetComponent<Rigidbody2D>();
+        base.Initialize(damage, cooldown);
+        
     }
 
     // When called, the referenced GameObject will stop moving, slide back, then shoot forward with a damaging hitbox.
     public override void Act()
     {
-
         print("slingshotting");
     }
 
@@ -30,13 +31,15 @@ public class Slingshot : Technique
     // Update is called once per frame
     void Update()
     {
+        
         print("slingshot update");
-        move();
+        // move();
+        // }
     }
 
     private void move() {
-        Vector2 currPosition = actor.transform.position;
-        Vector2 displacement = actor.transform.forward * Time.deltaTime * slingSpeed;
+        Vector2 currPosition = transform.position;
+        Vector2 displacement = transform.forward * Time.deltaTime * slingSpeed;
         currPosition += displacement;
         actorBody.MovePosition(currPosition);
     

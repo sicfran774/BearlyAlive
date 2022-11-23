@@ -7,12 +7,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     // Player's Movement Speed
     public float walkSpeed = 5f;
-
-    //TODO this should be a member of class ChiSpit
-    // Bullet Game Object
-    public GameObject projectile;
 
     //TODO this should be a member of class Slash
     // Sword Game Object
@@ -24,16 +21,8 @@ public class PlayerController : MonoBehaviour
     // Spawn Point for Bullet game objects
     //public GameObject projectileSpawner;
 
-    // This should be a member of Technique or ChiSpit
-    // Bullet Firing Sound
-    public AudioSource bulletSource;
 
-    public int _MAX_AMMO = 15;
-
-    // Cooldown Value for Firing Weapon
-    public float timeBetweenShots = 1f;
-
-    // Cooldown Value for Using Slash Technique
+   // Cooldown Value for Using Slash Technique
     public float slashCooldown = 0.7f;
     int rounds;
 
@@ -64,7 +53,7 @@ public class PlayerController : MonoBehaviour
     // Variables to hold the two known player actions
     private Technique[] techniques = new Technique[2];
 
-    // Vector used to computer player's new position based on WASD input
+    // Vector used to computer player's new direction based on WASD input
     Vector2 movement;
 
 
@@ -86,14 +75,14 @@ public class PlayerController : MonoBehaviour
 
 
         //For testing: give player starting moves
-        LearnSlingshot(1);
+        LearnTechnique<Slingshot>(1);
+        LearnTechnique<ChiSpit>(2);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        print(transform.up);
         if (!slashing)
         {
             FollowCursor();
@@ -103,7 +92,7 @@ public class PlayerController : MonoBehaviour
         DoActions();
     }
 
-
+    // FixedUpdate is called once per physics tic
     private void FixedUpdate()
     {
         HorizontalMovement();
@@ -198,14 +187,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // Handles player's left click input to perform shooting
-    // of the Chi Spit Technique
-    void HandleChiSpitTechnique()
-    {
-            FireWeapon();
-            techniqueCooldown = true;
-            Invoke("ResetTechniqueCooldown", timeBetweenShots);
-    }
+ 
 
 
     // Resets the cooldown boolean variable. Called by Invoke Function
@@ -251,51 +233,13 @@ public class PlayerController : MonoBehaviour
     {
         playerRolled = false;
     }
-
-
-
-    // Handles Player's firing, Projectile Sound, reloading and Weapon's Ammo UI.
-    // If the weapon has no ammo left, Reload Method is invoke after 2 second delay.
-    // Use Left Crtl or Mouse Click to fire weapon
-    void FireWeapon()
-    {
-        if (rounds > 0)
-        {
-            // Fire Bullet
-            rounds--;
-            bulletSource.Play();
-            GameManager.instance.DecreaseAmmo(1);
-            hudManager.refresh();
-            Instantiate(projectile, transform.position, transform.rotation);
-            print("Bullets Remaining: " + rounds);
-        }
-
-        if(rounds == 0)
-        {
-            print("Reloading");
-            //Reload, wait 2 seconds
-            Invoke("Reload", 2f);        
-        }
-
-    }
-
-
-    // Handles Weapon Reload for Basic Weapon
-    void Reload()
-    {
-        rounds = GameManager.instance._MAX_AMMO;
-        GameManager.instance.SetAmmo();
-        hudManager.refresh();
-        CancelInvoke("Reload");
-        print("Bullet's Remaining: " + rounds);
-    }
-
 ///////////////////////////////////////////////
 // these methods teach the player different techniques. Use when collecting loot.
 /////////////////////////////////////////////////
 
-    // places the slingshot technique into a technique slot. slot can be 1 or 2.
-    public void LearnSlingshot(int slot) {
-        techniques[slot-1] = new Slingshot(gameObject);
+    // places an instance of the perameterized technique into a technique slot. slot can be 1 or 2.
+    public void LearnTechnique<T>(int slot) where T : Technique {
+        techniques[slot-1] = gameObject.AddComponent<T>() as T;
+        techniques[slot-1].Initialize();
     }
 }

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 03e680edc7a72004c8ed547aec016536
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - projectile: {fileID: 6768108042419747499, guid: 7ced4a21ff8c6c048b6e8381917cf98d, type: 3}
+  - bulletSource: {instanceID: 0}
+  - hudManager: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
