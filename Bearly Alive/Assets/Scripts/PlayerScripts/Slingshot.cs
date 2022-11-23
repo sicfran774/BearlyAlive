@@ -28,15 +28,6 @@ public class Slingshot : Technique
         base.upgrade = upgrade;// placeholder implementation.
     }
     
-    // Update is called once per frame
-    void Update()
-    {
-        
-        print("slingshot update");
-        // move();
-        // }
-    }
-
     private void move() {
         Vector2 currPosition = transform.position;
         Vector2 displacement = transform.forward * Time.deltaTime * slingSpeed;
