@@ -1,25 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Slash : MonoBehaviour
+public class Slash : Technique
 {
 
+    // The amount of time for slash action to finish
     public float slashDuration = 0.5f;
-    float speed;
+
     Rigidbody2D sword;
     Collider2D coll;
-    public GameObject rotatePoint;
 
-    //This method is called when the gameobject must preform
+    // to be manipulated by designer
+    public const int defaultDamage = 5;
+    // Time to wait until player is able to use technique again
+    public const float defaultCooldown = 1.5f;
 
 
     // Makes the sword hidden when it is first initializes when the game starts
     private void Awake()
     {
-        gameObject.SetActive(false);
+        sword = GetComponentInChildren<Rigidbody2D>();
+        transform.GetChild(0).gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
+
+
+    // ALWAYS call after add component
+    public override void Initialize(int damage = defaultDamage, float cooldown = defaultCooldown)
+    {
+        base.Initialize(defaultDamage, defaultCooldown);
+    }
+
+    public override void Act()
+    {
+        if (!techsCooling) {
+            StartCoroutine(Rotate(slashDuration));
+            startCooling();
+        }
+    }
+
+
+    public override void SetUpgrade(string newUpgrade)
+    {
+        // TODO
+    }
+
 
 
     // When the player activates the Slash Technique, sword object is re-enabled
@@ -28,9 +56,8 @@ public class Slash : MonoBehaviour
     private void OnEnable()
     {
         //speed = slashSpeed;
-        sword = GetComponent<Rigidbody2D>();
-        coll = GetComponent<Collider2D>();
-        StartCoroutine(Rotate(slashDuration));
+        sword = GetComponentInChildren<Rigidbody2D>();
+        coll = GetComponentInChildren<Collider2D>();
 
     }
 
@@ -38,8 +65,8 @@ public class Slash : MonoBehaviour
     // This function is called, removing its rigidbody and collider
     private void OnDisable()
     {
-        sword = null;
-        coll = null;
+        //sword = null;
+        //coll = null;
     }
 
 
@@ -48,17 +75,20 @@ public class Slash : MonoBehaviour
     // based on the argument passed.
     IEnumerator Rotate(float duration)
     {
-        float startRotation = rotatePoint.transform.eulerAngles.z + 45f;
+        transform.GetChild(0).gameObject.SetActive(true);
+
+        float startRotation = transform.eulerAngles.z + 45f;
         float endRotation = startRotation - 405.0f;
         float t = 0.0f;
         while (t < duration)
         {
             t += Time.deltaTime;
             float zRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 405.0f;
-            rotatePoint.transform.eulerAngles = new Vector3(rotatePoint.transform.eulerAngles.x, rotatePoint.transform.eulerAngles.y, zRotation);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
             yield return null;
         }
-        gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(false);
+
     }
 
 }

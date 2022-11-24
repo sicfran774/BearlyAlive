@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
         //For testing: give player starting moves
         LearnTechnique<Slingshot>(1);
+        //LearnTechnique<Slash>(1);
         LearnTechnique<ChiSpit>(2);
     }
 
