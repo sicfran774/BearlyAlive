@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*  Room generation must consist of a few things:
  *  1.  Where/what kind of enemies spawn
@@ -43,10 +44,11 @@ public class RoomManager : MonoBehaviour
     [SerializeField] public bool playerEnteredRoom = false;
     private List<EnemyDataJson> enemyOrder;
 
-    [SerializeField]private int roomCount = 0;
+    [SerializeField] private int roomCount = 0;
     private int[] rooms;
     private List<int> endRooms;
     private Queue<int> cellQueue;
+    private GameObject roomsParent;
 
     System.Random rand = new System.Random();
 
@@ -57,14 +59,10 @@ public class RoomManager : MonoBehaviour
         //enemyOrder = EnemyPlaceScript.LoadEnemyData(Application.persistentDataPath + "/levelOne.json");
 
         //Level generation
+        roomsParent = GameObject.Find("Rooms");
         rooms = new int[150];
         endRooms = new List<int>();
         cellQueue = new Queue<int>();
-        //Initialize all cells to be zero, any non zero element means there is a room
-        for (int i = 0; i < 150; i++)
-        {
-            rooms[i] = 0;
-        }
         
         StartCoroutine(BeginLevelGeneration());
     }
@@ -88,10 +86,21 @@ public class RoomManager : MonoBehaviour
             }
             endRooms.Clear();
             cellQueue.Clear();
+            roomCount = 0;
             visitCell(45); //This is the origin cell
             GenerateLevel();
+
+            if(roomCount >= minRooms)
+            {
+                yield break;
+            }
+
+            //If it reaches this point then min amount of rooms not reached, must try again
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             yield return null;
+
         }
+
     }
 
     void GenerateLevel()
@@ -119,7 +128,7 @@ public class RoomManager : MonoBehaviour
 
     bool visitCell(int i)
     {
-        print("visiting cell " + i);
+        //Debug: print("visiting cell " + i);
         //If this cell already has a room, return false
         if (rooms[i] != 0) return false;
 
@@ -151,6 +160,8 @@ public class RoomManager : MonoBehaviour
         float y = (i / 10) * 10;
         GameObject newRoom = Instantiate(roomOne);
         newRoom.transform.position = new Vector2(x, y);
+        newRoom.tag = "Level";
+        newRoom.transform.parent = roomsParent.transform;
     }
 
     IEnumerator PlaceEnemies(List<EnemyDataJson> enemyOrder)
