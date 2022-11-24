@@ -18,9 +18,6 @@ public class PlayerController : MonoBehaviour
     // HUD Manager for Player's Actions 
     public HudManager hudManager;
 
-    // Spawn Point for Bullet game objects
-    //public GameObject projectileSpawner;
-
 
    // Cooldown Value for Using Slash Technique
     public float slashCooldown = 0.7f;
@@ -56,6 +53,10 @@ public class PlayerController : MonoBehaviour
     // Vector used to computer player's new direction based on WASD input
     Vector2 movement;
 
+    // Boolean to stop player's movement to perform technique that 
+    // will affect player's position
+    bool movingTechnique = false;
+
 
     // physics components
     Rigidbody2D player;
@@ -87,7 +88,6 @@ public class PlayerController : MonoBehaviour
         {
             FollowCursor();
         }
-
 
         DoActions();
     }
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
     // until action is completed.
     void HorizontalMovement()
     {
-        if (!playerRolling)
+        if (!playerRolling && !movingTechnique)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -183,7 +183,17 @@ public class PlayerController : MonoBehaviour
             slashing = true;
             Invoke("ResetTechniqueCooldown", slashCooldown);
             Invoke("ResetFollowCursor", slashCooldown - 0.4f);
-                    
+    }
+
+
+    public void StartPlayerMovement()
+    {
+        movingTechnique = false;
+    }
+
+    public void StopPlayerMovement()
+    {
+        movingTechnique = true;
     }
 
 
@@ -242,4 +252,6 @@ public class PlayerController : MonoBehaviour
         techniques[slot-1] = gameObject.AddComponent<T>() as T;
         techniques[slot-1].Initialize();
     }
+
+
 }
