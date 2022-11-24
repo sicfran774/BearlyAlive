@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     //highest level available in game
     public int highestLevel = 2;
 
+    public GameObject ChiSpitProjectile;
+
     private void Awake()
     {
         if (instance == null)

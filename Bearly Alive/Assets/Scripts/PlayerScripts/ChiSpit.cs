@@ -6,18 +6,16 @@ public class ChiSpit : Technique
 {
 
     // Bullet Game Object
-    public GameObject projectile;
+    //public GameObject projectile;
 
-    // Bullet Firing Sound
-    //public AudioSource bulletSource;
 
     // Hud to display ammo count
-    public HudManager hudManager;
+    HudManager hudManager;
 
     // the ammount of shots before reloading
     public int _MAX_AMMO = 15;
 
-    int rounds;
+    int rounds = 15;
 
 
     // to be manipulated by designer
@@ -27,7 +25,7 @@ public class ChiSpit : Technique
     // ALWAYS call after add component
     public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
         base.Initialize(defaultDamage, defaultCooldown);
-        rounds = 15;
+        hudManager = gameObject.GetComponent<PlayerController>().hudManager;
     }
 
     // call when the actor should perform chiSpit
@@ -53,10 +51,10 @@ public class ChiSpit : Technique
         {
             // Fire Bullet
             rounds--;
-            //bulletSource.Play();
+            //SoundManager.instance.playBulletSound();
             GameManager.instance.DecreaseAmmo(1);
             hudManager.refresh();
-            Instantiate(projectile, transform.position, transform.rotation);
+            Instantiate(GameManager.instance.ChiSpitProjectile, transform.position, transform.rotation);
             print("Bullets Remaining: " + rounds);
         }
 
