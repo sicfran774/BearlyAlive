@@ -11,9 +11,6 @@ public class PlayerController : MonoBehaviour
     // Player's Movement Speed
     public float walkSpeed = 5f;
 
-    //TODO this should be a member of class Slash
-    // Sword Game Object
-    public GameObject sword;
 
     // HUD Manager for Player's Actions 
     public HudManager hudManager;
@@ -176,14 +173,13 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // Handles Player's slash technique.
-    void HandleSlashTechnique()
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        sword.SetActive(true);
-            techniqueCooldown = true;
-            slashing = true;
-            Invoke("ResetTechniqueCooldown", slashCooldown);
-            Invoke("ResetFollowCursor", slashCooldown - 0.4f);
+        if(collision.gameObject.tag == "Technique")
+        {
+            LearnTechnique<Slash>(1);
+        }
     }
 
 
@@ -197,8 +193,6 @@ public class PlayerController : MonoBehaviour
         movingTechnique = true;
     }
 
-
- 
 
 
     // Resets the cooldown boolean variable. Called by Invoke Function

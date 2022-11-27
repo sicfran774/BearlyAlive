@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public float projectileSpeed = 4f;
 
+    public float projectileSpeed = 4f;
 
     Rigidbody2D bullet;
     Collider2D coll;
@@ -50,8 +50,6 @@ public class BulletController : MonoBehaviour
             DestoryProjectile();
         }
     }
-
-
 
 
 

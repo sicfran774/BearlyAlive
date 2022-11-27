@@ -147,3 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MAX_HEALTH: 2
+  hud: {fileID: 0}
+  player: {fileID: 0}
+  bullet: {fileID: 6768108042419747499, guid: 7ced4a21ff8c6c048b6e8381917cf98d, type: 3}
+  bulletSpawnPoint: {fileID: 8667829567553451782}
+  waitTime: 0

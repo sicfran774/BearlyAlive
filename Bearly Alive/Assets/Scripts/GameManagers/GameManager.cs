@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject ChiSpitProjectile;
 
+    public GameObject Sword;
+
     private void Awake()
     {
         if (instance == null)

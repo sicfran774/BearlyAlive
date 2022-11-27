@@ -7,36 +7,36 @@ using UnityEngine;
 public class Slash : Technique
 {
 
+    private GameObject sword;
+
     // The amount of time for slash action to finish
     public float slashDuration = 0.5f;
 
-    Rigidbody2D sword;
+    Rigidbody2D swordRigidBody;
     Collider2D coll;
 
     // to be manipulated by designer
     public const int defaultDamage = 5;
     // Time to wait until player is able to use technique again
-    public const float defaultCooldown = 1.5f;
+    public const float defaultCooldown = 1f;
 
 
     // Makes the sword hidden when it is first initializes when the game starts
-    private void Awake()
-    {
-        sword = GetComponentInChildren<Rigidbody2D>();
-        transform.GetChild(0).gameObject.SetActive(false);
-        //gameObject.SetActive(false);
-    }
-
-
     // ALWAYS call after add component
     public override void Initialize(int damage = defaultDamage, float cooldown = defaultCooldown)
     {
         base.Initialize(defaultDamage, defaultCooldown);
+        sword = GameManager.instance.Sword;
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        sword.SetActive(false);
+        int direction = transform.position.y >= 0 ? 1 : -1;
+        Instantiate(sword, new Vector2(transform.position.x, transform.position.y + 3.5f), Quaternion.Euler(0f,0f,0f), transform);
     }
 
     public override void Act()
     {
         if (!techsCooling) {
+            SoundManager.instance.playSlashSound();
             StartCoroutine(Rotate(slashDuration));
             startCooling();
         }
@@ -56,7 +56,7 @@ public class Slash : Technique
     private void OnEnable()
     {
         //speed = slashSpeed;
-        sword = GetComponentInChildren<Rigidbody2D>();
+        swordRigidBody = GetComponentInChildren<Rigidbody2D>();
         coll = GetComponentInChildren<Collider2D>();
 
     }
