@@ -47,14 +47,20 @@ public class Slingshot : Technique
     IEnumerator HandleSlingShot(float duration)
     {
         float t = 0.0f;
-        gameObject.GetComponent<PlayerController>().StopPlayerMovement();
+
+        // lock movement and direction
+        moveLock = true;
+        cursorLock = true;
         while (t < duration)
         {
             move();
             t += Time.deltaTime * slingSpeed;
             yield return null;
         }
-        gameObject.GetComponent<PlayerController>().StartPlayerMovement();
+
+        // unlock movement and direction
+        moveLock = false;
+        cursorLock = false;
 
     }
 

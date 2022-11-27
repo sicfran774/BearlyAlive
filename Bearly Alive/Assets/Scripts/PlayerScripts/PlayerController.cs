@@ -50,11 +50,6 @@ public class PlayerController : MonoBehaviour
     // Vector used to computer player's new direction based on WASD input
     Vector2 movement;
 
-    // Boolean to stop player's movement to perform technique that 
-    // will affect player's position
-    bool movingTechnique = false;
-
-
     // physics components
     Rigidbody2D player;
     Collider2D coll;
@@ -120,7 +115,7 @@ public class PlayerController : MonoBehaviour
     // until action is completed.
     void HorizontalMovement()
     {
-        if (!playerRolling && !movingTechnique)
+        if (!playerRolling && !Technique.moveLock)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -137,17 +132,17 @@ public class PlayerController : MonoBehaviour
     // position of the mouse cursor
     void FollowCursor()
     {
+        if (!Technique.cursorLock) {
+            //Get the Screen position of the mouse
+            Vector3 mouseOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //Get the Screen position of the mouse
-        Vector3 mouseOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 rotation = (mouseOnScreen - transform.position).normalized;
 
-        Vector3 rotation = (mouseOnScreen - transform.position).normalized;
+            //Get the angle between the points
+            float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        //Get the angle between the points
-        float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + -90f));
-
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + -90f));
+            }
     }
 
 
@@ -181,19 +176,6 @@ public class PlayerController : MonoBehaviour
             LearnTechnique<Slash>(1);
         }
     }
-
-
-    public void StartPlayerMovement()
-    {
-        movingTechnique = false;
-    }
-
-    public void StopPlayerMovement()
-    {
-        movingTechnique = true;
-    }
-
-
 
     // Resets the cooldown boolean variable. Called by Invoke Function
     // from specific time.

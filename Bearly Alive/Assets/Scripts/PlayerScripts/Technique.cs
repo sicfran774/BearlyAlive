@@ -21,6 +21,16 @@ public abstract class Technique : Action
         protected set;
     }
 
+    public static bool moveLock {
+        get;
+        protected set;
+    }
+
+    public static bool cursorLock {
+        get;
+        protected set;
+    }
+
     // different values of upgrade cause different actions
     protected string upgrade = "none";
 
