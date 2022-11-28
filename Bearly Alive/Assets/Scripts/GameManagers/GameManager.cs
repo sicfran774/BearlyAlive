@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,8 +36,11 @@ public class GameManager : MonoBehaviour
     //An instance 
     public UpgradeMenuCallback onToggleUpgradeMenu;
 
+    public Text firstTechniqueLabel;
+    public Text secondTechniqueLabel;
 
-     void Update()
+
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.U))
         {
@@ -52,6 +56,19 @@ public class GameManager : MonoBehaviour
 
         //If upgrade menu is active, pass argument in delegate 
         onToggleUpgradeMenu.Invoke(upgradeMenu.activeSelf);
+
+        //First Technique label is updated to upgrade menu 
+        if(PlayerController.instance.techniques[0] != null)
+        {
+            firstTechniqueLabel.text = PlayerController.instance.techniques[0].ToString();
+        }
+
+        //Second Technique label is updated to upgrade menu 
+        if (PlayerController.instance.techniques[0] != null)
+        {
+            secondTechniqueLabel.text = PlayerController.instance.techniques[1].ToString();
+        }
+        
     }
 
     private void Awake()

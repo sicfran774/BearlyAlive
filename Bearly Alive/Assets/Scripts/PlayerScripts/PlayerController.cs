@@ -9,6 +9,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance = null;
 
     // Player's Movement Speed
     public float walkSpeed = 5f;
@@ -46,8 +47,9 @@ public class PlayerController : MonoBehaviour
     // player is currently performing slash
     bool slashing = false;
 
+    //CHANGED TO PUBLIC SO I CAN USE IN GAMEMANAGER
     // Variables to hold the two known player actions
-    private Technique[] techniques = new Technique[2];
+    public Technique[] techniques = new Technique[2];
 
     // Vector used to computer player's new direction based on WASD input
     Vector2 movement;
@@ -78,6 +80,13 @@ public class PlayerController : MonoBehaviour
         LearnTechnique<ChiSpit>(2);
     }
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -95,6 +104,11 @@ public class PlayerController : MonoBehaviour
     {
         //Disable player movement and shooting
         GetComponent<PlayerController>().enabled = !active;
+
+        if (GetComponent<Technique>() != null)
+        {
+            GetComponent<Technique>().enabled = !active;
+        }
         //projectile.SetActive(!active);
     }
 
