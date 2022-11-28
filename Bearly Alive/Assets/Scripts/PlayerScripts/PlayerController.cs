@@ -5,6 +5,8 @@ using UnityEditor;
 using UnityEditor.Timeline;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerController))]
+
 public class PlayerController : MonoBehaviour
 {
 
@@ -63,6 +65,9 @@ public class PlayerController : MonoBehaviour
         movement = Vector2.zero;
         rounds = GameManager.instance.bullets;
 
+        //Method called when delegate is invoked 
+        GameManager.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+
         //Refresh HUD at the start of the game
         hudManager.refresh();
 
@@ -85,7 +90,14 @@ public class PlayerController : MonoBehaviour
         DoActions();
     }
 
-    // FixedUpdate is called once per physics tic
+    //Handle what happens when upgrade menu is toggled  
+    void OnUpgradeMenuToggle(bool active)
+    {
+        //Disable player movement and shooting
+        GetComponent<PlayerController>().enabled = !active;
+        //projectile.SetActive(!active);
+    }
+
     private void FixedUpdate()
     {
         HorizontalMovement();

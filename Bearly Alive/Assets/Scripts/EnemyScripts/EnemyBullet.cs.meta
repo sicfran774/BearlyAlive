@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3f9d18e2a8bc6a5428778c0ddd570486
+=======
+guid: 54ee4885b9bda644c96fc15f8c6e9c9b
+>>>>>>> f8d74d1 (Upgrade Menu started)
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
