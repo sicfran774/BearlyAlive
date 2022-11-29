@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Sword
   - Technique
+  - Room
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

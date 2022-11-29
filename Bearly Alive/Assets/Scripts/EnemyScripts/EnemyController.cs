@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
     public GameObject bulletSpawnPoint;
     private Transform bulletSpawned;
 
+    private Vector2 direction;
+
     public float waitTime;
     private float currentTime;
     private bool shot;
@@ -43,10 +45,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        this.transform.LookAt(player.transform);
+        direction = PointAtPlayer(player.transform);
 
         if(currentTime == 0)
-            Shoot();
+            //Shoot();
 
         if(shot && currentTime < waitTime)
             currentTime += 1 * Time.deltaTime;
@@ -100,6 +102,22 @@ public class EnemyController : MonoBehaviour
     {
         //Disable enemy movement TODO: ADD WHEN ENEMY CONTROLLER IS UPDATED
         
+    }
+
+    private Vector2 PointAtPlayer(Transform player)
+    {
+        Vector3 targ = player.position;
+        Vector3 objectPos = transform.position;
+
+        targ.x = targ.x - objectPos.x;
+        targ.y = targ.y - objectPos.y;
+
+        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        Debug.Log("point");
+
+        return new Vector2(targ.x, targ.y);
     }
 
     public void Shoot()

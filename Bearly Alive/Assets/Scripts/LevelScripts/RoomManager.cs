@@ -29,8 +29,8 @@ public class RoomManager : MonoBehaviour
     [Header("Level Name")]
     public string levelName;
 
-    public int minRooms = 7;
-    public int maxRooms = 15;
+    public int minRooms;
+    public int maxRooms;
     public GameObject roomOne;
 
     [Space(20)]
@@ -56,11 +56,11 @@ public class RoomManager : MonoBehaviour
     {
         //Enemy spawning
         //SaveEnemyLocationsIntoFile();
-        //enemyOrder = EnemyPlaceScript.LoadEnemyData(Application.persistentDataPath + "/levelOne.json");
+        enemyOrder = EnemyPlaceScript.LoadEnemyData(Application.persistentDataPath + "/levelOne.json");
 
         //Level generation
         roomsParent = GameObject.Find("Rooms");
-        rooms = new int[150];
+        rooms = new int[maxRooms * 10];
         endRooms = new List<int>();
         cellQueue = new Queue<int>();
         
@@ -80,7 +80,7 @@ public class RoomManager : MonoBehaviour
     {
         while (roomCount < minRooms)
         {
-            for (int i = 0; i < 150; i++)
+            for (int i = 0; i < rooms.Length; i++)
             {
                 rooms[i] = 0;
             }
@@ -101,6 +101,11 @@ public class RoomManager : MonoBehaviour
 
         }
 
+    }
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void GenerateLevel()
@@ -160,7 +165,7 @@ public class RoomManager : MonoBehaviour
         float y = (i / 10) * 10;
         GameObject newRoom = Instantiate(roomOne);
         newRoom.transform.position = new Vector2(x, y);
-        newRoom.tag = "Level";
+        newRoom.tag = "Room";
         newRoom.transform.parent = roomsParent.transform;
     }
 
