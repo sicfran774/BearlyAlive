@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,10 +23,59 @@ public class GameManager : MonoBehaviour
     //highest level available in game
     public int highestLevel = 2;
 
+    //upgrade menu object
+    public GameObject upgradeMenu;
+
     public GameObject ChiSpitProjectile;
+
+    public GameObject Sword;
+
+    //Allows to call events in scripts, used for upgrade menu 
+    public delegate void UpgradeMenuCallback(bool active);
+
+    //An instance 
+    public UpgradeMenuCallback onToggleUpgradeMenu;
+
+    public Text firstTechniqueLabel;
+    public Text secondTechniqueLabel;
+
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            ToggleUpgradeMenu();
+        }
+    }
+
+    private void ToggleUpgradeMenu()
+    {
+
+        //Inverse current active state
+        upgradeMenu.SetActive(!upgradeMenu.activeSelf);
+
+        //If upgrade menu is active, pass argument in delegate 
+        onToggleUpgradeMenu.Invoke(upgradeMenu.activeSelf);
+
+        //First Technique label is updated to upgrade menu 
+        if(PlayerController.instance.techniques[0] != null)
+        {
+            firstTechniqueLabel.text = PlayerController.instance.techniques[0].ToString();
+        }
+
+        //Second Technique label is updated to upgrade menu 
+        if (PlayerController.instance.techniques[0] != null)
+        {
+            secondTechniqueLabel.text = PlayerController.instance.techniques[1].ToString();
+        }
+        
+    }
 
     private void Awake()
     {
+        //Disable upgrade menu when game first starts 
+        upgradeMenu.SetActive(!upgradeMenu.activeSelf);
+
         if (instance == null)
         {
             instance = this;
@@ -74,7 +124,8 @@ public class GameManager : MonoBehaviour
     {
         //Reset score
         score = 0;
-        //reset the 
+
+        //reset the high score 
         highScore = 0;
 
         //reset the bullets

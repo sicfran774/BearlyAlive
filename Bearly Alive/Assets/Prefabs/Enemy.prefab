@@ -147,3 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MAX_HEALTH: 2
+  hud: {fileID: 0}
+  player: {fileID: 0}
+  bullet: {fileID: 0}
+  bulletSpawnPoint: {fileID: 0}
+  waitTime: 0

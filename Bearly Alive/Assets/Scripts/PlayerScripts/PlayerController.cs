@@ -5,15 +5,15 @@ using UnityEditor;
 using UnityEditor.Timeline;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerController))]
+
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance = null;
 
     // Player's Movement Speed
     public float walkSpeed = 5f;
 
-    //TODO this should be a member of class Slash
-    // Sword Game Object
-    public GameObject sword;
 
     // HUD Manager for Player's Actions 
     public HudManager hudManager;
@@ -47,16 +47,12 @@ public class PlayerController : MonoBehaviour
     // player is currently performing slash
     bool slashing = false;
 
+    //CHANGED TO PUBLIC SO I CAN USE IN GAMEMANAGER
     // Variables to hold the two known player actions
-    private Technique[] techniques = new Technique[2];
+    public Technique[] techniques = new Technique[2];
 
     // Vector used to computer player's new direction based on WASD input
     Vector2 movement;
-
-    // Boolean to stop player's movement to perform technique that 
-    // will affect player's position
-    bool movingTechnique = false;
-
 
     // physics components
     Rigidbody2D player;
@@ -71,6 +67,9 @@ public class PlayerController : MonoBehaviour
         movement = Vector2.zero;
         rounds = GameManager.instance.bullets;
 
+        //Method called when delegate is invoked 
+        GameManager.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+
         //Refresh HUD at the start of the game
         hudManager.refresh();
 
@@ -81,6 +80,13 @@ public class PlayerController : MonoBehaviour
         LearnTechnique<ChiSpit>(2);
     }
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -93,7 +99,19 @@ public class PlayerController : MonoBehaviour
         DoActions();
     }
 
-    // FixedUpdate is called once per physics tic
+    //Handle what happens when upgrade menu is toggled  
+    void OnUpgradeMenuToggle(bool active)
+    {
+        //Disable player movement and shooting
+        GetComponent<PlayerController>().enabled = !active;
+
+        if (GetComponent<Technique>() != null)
+        {
+            GetComponent<Technique>().enabled = !active;
+        }
+        //projectile.SetActive(!active);
+    }
+
     private void FixedUpdate()
     {
         HorizontalMovement();
@@ -123,7 +141,7 @@ public class PlayerController : MonoBehaviour
     // until action is completed.
     void HorizontalMovement()
     {
-        if (!playerRolling && !movingTechnique)
+        if (!playerRolling && !Technique.moveLock)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -140,17 +158,17 @@ public class PlayerController : MonoBehaviour
     // position of the mouse cursor
     void FollowCursor()
     {
+        if (!Technique.cursorLock) {
+            //Get the Screen position of the mouse
+            Vector3 mouseOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //Get the Screen position of the mouse
-        Vector3 mouseOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 rotation = (mouseOnScreen - transform.position).normalized;
 
-        Vector3 rotation = (mouseOnScreen - transform.position).normalized;
+            //Get the angle between the points
+            float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        //Get the angle between the points
-        float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + -90f));
-
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + -90f));
+            }
     }
 
 
@@ -176,30 +194,14 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // Handles Player's slash technique.
-    void HandleSlashTechnique()
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        sword.SetActive(true);
-            techniqueCooldown = true;
-            slashing = true;
-            Invoke("ResetTechniqueCooldown", slashCooldown);
-            Invoke("ResetFollowCursor", slashCooldown - 0.4f);
+        if(collision.gameObject.tag == "Technique")
+        {
+            LearnTechnique<Slash>(1);
+        }
     }
-
-
-    public void StartPlayerMovement()
-    {
-        movingTechnique = false;
-    }
-
-    public void StopPlayerMovement()
-    {
-        movingTechnique = true;
-    }
-
-
- 
-
 
     // Resets the cooldown boolean variable. Called by Invoke Function
     // from specific time.

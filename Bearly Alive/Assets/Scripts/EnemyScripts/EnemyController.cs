@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyController))]
+
 public class EnemyController : MonoBehaviour
 {
     //Variables
@@ -28,6 +30,9 @@ public class EnemyController : MonoBehaviour
         enemy = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         healthRemaining = _MAX_HEALTH;
+
+        //Method called when delegate is invoked 
+        GameManager.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
 
         //TODO: Find a spawn location for bullet in 2D
         //bulletSpawnPoint = GameObject.Find()
@@ -88,6 +93,13 @@ public class EnemyController : MonoBehaviour
 
             }
         }
+    }
+
+    //Handle what happens when upgrade menu is toggled  
+    void OnUpgradeMenuToggle(bool active)
+    {
+        //Disable enemy movement TODO: ADD WHEN ENEMY CONTROLLER IS UPDATED
+        
     }
 
     public void Shoot()

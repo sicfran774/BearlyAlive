@@ -5,10 +5,6 @@ using UnityEngine;
 public class ChiSpit : Technique
 {
 
-    // Bullet Game Object
-    //public GameObject projectile;
-
-
     // Hud to display ammo count
     HudManager hudManager;
 
@@ -51,7 +47,7 @@ public class ChiSpit : Technique
         {
             // Fire Bullet
             rounds--;
-            //SoundManager.instance.playBulletSound();
+            SoundManager.instance.playBulletSound();
             GameManager.instance.DecreaseAmmo(1);
             hudManager.refresh();
             Instantiate(GameManager.instance.ChiSpitProjectile, transform.position, transform.rotation);
