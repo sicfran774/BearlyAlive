@@ -51,6 +51,7 @@ public class RoomManager : MonoBehaviour
     private List<int> endRooms;
     private Queue<int> cellQueue;
     private GameObject roomsParent;
+    private bool addRoomsToGrid;
 
     System.Random rand = new System.Random();
 
@@ -88,6 +89,10 @@ public class RoomManager : MonoBehaviour
         {
             playerEnteredRoom = false;
             StartCoroutine(PlaceEnemies(enemyOrder));
+        }
+        if (addRoomsToGrid)
+        {
+            StartCoroutine(AddRoomsToGrid());
         }
     }
 
@@ -176,12 +181,29 @@ public class RoomManager : MonoBehaviour
 
     void CreateRoomInScene(int i)
     {
-        float x = (i % 10) * 10;
-        float y = (i / 10) * 10;
+        float x = (i % 10) * 100;
+        float y = (i / 10) * 50;
         GameObject newRoom = Instantiate(roomOne);
         newRoom.transform.position = new Vector2(x, y);
         newRoom.tag = "Wall";
-        newRoom.transform.parent = roomsParent.transform;
+        newRoom.name = "Room " + roomCount;
+
+        if (roomsParent != null)
+        {
+            newRoom.transform.parent = roomsParent.transform;
+        }
+        else
+        {
+            try
+            {
+                roomsParent = GameObject.Find("Rooms");
+                newRoom.transform.parent = roomsParent.transform;
+            }
+            catch 
+            {
+                addRoomsToGrid = true;
+            }
+        }
     }
 
     IEnumerator PlaceEnemies(List<EnemyDataJson> enemyOrder)
@@ -206,6 +228,18 @@ public class RoomManager : MonoBehaviour
                 return Instantiate(enemyOne, roomsParent.transform);
             default:
                 return Instantiate(enemyOne, roomsParent.transform);
+        }
+    }
+    IEnumerator AddRoomsToGrid()
+    {
+        yield return new WaitForSeconds(1);
+        Debug.LogWarning("Invoked AddRoomsToGrid");
+
+        addRoomsToGrid = false;
+        roomsParent = GameObject.Find("Rooms");
+        foreach (GameObject room in GameObject.FindGameObjectsWithTag("Room"))
+        {
+            room.transform.parent = roomsParent.transform;
         }
     }
 
