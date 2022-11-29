@@ -82,8 +82,8 @@ public class PlayerController : MonoBehaviour
         //For testing: give player starting moves
         //LearnTechnique<Slingshot>(1);
         //LearnTechnique<Slash>(1);
-        LearnTechnique<Whip>(1);
-        LearnTechnique<ChiSpit>(2);
+        LearnTechnique<Slingshot>(2);
+        LearnTechnique<ChiSpit>(1);
     }
 
     private void Awake()

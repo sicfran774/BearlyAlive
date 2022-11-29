@@ -146,9 +146,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ade933e5e5e7b48909a4ab407be3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 8
-  projectile: {fileID: 6768108042419747499, guid: 7ced4a21ff8c6c048b6e8381917cf98d, type: 3}
+  walkSpeed: 16
   hudManager: {fileID: 0}
-  bulletSource: {fileID: 0}
-  _MAX_AMMO: 15
+  slashCooldown: 0.7
+  dodgeRollCooldownTimer: 1.25
+  dodgeRollDuration: 10
   rollSpeed: 750
+  techniques:
+  - {fileID: 0}
+  - {fileID: 0}
