@@ -37,6 +37,11 @@ public class PlayerController : MonoBehaviour
     // Used to stopped player's movement, helps implementation of the DodgeRoll Action
     bool playerRolling = false;
 
+    // Used to prevent player from taking damage when performing DodgeRoll Action
+    bool isInvulnerable = false;
+
+    public float dodgeRollDuration = 10f;
+
     // The Speed of the DodgeRoll Action
     public float rollSpeed = 750f;
     // Variable to implement dodgeroll function
@@ -75,8 +80,9 @@ public class PlayerController : MonoBehaviour
 
 
         //For testing: give player starting moves
-        LearnTechnique<Slingshot>(1);
+        //LearnTechnique<Slingshot>(1);
         //LearnTechnique<Slash>(1);
+        LearnTechnique<Whip>(1);
         LearnTechnique<ChiSpit>(2);
     }
 
@@ -187,6 +193,7 @@ public class PlayerController : MonoBehaviour
             {
                 // Do Roll Animation for now teleport 
                 currRollSpeed = rollSpeed;
+                isInvulnerable = true;
                 playerRolling = true; //Prevents movement
                 playerRolled = true; // Prevents from other actions to be used
             }
@@ -199,9 +206,37 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Technique")
         {
-            LearnTechnique<Slash>(1);
+            print("ENTERED");
         }
+
+        if(collision.gameObject.tag == "Enemy")
+        {
+            if (isInvulnerable)
+            {
+                //NOTHING HAPPENS
+            }
+            else
+            {
+                print("YOU DIED");
+            }
+        }
+
     }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+
+        if(other.gameObject.tag == "Technique")
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                LearnTechnique<Slash>(1);
+                Destroy(other.gameObject);
+            }
+        }
+
+    }
+
 
     // Resets the cooldown boolean variable. Called by Invoke Function
     // from specific time.
@@ -229,10 +264,11 @@ public class PlayerController : MonoBehaviour
         Vector2 currPosition = transform.position;
         currPosition += movement * currRollSpeed * Time.deltaTime;
         player.MovePosition(currPosition);
-        currRollSpeed -= currRollSpeed * 10f * Time.deltaTime;
+        currRollSpeed -= currRollSpeed * dodgeRollDuration * Time.deltaTime;
         if(currRollSpeed < 5f)
         {
             playerRolling = false;
+            isInvulnerable = false;
             // Player has stopped rolling, startTimer to reset cooldown
             Invoke("ResetDodgeRoll", dodgeRollCooldownTimer);
         }
