@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+    void Start()
+    {
+        Invoke("DestoryProjectile", 5f);
+    }
+
     private void onTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Wall")
@@ -12,6 +17,14 @@ public class EnemyBullet : MonoBehaviour
         }
 
         if (collision.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void DestoryProjectile()
+    {
+        if (gameObject != null)
         {
             Destroy(gameObject);
         }

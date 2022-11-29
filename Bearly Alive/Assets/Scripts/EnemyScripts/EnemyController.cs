@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
 {
     //Variables
     public int _MAX_HEALTH = 2;
+    public float projectileSpeed = 4f;
     public HudManager hud;
     int healthRemaining;
 
@@ -48,7 +49,7 @@ public class EnemyController : MonoBehaviour
         direction = PointAtPlayer(player.transform);
 
         if(currentTime == 0)
-            //Shoot();
+            Shoot();
 
         if(shot && currentTime < waitTime)
             currentTime += 1 * Time.deltaTime;
@@ -107,6 +108,7 @@ public class EnemyController : MonoBehaviour
     private Vector2 PointAtPlayer(Transform player)
     {
         Vector3 targ = player.position;
+        targ.z = 0f;
         Vector3 objectPos = transform.position;
 
         targ.x = targ.x - objectPos.x;
@@ -115,7 +117,6 @@ public class EnemyController : MonoBehaviour
         float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        Debug.Log("point");
 
         return new Vector2(targ.x, targ.y);
     }
@@ -126,5 +127,6 @@ public class EnemyController : MonoBehaviour
 
         bulletSpawned = Instantiate(bullet.transform, bulletSpawnPoint.transform.position, Quaternion.identity);
         bulletSpawned.rotation = this.transform.rotation;
+        bulletSpawned.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y).normalized * projectileSpeed * 10;
     }
 }

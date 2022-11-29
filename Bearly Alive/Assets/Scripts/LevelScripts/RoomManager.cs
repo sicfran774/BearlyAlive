@@ -165,7 +165,7 @@ public class RoomManager : MonoBehaviour
         float y = (i / 10) * 10;
         GameObject newRoom = Instantiate(roomOne);
         newRoom.transform.position = new Vector2(x, y);
-        newRoom.tag = "Room";
+        newRoom.tag = "Wall";
         newRoom.transform.parent = roomsParent.transform;
     }
 

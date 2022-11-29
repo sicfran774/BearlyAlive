@@ -8,8 +8,8 @@ TagManager:
   - Enemy
   - Sword
   - Technique
-  - Room
   - EnemyBullet
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -17,8 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player Layer
+  - Enemy Layer
   - 
   - 
   - 

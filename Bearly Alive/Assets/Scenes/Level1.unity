@@ -389,11 +389,15 @@ PrefabInstance:
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 6768108042419747499, guid: 7ced4a21ff8c6c048b6e8381917cf98d, type: 3}
+      objectReference: {fileID: 6768108042419747499, guid: 9c89962e100d6944d8330f5c2e2eecb4, type: 3}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 184059407}
+    - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: waitTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: bulletSpawnPoint
       value: 
@@ -1338,11 +1342,15 @@ PrefabInstance:
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 6768108042419747499, guid: 7ced4a21ff8c6c048b6e8381917cf98d, type: 3}
+      objectReference: {fileID: 6768108042419747499, guid: 9c89962e100d6944d8330f5c2e2eecb4, type: 3}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 184059407}
+    - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: waitTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: bulletSpawnPoint
       value: 
@@ -1571,11 +1579,15 @@ PrefabInstance:
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 6768108042419747499, guid: 7ced4a21ff8c6c048b6e8381917cf98d, type: 3}
+      objectReference: {fileID: 6768108042419747499, guid: 9c89962e100d6944d8330f5c2e2eecb4, type: 3}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 184059407}
+    - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: waitTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: bulletSpawnPoint
       value: 
@@ -2660,11 +2672,15 @@ PrefabInstance:
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 6768108042419747499, guid: 7ced4a21ff8c6c048b6e8381917cf98d, type: 3}
+      objectReference: {fileID: 6768108042419747499, guid: 9c89962e100d6944d8330f5c2e2eecb4, type: 3}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 184059407}
+    - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: waitTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: bulletSpawnPoint
       value: 
