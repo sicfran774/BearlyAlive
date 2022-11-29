@@ -931,6 +931,7 @@ MonoBehaviour:
   minRooms: 7
   maxRooms: 15
   roomOne: {fileID: 142334216049624477, guid: 46ec3c273ea07d0438407fc2fd189702, type: 3}
+  entranceWall: {fileID: 2998629726270957969, guid: 311266895ad740c459a881eb2a389004, type: 3}
   enemyOne: {fileID: 8667829567553451782, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
   playerEnteredRoom: 0
   roomCount: 0

@@ -5,6 +5,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 /*  Room generation must consist of a few things:
  *  1.  Where/what kind of enemies spawn
@@ -34,6 +35,7 @@ public class RoomManager : MonoBehaviour
     public int minRooms;
     public int maxRooms;
     public GameObject roomOne;
+    public GameObject entranceWall;
 
     [Space(20)]
 
@@ -81,6 +83,7 @@ public class RoomManager : MonoBehaviour
         cellQueue = new Queue<int>();
         
         StartCoroutine(BeginLevelGeneration());
+        StartCoroutine(CloseWalls());
     }
 
     private void Update()
@@ -186,7 +189,7 @@ public class RoomManager : MonoBehaviour
         GameObject newRoom = Instantiate(roomOne);
         newRoom.transform.position = new Vector2(x, y);
         newRoom.tag = "Wall";
-        newRoom.name = "Room " + roomCount;
+        newRoom.name = "Cell " + i ;
 
         if (roomsParent != null)
         {
@@ -203,6 +206,56 @@ public class RoomManager : MonoBehaviour
             {
                 addRoomsToGrid = true;
             }
+        }
+    }
+
+    //For blocking off entrances that don't have a room in that direction
+    IEnumerator CloseWalls()
+    {
+        for(int i = 0; i < rooms.Length; i++) //Traverse through all cells
+        {
+            if (rooms[i] != 0) //If cell has room
+            {
+                Debug.Log("Checking cell " + i);
+                if (rooms[i - 1] == 0) AddWall(i, 0); //Check if left has room, if yes add wall
+                if (rooms[i + 1] == 0) AddWall(i, 1); //Right
+                if (rooms[i - 10] == 0) AddWall(i, 2); //Below
+                if (rooms[i + 10] == 0) AddWall(i, 3); //Above
+            }
+            yield return null;
+        }
+    }
+
+    void AddWall(int i, int dir) //dir --> 0, left; 1, right; 2, below; 3, above
+    {
+        float x = (i % 10) * 100;
+        float y = (i / 10) * 50;
+        GameObject wall = Instantiate(entranceWall, roomsParent.transform);
+        switch (dir)
+        {
+            case 0:
+                wall.transform.position = new Vector2(x - 68.3457f, y - 6.91f); //I know these numbers are scuffed... sorry
+                wall.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90f));
+                wall.tag = "Wall";
+                wall.name = "cell " + i + " left";
+                break;
+            case 1:
+                wall.transform.position = new Vector2(x + 26.66f, y - 6.91f);
+                wall.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90f));
+                wall.tag = "Wall";
+                wall.name = "cell " + i + " right";
+                break;
+            case 2:
+                wall.transform.position = new Vector2(x, y - 25);
+                wall.tag = "Wall";
+                wall.name = "cell " + i + " below";
+                break;
+            case 3:
+                wall.transform.position = new Vector2(x, y + 20);
+                wall.tag = "Wall";
+                wall.name = "cell " + i + " above";
+                break;
+            default: break;
         }
     }
 
