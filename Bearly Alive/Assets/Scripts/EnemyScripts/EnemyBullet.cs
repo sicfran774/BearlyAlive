@@ -9,7 +9,7 @@ public class EnemyBullet : MonoBehaviour
         Invoke("DestoryProjectile", 5f);
     }
 
-    private void onTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Wall")
         {

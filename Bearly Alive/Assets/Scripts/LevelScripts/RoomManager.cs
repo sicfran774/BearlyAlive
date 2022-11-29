@@ -26,6 +26,8 @@ using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviour
 {
+    public static RoomManager instance = null;
+
     [Header("Level Name")]
     public string levelName;
 
@@ -51,6 +53,19 @@ public class RoomManager : MonoBehaviour
     private GameObject roomsParent;
 
     System.Random rand = new System.Random();
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
@@ -188,9 +203,9 @@ public class RoomManager : MonoBehaviour
     {
         switch (type) {
             case "enemyOne": 
-                return Instantiate(enemyOne);
+                return Instantiate(enemyOne, roomsParent.transform);
             default:
-                return Instantiate(enemyOne);
+                return Instantiate(enemyOne, roomsParent.transform);
         }
     }
 

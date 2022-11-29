@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
     private Transform bulletSpawned;
 
     private Vector2 direction;
+    private float angle;
 
     public float waitTime;
     private float currentTime;
@@ -30,6 +31,9 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        bulletSpawnPoint = this.gameObject;
+
         enemy = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         healthRemaining = _MAX_HEALTH;
@@ -114,7 +118,7 @@ public class EnemyController : MonoBehaviour
         targ.x = targ.x - objectPos.x;
         targ.y = targ.y - objectPos.y;
 
-        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+        angle = (Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg) - 90f;
 
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
@@ -126,7 +130,7 @@ public class EnemyController : MonoBehaviour
         shot = true;
 
         bulletSpawned = Instantiate(bullet.transform, bulletSpawnPoint.transform.position, Quaternion.identity);
-        bulletSpawned.rotation = this.transform.rotation;
+        bulletSpawned.rotation = transform.rotation;
         bulletSpawned.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y).normalized * projectileSpeed * 10;
     }
 }
