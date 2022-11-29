@@ -16,9 +16,11 @@ public class Slash : Technique
     Collider2D coll;
 
     // to be manipulated by designer
-    public const int defaultDamage = 5;
+    public const int defaultDamage = 10;
     // Time to wait until player is able to use technique again
     public const float defaultCooldown = 1f;
+
+    private GameObject swordChildObject;
 
 
     // Makes the sword hidden when it is first initializes when the game starts
@@ -30,7 +32,7 @@ public class Slash : Technique
         gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         sword.SetActive(false);
         int direction = transform.position.y >= 0 ? 1 : -1;
-        Instantiate(sword, new Vector2(transform.position.x, transform.position.y + 3.5f), Quaternion.Euler(0f,0f,0f), transform);
+        swordChildObject = Instantiate(sword, new Vector2(transform.position.x, transform.position.y + 3.5f), Quaternion.Euler(0f,0f,0f), transform);
     }
 
     public override void Act()
@@ -75,7 +77,8 @@ public class Slash : Technique
     // based on the argument passed.
     IEnumerator Rotate(float duration)
     {
-        transform.GetChild(0).gameObject.SetActive(true);
+        swordChildObject.SetActive(true);
+        cursorLock = true;
 
         float startRotation = transform.eulerAngles.z + 45f;
         float endRotation = startRotation - 405.0f;
@@ -87,8 +90,8 @@ public class Slash : Technique
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
             yield return null;
         }
-        transform.GetChild(0).gameObject.SetActive(false);
-
+        cursorLock = false;
+        swordChildObject.SetActive(false);
     }
 
 }
