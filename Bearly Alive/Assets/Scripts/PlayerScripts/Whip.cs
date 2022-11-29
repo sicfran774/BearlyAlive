@@ -8,7 +8,7 @@ public class Whip : Technique
     private GameObject whip;
 
     // The amount of time for slash action to finish
-    public float whipDuration = 1f;
+    public float whipDuration = 0.25f;
 
     Rigidbody2D body;
     Collider2D coll;
@@ -16,7 +16,7 @@ public class Whip : Technique
     // to be manipulated by designer
     public const int defaultDamage = 10;
     // Time to wait until player is able to use technique again
-    public const float defaultCooldown = 1f;
+    public const float defaultCooldown = 0.75f;
 
     private GameObject childWhipGameObject;
 
