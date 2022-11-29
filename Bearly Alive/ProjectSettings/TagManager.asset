@@ -10,6 +10,9 @@ TagManager:
   - Technique
   - EnemyBullet
   - Wall
+  - Room
+  - Whip
+  - Upgrade
   layers:
   - Default
   - TransparentFX

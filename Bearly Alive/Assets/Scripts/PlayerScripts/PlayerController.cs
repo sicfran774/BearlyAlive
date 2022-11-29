@@ -204,9 +204,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Technique")
+        if (collision.gameObject.tag == "Technique")
         {
-            print("ENTERED");
+            print("ENTERED Technique");
+            print(collision.gameObject.name);
+        }
+
+        if (collision.gameObject.tag == "Upgrade")
+        {
+            print("ENTERED Technique");
+
+            print(collision.gameObject.name);
         }
 
         if(collision.gameObject.tag == "Enemy")
