@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject Sword;
 
+    public GameObject Whip;
+
     //Allows to call events in scripts, used for upgrade menu 
     public delegate void UpgradeMenuCallback(bool active);
 
@@ -138,6 +140,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Home");
     }
 
+
     //Allow the player to try again, this keeps the high score and curr level and rests the score 
     public void TryAgain()
     {
@@ -146,6 +149,12 @@ public class GameManager : MonoBehaviour
 
         //Load scence 
         SceneManager.LoadScene("Level" + currentLevel);
+    }
+
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 
 
