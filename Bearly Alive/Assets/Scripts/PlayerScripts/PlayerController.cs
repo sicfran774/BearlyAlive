@@ -54,7 +54,10 @@ public class PlayerController : MonoBehaviour
 
     //CHANGED TO PUBLIC SO I CAN USE IN GAMEMANAGER
     // Variables to hold the two known player actions
-    public Technique[] techniques = new Technique[2];
+    public Technique[] techniques {
+            get ; 
+            private set;
+            }
 
     // Vector used to computer player's new direction based on WASD input
     Vector2 movement;
@@ -88,6 +91,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        techniques = new Technique[2];
         if (instance == null)
         {
             instance = this;
@@ -291,13 +295,19 @@ public class PlayerController : MonoBehaviour
         playerRolled = false;
     }
 ///////////////////////////////////////////////
-// these methods teach the player different techniques. Use when collecting loot.
+// these methods teach the player different techniques and upgrades. Use when collecting loot.
 /////////////////////////////////////////////////
 
     // places an instance of the perameterized technique into a technique slot. slot can be 1 or 2.
     public void LearnTechnique<T>(int slot) where T : Technique {
         techniques[slot-1] = gameObject.AddComponent<T>() as T;
         techniques[slot-1].Initialize();
+    }
+
+    // gives upgrade to technique in slot. Can override old upgrades.
+    // upgrade string can be: "none", "poison", "fire", "reflect",
+    public void setUpgrade(int slot, string upgrade) {
+        techniques[slot-1].SetUpgrade(upgrade);
     }
 
 
