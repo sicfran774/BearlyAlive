@@ -15,6 +15,12 @@ public class PlayerController : MonoBehaviour
     // Player's Movement Speed
     public float walkSpeed = 5f;
 
+    public int maxHealth = 100;
+    private int currentHealth;
+
+    public HealthBar healthBar;
+
+
 
     // HUD Manager for Player's Actions 
     public HudManager hudManager;
@@ -79,6 +85,10 @@ public class PlayerController : MonoBehaviour
     {
         player = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
 
         movement = Vector2.zero;
         rounds = GameManager.instance.bullets;
@@ -248,7 +258,7 @@ public class PlayerController : MonoBehaviour
             print(collision.gameObject.name);
         }
 
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Bullet")
         {
             if (isInvulnerable)
             {
@@ -256,7 +266,11 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                print("YOU DIED");
+                healthBar.TookDamage(5);
+                if (healthBar.currentHealth <= 0)
+                {
+                    print("YOU HAVE DIED!");
+                }
             }
         }
     }
