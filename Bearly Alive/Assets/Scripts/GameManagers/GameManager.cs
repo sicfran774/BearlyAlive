@@ -38,19 +38,25 @@ public class GameManager : MonoBehaviour
     //An instance 
     public UpgradeMenuCallback onToggleUpgradeMenu;
 
+    //Ugrade Menu UI labels 
     public Text firstTechniqueLabel;
     public Text secondTechniqueLabel;
 
+   /* public Text firstTechniqueDescriptionLabel;
+    public Text secondTechniqueDescriptionLabel;
+
+    public Text pickedUpgradeLabel;
+    public Text pickedUpgradeDescriptionLabel;*/
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
+       /* if (Input.GetKeyDown(KeyCode.U))
         {
             ToggleUpgradeMenu();
-        }
+        }*/
     }
 
-    private void ToggleUpgradeMenu()
+    public void ToggleUpgradeMenu()
     {
 
         //Inverse current active state
@@ -63,6 +69,7 @@ public class GameManager : MonoBehaviour
         if(PlayerController.instance.techniques[0] != null)
         {
             firstTechniqueLabel.text = PlayerController.instance.techniques[0].ToString();
+            /*firstTechniqueDescriptionLabel.text = PlayerController.instance.techniques[0]*/
         }
 
         //Second Technique label is updated to upgrade menu 
@@ -70,6 +77,7 @@ public class GameManager : MonoBehaviour
         {
             secondTechniqueLabel.text = PlayerController.instance.techniques[1].ToString();
         }
+
         
     }
 

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor;
 using UnityEditor.Timeline;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerController))]
 
@@ -66,6 +67,13 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D player;
     Collider2D coll;
 
+    //Text object when upgrade is collided 
+
+    [SerializeField]
+    private Text pressFLabel; 
+
+    bool canpickup;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +95,10 @@ public class PlayerController : MonoBehaviour
         //LearnTechnique<Slash>(1);
         LearnTechnique<Slingshot>(2);
         LearnTechnique<ChiSpit>(1);
+
+        //Upgrade pick up attributes 
+        pressFLabel.enabled = false;
+        canpickup = false;
     }
 
     private void Awake()
@@ -107,6 +119,16 @@ public class PlayerController : MonoBehaviour
         }
 
         DoActions();
+
+        //User can pick up upgrade, which toggles upgrade menu 
+        if (canpickup == true)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                GameManager.instance.ToggleUpgradeMenu();
+                print("Should toggle menu");
+            }
+        }
     }
 
     //Handle what happens when upgrade menu is toggled  
@@ -218,6 +240,11 @@ public class PlayerController : MonoBehaviour
         {
             print("ENTERED Technique");
 
+            //Display label on UI
+            pressFLabel.enabled = true;
+
+            //Player can now pick up upgrade
+            canpickup = true;
             print(collision.gameObject.name);
         }
 
@@ -232,7 +259,16 @@ public class PlayerController : MonoBehaviour
                 print("YOU DIED");
             }
         }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //Enabel text when player collides with upgrade
+        if (collision.gameObject.tag == "Upgrade")
+        {
+            pressFLabel.enabled = false;
+
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
