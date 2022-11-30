@@ -6,12 +6,16 @@ public class Slingshot : Technique
 {
     // to be manipulated by designer
     public const int defaultDamage = 5;
-    public const float defaultCooldown = 2f;
-    public float slingSpeed = 400f;
+    public const float defaultCooldown = .9f;
+    public float slingSpeed = 200f;
     public float slingDuration = .7f;
 
     // for applying movement to actor
     private Rigidbody2D actorBody;
+
+    // for coordinating techniques
+    private bool selfCooling;
+    private float selfCooldown = 1.1f;
 
 
     public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
@@ -23,10 +27,11 @@ public class Slingshot : Technique
     // When called, the referenced GameObject will stop moving, slide back, then shoot forward with a damaging hitbox.
     public override void Act()
     {
-        if (!techsCooling)
+        if (!techsCooling && !selfCooling)
         {
+            techsCooling = true;
+            selfCooling = true;
             StartCoroutine(HandleSlingShot(slingDuration));
-            startCooling();
         }
 
     }
@@ -51,7 +56,12 @@ public class Slingshot : Technique
         // lock movement and direction
         moveLock = true;
         cursorLock = true;
-        while (t < duration)
+        while(t < cooldown - duration) {
+            t+= Time.deltaTime;
+            
+            yield return null;
+        }
+        while (t < cooldown)
         {
             move();
             t += Time.deltaTime;
@@ -61,7 +71,18 @@ public class Slingshot : Technique
         // unlock movement and direction
         moveLock = false;
         cursorLock = false;
+        techsCooling = false;
 
+        print(t);
+        while (t < selfCooldown)
+        {
+            t += Time.deltaTime;
+            
+            yield return null;
+        }
+        print(t);
+        print("self cooled");
+        selfCooling = false;
     }
 
 

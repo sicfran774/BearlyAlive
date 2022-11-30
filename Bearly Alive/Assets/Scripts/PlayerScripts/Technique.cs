@@ -32,13 +32,17 @@ public abstract class Technique : Action
     }
 
     // different values of upgrade cause different actions
-    protected string upgrade = "none";
+    public string upgrade {
+        get;
+        protected set;
+    }
 
     // must be called after AddComponent
     // in the abscence of constructors, this initializes the instance's fields.
     public virtual void Initialize(int damage = 0, float cooldown = 0) {
         this.damage = damage;
         this.cooldown = cooldown;
+        upgrade = "none";
     }
 
     // use when player installs an upgrade on a technique
