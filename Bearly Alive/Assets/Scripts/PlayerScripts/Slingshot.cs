@@ -8,7 +8,7 @@ public class Slingshot : Technique
     public const int defaultDamage = 5;
     public const float defaultCooldown = 2f;
     public float slingSpeed = 400f;
-    public float slingDuration = 200f;
+    public float slingDuration = .7f;
 
     // for applying movement to actor
     private Rigidbody2D actorBody;
@@ -54,7 +54,7 @@ public class Slingshot : Technique
         while (t < duration)
         {
             move();
-            t += Time.deltaTime * slingSpeed;
+            t += Time.deltaTime;
             yield return null;
         }
 
