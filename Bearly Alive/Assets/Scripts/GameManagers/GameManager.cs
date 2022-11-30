@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
     public Text firstTechniqueLabel;
     public Text secondTechniqueLabel;
 
-  /*  public Text firstTechniqueDescriptionLabel;
-    public Text secondTechniqueDescriptionLabel;*/
+    public Text firstTechniqueDescriptionLabel;
+    public Text secondTechniqueDescriptionLabel;
 
     public Text upgradeLabel;
     public Text upgradeDescriptionLabel;
@@ -73,37 +73,91 @@ public class GameManager : MonoBehaviour
         //First Technique label is updated to upgrade menu 
         if(PlayerController.instance.techniques[0] != null)
         {
-            firstTechniqueLabel.text = PlayerController.instance.techniques[0].ToString();
-            upgradeLabel.text = PlayerController.instance.pickedUpgrade;
+            //Use regular expressions to prase first technique
+            string first_technique = PlayerController.instance.techniques[0].ToString();
+            string first_technique_re = first_technique.Split('(', ')')[1];
 
-            switch (PlayerController.instance.pickedUpgrade)
+
+            firstTechniqueLabel.text = first_technique_re;
+            switch (first_technique_re)
             {
-                case "Tajin Rubdown":
-                    upgradeDescriptionLabel.text = "Technique will deal Fire Damage";
+                case "Boomerang":
+                    firstTechniqueDescriptionLabel.text = "Technique can be thrown at enemies far away\n"
+                        + "Power: ?\n" + "Range: ? \n" + "Speed: ?\n" + "Ammo: ?";
                     break;
-                case "Jelly Infusion":
-                    upgradeDescriptionLabel.text = "Technique will reflect projectiles";
+                case "ChiSpit":
+                    firstTechniqueDescriptionLabel.text = "Rapid fire projectiles channeled by the universe’s candy energy\n"
+                        + "Power: 1\n" + "Range: Short\n" + "Speed: Fast\n" + "Ammo: 15";
                     break;
-                case "Malic Acid Dip":
-                    upgradeDescriptionLabel.text = "Technique will deal Poison Damage";
+                case "Slash":
+                    firstTechniqueDescriptionLabel.text = "Blunt weapon effective at crushing candy\n"
+                        + "Power: 10\n" + "Range: Short\n" + "Speed: Medium\n" + "Ammo: Unlimited";
                     break;
-                case "Pop Rocks":
-                    upgradeDescriptionLabel.text = "Technique will deal Explosive Damage";
+                case "Slingshot":
+                    firstTechniqueDescriptionLabel.text = "Projectiles that damage enemies in the way\n"
+                        + "Power: 5\n" + "Range: Far\n" + "Speed: Medium\n" + "Ammo: Unlimited";
                     break;
-                case "Rock Candy":
-                    upgradeDescriptionLabel.text = "Technique will deal Piercing Damage";
+                case "Whip":
+                    firstTechniqueDescriptionLabel.text = "Whip through multiple enemies\n"
+                        + "Power: 10\n" + "Range: Medium\n" + "Speed: Slow\n" + "Ammo: Unlimited";
                     break;
             }
-            /*firstTechniqueDescriptionLabel.text = PlayerController.instance.techniques[0]*/
         }
 
         //Second Technique label is updated to upgrade menu 
         if (PlayerController.instance.techniques[0] != null)
         {
-            secondTechniqueLabel.text = PlayerController.instance.techniques[1].ToString();
+            //Use regular expressions to prase second technique
+            string second_technique = PlayerController.instance.techniques[1].ToString();
+            string second_technique_re = second_technique.Split('(', ')')[1];
+
+            secondTechniqueLabel.text = second_technique_re;
+            switch (second_technique_re)
+            {
+                case "Boomerang":
+                    secondTechniqueDescriptionLabel.text = "Technique can be thrown at enemies far away\n"
+                        + "Power: ?\n" + "Range: ? \n" + "Speed: ?\n" + "Ammo: ?";
+                    break;
+                case "ChiSpit":
+                    secondTechniqueDescriptionLabel.text = "Rapid fire projectiles channeled by the universe’s candy energy\n"
+                        + "Power: 1\n" + "Range: Short\n" + "Speed: Fast\n" + "Ammo: 15";
+                    break;
+                case "Slash":
+                    secondTechniqueDescriptionLabel.text = "Blunt weapon effective at crushing candy\n"
+                        + "Power: 10\n" + "Range: Short\n" + "Speed: Medium\n" + "Ammo: Unlimited";
+                    break;
+                case "Slingshot":
+                    secondTechniqueDescriptionLabel.text = "Projectiles that damage enemies in the way\n"
+                        + "Power: 5\n" + "Range: Far\n" + "Speed: Medium\n" + "Ammo: Unlimited";
+                    break;
+                case "Whip":
+                    secondTechniqueDescriptionLabel.text = "Whip through multiple enemies\n"
+                        + "Power: 10\n" + "Range: Medium\n" + "Speed: Slow\n" + "Ammo: Unlimited";
+                    break;
+            }
         }
 
-        
+        //Add upgrade and description to the UI 
+        upgradeLabel.text = PlayerController.instance.pickedUpgrade;
+        switch (PlayerController.instance.pickedUpgrade)
+        {
+            case "Tajin Rubdown":
+                upgradeDescriptionLabel.text = "Upgrade will deal Fire Damage";
+                break;
+            case "Jelly Infusion":
+                upgradeDescriptionLabel.text = "Upgrade will reflect projectiles";
+                break;
+            case "Malic Acid Dip":
+                upgradeDescriptionLabel.text = "Upgrade will deal Poison Damage";
+                break;
+            case "Pop Rocks":
+                upgradeDescriptionLabel.text = "Upgrade will deal Explosive Damage";
+                break;
+            case "Rock Candy":
+                upgradeDescriptionLabel.text = "Upgrade will deal Piercing Damage";
+                break;
+        }
+
     }
 
     private void Awake()

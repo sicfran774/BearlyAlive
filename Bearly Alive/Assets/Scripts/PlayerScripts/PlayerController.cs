@@ -74,13 +74,14 @@ public class PlayerController : MonoBehaviour
     Collider2D coll;
 
     //Text object when upgrade is collided 
-
     [SerializeField]
     private Text pressFLabel; 
 
+    //Upgrade UI attributes
     public bool canpickup;
 
     public string pickedUpgrade;
+
 
     // Start is called before the first frame update
     void Start()
@@ -235,13 +236,13 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Technique")
         {
-            print("ENTERED Technique");
+            print("ENTERED Technique"); 
             print(collision.gameObject.name);
         }
 
         if (collision.gameObject.tag == "Upgrade")
         {
-            print("ENTERED Technique");
+            print("ENTERED Upgrade");
 
             //Display label on UI
             pressFLabel.enabled = true;
