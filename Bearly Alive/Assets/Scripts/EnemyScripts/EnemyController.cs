@@ -106,7 +106,7 @@ public class EnemyController : MonoBehaviour
     void OnUpgradeMenuToggle(bool active)
     {
         //Disable enemy movement 
-        GetComponent<EnemyController>().enabled = !active;
+        shot = !active;
     }
 
     private Vector2 PointAtPlayer(Transform player)
