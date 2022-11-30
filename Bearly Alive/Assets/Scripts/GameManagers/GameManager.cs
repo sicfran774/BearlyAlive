@@ -42,11 +42,11 @@ public class GameManager : MonoBehaviour
     public Text firstTechniqueLabel;
     public Text secondTechniqueLabel;
 
-   /* public Text firstTechniqueDescriptionLabel;
-    public Text secondTechniqueDescriptionLabel;
+  /*  public Text firstTechniqueDescriptionLabel;
+    public Text secondTechniqueDescriptionLabel;*/
 
-    public Text pickedUpgradeLabel;
-    public Text pickedUpgradeDescriptionLabel;*/
+    public Text upgradeLabel;
+    public Text upgradeDescriptionLabel;
 
     void Update()
     {
@@ -74,6 +74,26 @@ public class GameManager : MonoBehaviour
         if(PlayerController.instance.techniques[0] != null)
         {
             firstTechniqueLabel.text = PlayerController.instance.techniques[0].ToString();
+            upgradeLabel.text = PlayerController.instance.pickedUpgrade;
+
+            switch (PlayerController.instance.pickedUpgrade)
+            {
+                case "Tajin Rubdown":
+                    upgradeDescriptionLabel.text = "Technique will deal Fire Damage";
+                    break;
+                case "Jelly Infusion":
+                    upgradeDescriptionLabel.text = "Technique will reflect projectiles";
+                    break;
+                case "Malic Acid Dip":
+                    upgradeDescriptionLabel.text = "Technique will deal Poison Damage";
+                    break;
+                case "Pop Rocks":
+                    upgradeDescriptionLabel.text = "Technique will deal Explosive Damage";
+                    break;
+                case "Rock Candy":
+                    upgradeDescriptionLabel.text = "Technique will deal Piercing Damage";
+                    break;
+            }
             /*firstTechniqueDescriptionLabel.text = PlayerController.instance.techniques[0]*/
         }
 

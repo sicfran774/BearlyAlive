@@ -80,6 +80,8 @@ public class PlayerController : MonoBehaviour
 
     public bool canpickup;
 
+    public string pickedUpgrade;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +111,7 @@ public class PlayerController : MonoBehaviour
         //Upgrade pick up attributes 
         pressFLabel.enabled = false;
         canpickup = false;
+        pickedUpgrade = null;
     }
 
     private void Awake()
@@ -245,6 +248,10 @@ public class PlayerController : MonoBehaviour
 
             //Player can now pick up upgrade
             canpickup = true;
+
+            //Assign picked upgrade for upgrade menu UI
+            pickedUpgrade = collision.gameObject.name;
+
             print(collision.gameObject.name);
         }
 
