@@ -50,15 +50,20 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-       /* if (Input.GetKeyDown(KeyCode.U))
+        //User can pick up upgrade, which toggles upgrade menu 
+        if (PlayerController.instance.canpickup == true)
         {
-            ToggleUpgradeMenu();
-        }*/
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                GameManager.instance.ToggleUpgradeMenu();
+                print("Should toggle menu");
+            }
+        }
     }
 
     public void ToggleUpgradeMenu()
     {
-
+        
         //Inverse current active state
         upgradeMenu.SetActive(!upgradeMenu.activeSelf);
 

@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Text pressFLabel; 
 
-    bool canpickup;
+    public bool canpickup;
 
     // Start is called before the first frame update
     void Start()
@@ -129,16 +129,6 @@ public class PlayerController : MonoBehaviour
         }
 
         DoActions();
-
-        //User can pick up upgrade, which toggles upgrade menu 
-        if (canpickup == true)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                GameManager.instance.ToggleUpgradeMenu();
-                print("Should toggle menu");
-            }
-        }
     }
 
     //Handle what happens when upgrade menu is toggled  
