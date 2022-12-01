@@ -13,6 +13,7 @@ TagManager:
   - Room
   - Whip
   - Upgrade
+  - Boomerang
   layers:
   - Default
   - TransparentFX

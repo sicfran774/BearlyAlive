@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject Whip;
 
+    public GameObject Boomerang;
+
     //Allows to call events in scripts, used for upgrade menu 
     public delegate void UpgradeMenuCallback(bool active);
 
