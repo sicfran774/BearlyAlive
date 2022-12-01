@@ -14,7 +14,11 @@ GameObject:
   - component: {fileID: 6668216004771154351}
   - component: {fileID: 1197868453199097258}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Layer: 6
+=======
+  m_Layer: 0
+>>>>>>> parent of 59cfc83 (Updated technique-related prefabs)
 =======
   m_Layer: 0
 >>>>>>> parent of 59cfc83 (Updated technique-related prefabs)
@@ -152,8 +156,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 16
 <<<<<<< HEAD
+<<<<<<< HEAD
   maxHealth: 100
   healthBar: {fileID: 0}
+=======
+>>>>>>> parent of 59cfc83 (Updated technique-related prefabs)
 =======
 >>>>>>> parent of 59cfc83 (Updated technique-related prefabs)
   hudManager: {fileID: 0}
@@ -162,9 +169,15 @@ MonoBehaviour:
   dodgeRollDuration: 10
   rollSpeed: 750
 <<<<<<< HEAD
+<<<<<<< HEAD
   pressFLabel: {fileID: 0}
   canpickup: 0
   pickedUpgrade: {fileID: 0}
+=======
+  techniques:
+  - {fileID: 0}
+  - {fileID: 0}
+>>>>>>> parent of 59cfc83 (Updated technique-related prefabs)
 =======
   techniques:
   - {fileID: 0}
