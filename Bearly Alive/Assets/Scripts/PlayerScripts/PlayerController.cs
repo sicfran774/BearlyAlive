@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
         //LearnTechnique<Slash>(1);
         //LearnTechnique<Slingshot>(2);
         LearnTechnique<ChiSpit>(1);
-        LearnTechnique<Boomerang>(2);
+        LearnTechnique<Slingshot>(2);
 
         //Upgrade pick up attributes 
         pressFLabel.enabled = false;
