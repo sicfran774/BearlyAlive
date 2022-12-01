@@ -47,10 +47,10 @@ public class PlayerController : MonoBehaviour
     // Used to prevent player from taking damage when performing DodgeRoll Action
     bool isInvulnerable = false;
 
-    public float dodgeRollDuration = 10f;
+    public float dodgeRollDuration = 1f;
 
     // The Speed of the DodgeRoll Action
-    public float rollSpeed = 750f;
+    public float rollSpeed = 200f;
     // Variable to implement dodgeroll function
     float currRollSpeed;
 
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
                     techniques[1].Act();
                 }
         }else{
-                HandleDodgeRoll();
+                //HandleDodgeRoll();
         }
 
     }
@@ -228,6 +228,7 @@ public class PlayerController : MonoBehaviour
                 isInvulnerable = true;
                 playerRolling = true; //Prevents movement
                 playerRolled = true; // Prevents from other actions to be used
+                StartCoroutine(PerformDodgeRoll(dodgeRollDuration));
             }
         }
     }
@@ -335,6 +336,59 @@ public class PlayerController : MonoBehaviour
             Invoke("ResetDodgeRoll", dodgeRollCooldownTimer);
         }
     }
+
+
+
+    IEnumerator PerformDodgeRoll(float duration)
+    {
+        float startRotation = transform.eulerAngles.x;
+        float endRotation = startRotation - 360f;
+
+        float yRot = transform.eulerAngles.y;
+        float yEndRot = yRot - 360f;
+
+
+        float t = 0.0f;
+
+
+
+
+        while (t < duration)
+        {
+            Vector2 currPosition = transform.position;
+            currPosition += movement * rollSpeed * Time.deltaTime;
+
+            float xRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
+            float yRotation = Mathf.Lerp(yRot, yEndRot, t / duration) % 360f;
+
+            if(Mathf.Abs(movement.x) > Mathf.Abs(movement.y)) {
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
+
+            }
+            else if (Mathf.Abs(movement.x) < Mathf.Abs(movement.y))
+            {
+                transform.eulerAngles = new Vector3(xRotation, transform.eulerAngles.y, transform.eulerAngles.z);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(xRotation, yRotation, transform.eulerAngles.z);
+                print("HERE:+");
+            }
+
+
+
+            player.MovePosition(currPosition);
+
+            t += Time.deltaTime;
+
+            yield return null;
+        }
+
+        isInvulnerable = false;
+        playerRolling = false;
+        Invoke("ResetDodgeRoll", dodgeRollCooldownTimer);
+    }
+
 
 
 
