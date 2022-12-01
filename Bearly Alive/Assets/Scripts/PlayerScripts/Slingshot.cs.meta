@@ -3,8 +3,7 @@ guid: aa0d882682ea9490b8f96e7aa0530b81
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - SlingshotBox: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
