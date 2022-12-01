@@ -7,7 +7,7 @@ public class Slingshot : Technique
     // to be manipulated by designer
     public const int defaultDamage = 5;
     public const float defaultCooldown = .9f;
-    public float slingSpeed = 200f;
+    public float slingSpeed = 300f;
     public float slingDuration = .7f;
 
     // for applying movement to actor
