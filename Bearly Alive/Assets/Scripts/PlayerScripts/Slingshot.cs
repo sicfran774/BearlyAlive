@@ -10,6 +10,9 @@ public class Slingshot : Technique
     public float slingSpeed = 300f;
     public float slingDuration = .7f;
 
+    // to access hitbox
+    public GameObject SlingshotBox;
+
     // for applying movement to actor
     private Rigidbody2D actorBody;
 
@@ -29,8 +32,6 @@ public class Slingshot : Technique
     {
         if (!techsCooling && !selfCooling)
         {
-            techsCooling = true;
-            selfCooling = true;
             StartCoroutine(HandleSlingShot(slingDuration));
         }
 
@@ -51,7 +52,17 @@ public class Slingshot : Technique
 
     IEnumerator HandleSlingShot(float duration)
     {
+        
+
+        // set inter-technique coordination variables
+        techsCooling = true;
+        selfCooling = true;
+
         float t = 0.0f;
+
+        // activate protective&damaging hitbox. IT MUST BE THE 0th CHILD
+        SlingshotBox = transform.GetChild(0).gameObject;
+        SlingshotBox.SetActive(true);
 
         // lock movement and direction
         moveLock = true;
@@ -72,6 +83,10 @@ public class Slingshot : Technique
         moveLock = false;
         cursorLock = false;
         techsCooling = false;
+
+        // deactivate protective&damaging hitbox. IT MUST BE THE 0th CHILD
+        SlingshotBox = transform.GetChild(0).gameObject;
+        SlingshotBox.SetActive(false);
 
         print(t);
         while (t < selfCooldown)
