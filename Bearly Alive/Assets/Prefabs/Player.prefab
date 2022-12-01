@@ -8,6 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD:Bearly Alive/Assets/Prefabs/Player.prefab
   - component: {fileID: 7575347867245439773}
   - component: {fileID: 7575347867245439772}
   - component: {fileID: -7336451514289359239}
@@ -23,6 +24,13 @@ GameObject:
   m_Layer: 0
 >>>>>>> parent of 59cfc83 (Updated technique-related prefabs)
   m_Name: Player
+=======
+  - component: {fileID: 3790228448006360614}
+  - component: {fileID: 3790228448006360612}
+  - component: {fileID: 3790228448006360613}
+  m_Layer: 0
+  m_Name: SlingshotBox
+>>>>>>> parent of 6353d7a (repush to resolve conflicts):Bearly Alive/Assets/Prefabs/Technique Weapon Objects/SlingshotBox.prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,6 +126,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
+<<<<<<< HEAD:Bearly Alive/Assets/Prefabs/Player.prefab
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
@@ -183,3 +192,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
 >>>>>>> parent of 59cfc83 (Updated technique-related prefabs)
+=======
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.9}
+      - {x: -2.5, y: 2.2}
+      - {x: 0.025585413, y: 0.61405015}
+      - {x: 2.5, y: 2.2}
+>>>>>>> parent of 6353d7a (repush to resolve conflicts):Bearly Alive/Assets/Prefabs/Technique Weapon Objects/SlingshotBox.prefab
