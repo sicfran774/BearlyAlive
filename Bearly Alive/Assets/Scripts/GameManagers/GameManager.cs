@@ -138,9 +138,10 @@ public class GameManager : MonoBehaviour
         }
 
         //Add upgrade and description to the UI 
-        upgradeLabel.text = PlayerController.instance.pickedUpgrade.ToString();
+        upgradeLabel.text = PlayerController.instance.pickedUpgrade.name;
+        print(PlayerController.instance.pickedUpgrade.name);
 
-        switch (PlayerController.instance.pickedUpgrade.ToString())
+        switch (PlayerController.instance.pickedUpgrade.name)
         {
             case "Tajin Rubdown":
                 upgradeDescriptionLabel.text = "Upgrade will deal Fire Damage";

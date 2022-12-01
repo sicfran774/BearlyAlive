@@ -12,7 +12,7 @@ public class UpgradeUIManager2 : MonoBehaviour
     //Apply upgrade based on what technique player chooses 
     public void setUpgradeinSlot1()
     {
-        string selectedUpgrade = PlayerController.instance.pickedUpgrade.ToString();
+        string selectedUpgrade = PlayerController.instance.pickedUpgrade.name;
 
         print(selectedUpgrade + " upgrade applied to slot 1");
 
@@ -30,7 +30,7 @@ public class UpgradeUIManager2 : MonoBehaviour
 
     public void setUpgradeinSlot2()
     {
-        string selectedUpgrade = PlayerController.instance.pickedUpgrade.ToString();
+        string selectedUpgrade = PlayerController.instance.pickedUpgrade.name;
 
         print(selectedUpgrade + " upgrade applied to slot 2");
 
