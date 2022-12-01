@@ -4450,6 +4450,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1474103796}
     - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+      propertyPath: rollSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: hudManager
       value: 
       objectReference: {fileID: 1669058513}
@@ -4468,6 +4472,14 @@ PrefabInstance:
     - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: timeBetweenShots
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+      propertyPath: dodgeRollDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+      propertyPath: dodgeRollCooldownTimer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6668216004771154351, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: m_Constraints
