@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    //Variables
+    //Straightforward variables to control enemy basic attributes
     public int _MAX_HEALTH = 2;
     public float projectileSpeed = 4f;
     public HudManager hud;
@@ -17,50 +17,82 @@ public class EnemyController : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletSpawnPoint;
     private Transform bulletSpawned;
-
+    
+    //Help get enemy angle and direction for attacks
     private Vector2 direction;
     private float angle;
 
+    //A timer originally used for shots, but now used for sour and spice damage
     public float waitTime;
     private float currentTime;
     private bool shot;
 
+    //IF enemy is poisoned or burning
+    private bool isSour = false;
+    private bool isSpicy = false;
+
     Rigidbody2D enemy;
     Collider2D coll;
+
+    private int x;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Find player and initialize bullet spawnpoint
         player = GameObject.FindWithTag("Player");
         bulletSpawnPoint = this.gameObject;
 
+        //Build enemy
         enemy = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         healthRemaining = _MAX_HEALTH;
 
         //Method called when delegate is invoked 
         GameManager.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
-
-        //TODO: Find a spawn location for bullet in 2D
-        //bulletSpawnPoint = GameObject.Find()
-
-
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        direction = PointAtPlayer(player.transform);
+        //direction = PointAtPlayer(player.transform);
 
-        if(currentTime == 0)
-            Shoot();
+        //We want to shoot when the enemy "sees" the player, still every few seconds though
+        //Shoot();
+        if(currentTime == 0) 
+        {
+            if(isSour)
+                tickDamage();
+                x++;
+            if(x == 5)
+                isSour = false;
+        }
 
-        if(shot && currentTime < waitTime)
+        if(currentTime > 0 && currentTime % 2 == 0)
+        {
+            if(isSpicy)
+                tickDamage();
+                x++;
+            if(x == 3)
+                isSpicy = false;
+        }
+        
+        //See how health is doing every frame
+        if(healthRemaining <= 0) 
+        {
+            GameManager.instance.IncreaseScore(1);
+            Destroy(gameObject);
+        }
+
+        //Timer for attacks and passive damage
+        if(currentTime < waitTime)
             currentTime += 1 * Time.deltaTime;
 
         if(currentTime >= waitTime)
             currentTime = 0;
 
+        
+            
         /*void MoveEnemy ()
         {
             //Will need to test later, requires a pathfinding script
@@ -82,10 +114,10 @@ public class EnemyController : MonoBehaviour
         }*/
     }
 
-
     // Handles Enemy's objects trigger collisions
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //If hit with bullet, damage the enemy
         if(collision.gameObject.tag == "Bullet")
         {
             healthRemaining--;
@@ -100,15 +132,46 @@ public class EnemyController : MonoBehaviour
 
             }
         }
+
+        //If the enemy touches something spicy or sour, will become poisoned or burning
+
+        //TODO: Change to random chance and not guarantee
+        if(collision.tag == "Player")
+        {
+            if(Random.Range(1, 100) <= 11)
+            {
+                isSour = true;
+            } else {
+                isSour = false;
+            }
+        }
+
+        if(collision.tag == "Spicy")
+        {
+            if(Random.Range(1, 100) <= 11)
+            {
+                isSpicy = true;
+            } else {
+                isSpicy = false;
+            }
+
+        }
+    }
+
+    //Deal damage as per the timer given by each enemies' wait time variable
+    void tickDamage()
+    {
+        healthRemaining--;
     }
 
     //Handle what happens when upgrade menu is toggled  
     void OnUpgradeMenuToggle(bool active)
     {
-        //Disable enemy movement TODO: ADD WHEN ENEMY CONTROLLER IS UPDATED
-        
+        shot = !active;
+        //TODO disable movement
     }
 
+    //Allows the enemy to face the player as it tracks them
     private Vector2 PointAtPlayer(Transform player)
     {
         Vector3 targ = player.position;
@@ -125,6 +188,7 @@ public class EnemyController : MonoBehaviour
         return new Vector2(targ.x, targ.y);
     }
 
+    //A basic shoot function that will be used for other attacks in the future
     public void Shoot()
     {
         shot = true;
