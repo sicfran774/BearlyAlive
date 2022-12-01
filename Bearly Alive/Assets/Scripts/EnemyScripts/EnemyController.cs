@@ -167,8 +167,8 @@ public class EnemyController : MonoBehaviour
     //Handle what happens when upgrade menu is toggled  
     void OnUpgradeMenuToggle(bool active)
     {
-        //Disable enemy movement TODO: ADD WHEN ENEMY CONTROLLER IS UPDATED
-        
+        shot = !active;
+        //TODO disable movement
     }
 
     //Allows the enemy to face the player as it tracks them
