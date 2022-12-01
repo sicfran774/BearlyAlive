@@ -371,6 +371,7 @@ GameObject:
   m_PrefabInstance: {fileID: 7575347867424255244}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 --- !u!4 &184059412 stripped
 Transform:
@@ -378,6 +379,8 @@ Transform:
   m_PrefabInstance: {fileID: 7575347867424255244}
   m_PrefabAsset: {fileID: 0}
 >>>>>>> parent of 61a2e50 (Fixing my broken push)
+=======
+>>>>>>> parent of 59cfc83 (Updated technique-related prefabs)
 --- !u!1 &214902631
 GameObject:
   m_ObjectHideFlags: 0
@@ -4424,6 +4427,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 2086479339}
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 --- !u!1001 &3790228447698951251
 PrefabInstance:
@@ -4483,6 +4487,8 @@ PrefabInstance:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
 >>>>>>> parent of 61a2e50 (Fixing my broken push)
+=======
+>>>>>>> parent of 59cfc83 (Updated technique-related prefabs)
 --- !u!1001 &7575347867424255244
 PrefabInstance:
   m_ObjectHideFlags: 0
