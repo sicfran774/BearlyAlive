@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public Text upgradeLabel;
     public Text upgradeDescriptionLabel;
 
+
     void Update()
     {
         //User can pick up upgrade, which toggles upgrade menu 
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 GameManager.instance.ToggleUpgradeMenu();
-                print("Should toggle menu");
+                print("Toggle menu");
             }
         }
     }
@@ -76,7 +77,6 @@ public class GameManager : MonoBehaviour
             //Use regular expressions to prase first technique
             string first_technique = PlayerController.instance.techniques[0].ToString();
             string first_technique_re = first_technique.Split('(', ')')[1];
-
 
             firstTechniqueLabel.text = first_technique_re;
             switch (first_technique_re)
@@ -138,8 +138,9 @@ public class GameManager : MonoBehaviour
         }
 
         //Add upgrade and description to the UI 
-        upgradeLabel.text = PlayerController.instance.pickedUpgrade;
-        switch (PlayerController.instance.pickedUpgrade)
+        upgradeLabel.text = PlayerController.instance.pickedUpgrade.ToString();
+
+        switch (PlayerController.instance.pickedUpgrade.ToString())
         {
             case "Tajin Rubdown":
                 upgradeDescriptionLabel.text = "Upgrade will deal Fire Damage";

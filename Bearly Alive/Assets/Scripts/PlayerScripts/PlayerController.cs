@@ -80,7 +80,8 @@ public class PlayerController : MonoBehaviour
     //Upgrade UI attributes
     public bool canpickup;
 
-    public string pickedUpgrade;
+    //public string pickedUpgrade;
+    public GameObject pickedUpgrade;
 
 
     // Start is called before the first frame update
@@ -251,7 +252,7 @@ public class PlayerController : MonoBehaviour
             canpickup = true;
 
             //Assign picked upgrade for upgrade menu UI
-            pickedUpgrade = collision.gameObject.name;
+            pickedUpgrade = collision.gameObject;
 
             print(collision.gameObject.name);
         }
@@ -351,6 +352,7 @@ public class PlayerController : MonoBehaviour
         techniques[slot-1] = gameObject.AddComponent<T>() as T;
         techniques[slot-1].Initialize();
     }
+
 
     // gives upgrade to technique in slot. Can override old upgrades.
     // upgrade string can be: "none", "poison", "fire", "reflect",

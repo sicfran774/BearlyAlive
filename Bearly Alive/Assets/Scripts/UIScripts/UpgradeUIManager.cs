@@ -27,9 +27,4 @@ public class UpgradeUIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-
-
-
-
-
 }
