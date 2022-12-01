@@ -370,6 +370,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7575347867245439747, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
   m_PrefabInstance: {fileID: 7575347867424255244}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+--- !u!4 &184059412 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7575347867245439773, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+  m_PrefabInstance: {fileID: 7575347867424255244}
+  m_PrefabAsset: {fileID: 0}
+>>>>>>> parent of 61a2e50 (Fixing my broken push)
 --- !u!1 &214902631
 GameObject:
   m_ObjectHideFlags: 0
@@ -2628,7 +2636,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     m_RemovedComponents: []
+=======
+    - target: {fileID: 8794955684243271479, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 184059412}
+    m_RemovedComponents:
+    - {fileID: 5167133758264265744, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+>>>>>>> parent of 61a2e50 (Fixing my broken push)
   m_SourcePrefab: {fileID: 100100000, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
 --- !u!1 &1474103794
 GameObject:
@@ -4406,6 +4423,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086479339}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+=======
+--- !u!1001 &3790228447698951251
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 184059412}
+    m_Modifications:
+    - target: {fileID: 3790228448006360614, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790228448006360614, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790228448006360614, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790228448006360614, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790228448006360614, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790228448006360614, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790228448006360614, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790228448006360614, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790228448006360614, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790228448006360614, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790228448006360614, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3790228448006360615, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+      propertyPath: m_Name
+      value: SlingshotBox
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2770a2d0cb15217498d1d7a50a998c07, type: 3}
+>>>>>>> parent of 61a2e50 (Fixing my broken push)
 --- !u!1001 &7575347867424255244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4450,6 +4527,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1474103796}
     - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+<<<<<<< HEAD
+=======
+      propertyPath: rollSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+>>>>>>> parent of 61a2e50 (Fixing my broken push)
       propertyPath: hudManager
       value: 
       objectReference: {fileID: 1669058513}
@@ -4469,6 +4553,17 @@ PrefabInstance:
       propertyPath: timeBetweenShots
       value: 0.6
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+=======
+    - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+      propertyPath: dodgeRollDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+      propertyPath: dodgeRollCooldownTimer
+      value: 2
+      objectReference: {fileID: 0}
+>>>>>>> parent of 61a2e50 (Fixing my broken push)
     - target: {fileID: 6668216004771154351, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: m_Constraints
       value: 0
