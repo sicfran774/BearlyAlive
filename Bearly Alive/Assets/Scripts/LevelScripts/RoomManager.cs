@@ -54,6 +54,8 @@ public class RoomManager : MonoBehaviour
     private Queue<int> cellQueue;
     private GameObject roomsParent;
     private bool addRoomsToGrid;
+    private const float OriginOffsetX = -492;
+    private const float OriginOffsetY = -180;
 
     System.Random rand = new System.Random();
 
@@ -81,7 +83,7 @@ public class RoomManager : MonoBehaviour
         rooms = new int[maxRooms * 10];
         endRooms = new List<int>();
         cellQueue = new Queue<int>();
-        
+
         StartCoroutine(BeginLevelGeneration());
         StartCoroutine(CloseWalls());
     }
@@ -184,8 +186,8 @@ public class RoomManager : MonoBehaviour
 
     void CreateRoomInScene(int i)
     {
-        float x = (i % 10) * 100;
-        float y = (i / 10) * 50;
+        float x = (i % 10) * 100 + OriginOffsetX;
+        float y = (i / 10) * 50 + OriginOffsetY;
         GameObject newRoom = Instantiate(roomOne);
         newRoom.transform.position = new Vector2(x, y);
         newRoom.tag = "Wall";
@@ -228,8 +230,8 @@ public class RoomManager : MonoBehaviour
 
     void AddWall(int i, int dir) //dir --> 0, left; 1, right; 2, below; 3, above
     {
-        float x = (i % 10) * 100;
-        float y = (i / 10) * 50;
+        float x = (i % 10) * 100 + OriginOffsetX;
+        float y = (i / 10) * 50 + OriginOffsetY;
         GameObject wall = Instantiate(entranceWall, roomsParent.transform);
         switch (dir)
         {
