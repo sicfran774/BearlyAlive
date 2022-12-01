@@ -15,8 +15,8 @@ public class ChiSpit : Technique
 
 
     // to be manipulated by designer
-    public const int defaultDamage = 5;
-    public const float defaultCooldown = 0.6f;
+    public const int defaultDamage = 1;
+    public const float defaultCooldown = 0.4f;
 
     // ALWAYS call after add component
     public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
@@ -28,8 +28,8 @@ public class ChiSpit : Technique
     public override void Act() {
         if (!techsCooling)
         {
-            FireWeapon();
             startCooling();
+            FireWeapon();
         }
     }
 

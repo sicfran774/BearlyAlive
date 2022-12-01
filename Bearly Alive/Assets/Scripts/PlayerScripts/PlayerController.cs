@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor;
 using UnityEditor.Timeline;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerController))]
 
@@ -13,6 +14,12 @@ public class PlayerController : MonoBehaviour
 
     // Player's Movement Speed
     public float walkSpeed = 5f;
+
+    public int maxHealth = 100;
+    private int currentHealth;
+
+    public HealthBar healthBar;
+
 
 
     // HUD Manager for Player's Actions 
@@ -54,7 +61,10 @@ public class PlayerController : MonoBehaviour
 
     //CHANGED TO PUBLIC SO I CAN USE IN GAMEMANAGER
     // Variables to hold the two known player actions
-    public Technique[] techniques = new Technique[2];
+    public Technique[] techniques {
+            get ; 
+            private set;
+            }
 
     // Vector used to computer player's new direction based on WASD input
     Vector2 movement;
@@ -63,11 +73,26 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D player;
     Collider2D coll;
 
+    //Text object when upgrade is collided 
+    [SerializeField]
+    private Text pressFLabel; 
+
+    //Upgrade UI attributes
+    public bool canpickup;
+
+    //public string pickedUpgrade;
+    public GameObject pickedUpgrade;
+
+
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
 
         movement = Vector2.zero;
         rounds = GameManager.instance.bullets;
@@ -84,10 +109,16 @@ public class PlayerController : MonoBehaviour
         //LearnTechnique<Slash>(1);
         LearnTechnique<Slingshot>(2);
         LearnTechnique<ChiSpit>(1);
+
+        //Upgrade pick up attributes 
+        pressFLabel.enabled = false;
+        canpickup = false;
+        pickedUpgrade = null;
     }
 
     private void Awake()
     {
+        techniques = new Technique[2];
         if (instance == null)
         {
             instance = this;
@@ -206,18 +237,27 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Technique")
         {
-            print("ENTERED Technique");
+            print("ENTERED Technique"); 
             print(collision.gameObject.name);
         }
 
         if (collision.gameObject.tag == "Upgrade")
         {
-            print("ENTERED Technique");
+            print("ENTERED Upgrade");
+
+            //Display label on UI
+            pressFLabel.enabled = true;
+
+            //Player can now pick up upgrade
+            canpickup = true;
+
+            //Assign picked upgrade for upgrade menu UI
+            pickedUpgrade = collision.gameObject;
 
             print(collision.gameObject.name);
         }
 
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Bullet")
         {
             if (isInvulnerable)
             {
@@ -225,10 +265,23 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                print("YOU DIED");
+                healthBar.TookDamage(5);
+                if (healthBar.currentHealth <= 0)
+                {
+                    print("YOU HAVE DIED!");
+                }
             }
         }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //Enabel text when player collides with upgrade
+        if (collision.gameObject.tag == "Upgrade")
+        {
+            pressFLabel.enabled = false;
+
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -291,13 +344,20 @@ public class PlayerController : MonoBehaviour
         playerRolled = false;
     }
 ///////////////////////////////////////////////
-// these methods teach the player different techniques. Use when collecting loot.
+// these methods teach the player different techniques and upgrades. Use when collecting loot.
 /////////////////////////////////////////////////
 
     // places an instance of the perameterized technique into a technique slot. slot can be 1 or 2.
     public void LearnTechnique<T>(int slot) where T : Technique {
         techniques[slot-1] = gameObject.AddComponent<T>() as T;
         techniques[slot-1].Initialize();
+    }
+
+
+    // gives upgrade to technique in slot. Can override old upgrades.
+    // upgrade string can be: "none", "poison", "fire", "reflect",
+    public void setUpgrade(int slot, string upgrade) {
+        techniques[slot-1].SetUpgrade(upgrade);
     }
 
 

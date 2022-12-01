@@ -105,8 +105,10 @@ public class EnemyController : MonoBehaviour
     //Handle what happens when upgrade menu is toggled  
     void OnUpgradeMenuToggle(bool active)
     {
-        //Disable enemy movement TODO: ADD WHEN ENEMY CONTROLLER IS UPDATED
-        
+        //Disable enemy fire 
+        shot = !active;
+
+        //Todo: Disable enemy movement
     }
 
     private Vector2 PointAtPlayer(Transform player)
