@@ -6,9 +6,9 @@ public class Slingshot : Technique
 {
     // to be manipulated by designer
     public const int defaultDamage = 5;
-    public const float defaultCooldown = .9f;
-    public float slingSpeed = 300f;
-    public float slingDuration = .7f;
+    public const float defaultCooldown = 0.4f;
+    public float slingSpeed = 500f;
+    public float slingDuration = .2f;
 
     // reference to Weapon GameObject to access hitbox
     public GameObject SlingshotBox;
@@ -18,7 +18,7 @@ public class Slingshot : Technique
 
     // for coordinating techniques
     private bool selfCooling;
-    private float selfCooldown = 1.1f;
+    private float selfCooldown = 0.6f;
 
     // MUST BE CALLED AFTER ADD COMPONENT
     public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
