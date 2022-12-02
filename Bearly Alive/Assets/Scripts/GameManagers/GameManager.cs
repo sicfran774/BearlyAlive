@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour
 
     public Text upgradeLabel;
     public Text upgradeDescriptionLabel;
-
+    public Image upgradeImageFirstSlot;
+    public Image upgradeImageSecondSlot;
 
     void Update()
     {
@@ -58,15 +59,15 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                GameManager.instance.ToggleUpgradeMenu();
+                ToggleUpgradeMenu();
                 print("Toggle menu");
             }
         }
     }
-
+ 
     public void ToggleUpgradeMenu()
     {
-        
+       
         //Inverse current active state
         upgradeMenu.SetActive(!upgradeMenu.activeSelf);
 
@@ -107,7 +108,7 @@ public class GameManager : MonoBehaviour
         }
 
         //Second Technique label is updated to upgrade menu 
-        if (PlayerController.instance.techniques[0] != null)
+        if (PlayerController.instance.techniques[1] != null)
         {
             //Use regular expressions to prase second technique
             string second_technique = PlayerController.instance.techniques[1].ToString();
