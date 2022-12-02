@@ -412,7 +412,9 @@ public class PlayerController : MonoBehaviour
     // gives upgrade to technique in slot. Can override old upgrades.
     // upgrade string can be: "none", "poison", "fire", "reflect",
     public void setUpgrade(int slot, string upgrade) {
-        techniques[slot-1].SetUpgrade(upgrade);
+        if (slot == 1 || slot == 2) {
+            techniques[slot-1].SetUpgrade(upgrade);
+        }
     }
 
 
