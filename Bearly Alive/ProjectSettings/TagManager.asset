@@ -14,6 +14,12 @@ TagManager:
   - Whip
   - Upgrade
   - Boomerang
+  - UpgradeSour
+  - UpgradeSpicy
+  - UpgradeKnockback
+  - UpgradeJello
+  - UpgradeRock
+  - UpgradeNone
   layers:
   - Default
   - TransparentFX
@@ -23,7 +29,7 @@ TagManager:
   - UI
   - Player Layer
   - Enemy Layer
-  - 
+  - Pickup Layer
   - 
   - 
   - 
