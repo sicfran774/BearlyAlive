@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5529508410319079233}
   - component: {fileID: 5529508410319079103}
   - component: {fileID: 5529508410319079102}
-  - component: {fileID: -5706977312970926675}
+  - component: {fileID: -1066442243990688582}
   m_Layer: 8
   m_Name: Malic Acid Dip
   m_TagString: Upgrade
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-5706977312970926675
+--- !u!114 &-1066442243990688582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5529508410319079101}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4818f1d684695c4ca67442f100be038, type: 3}
+  m_Script: {fileID: 11500000, guid: 642d7afedc3d41d49b55df202f30d587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 719426fdea020f54a8617a2a295b4d3b, type: 3}

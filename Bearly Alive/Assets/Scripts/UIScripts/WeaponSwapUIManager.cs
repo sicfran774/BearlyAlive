@@ -1,44 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UpgradeUIManager2 : MonoBehaviour
+public class WeaponSwap : MonoBehaviour
 {
     //upgrade menu object
     public GameObject upgradeMenu;
-    public bool[] isUpgraded = new bool[2];
+    public bool[] isSwapped = new bool[2];
 
-    public static UpgradeUIManager2 instance = null;
-
-    private void Awake()
+    public void setWeaponSlot1()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
+        //First Slot is selected to be swapped 
+        isSwapped[0] = true;
+        setWeaponSlot(1);
     }
 
-    //Apply upgrade based on what technique player chooses 
-    public void setUpgradeinSlot1()
-    {   
-        //First Slot is selected to be upgraded 
-        isUpgraded[0] = true;
-        setUpgradeinSlot(1);
+    public void setWeaponSlot2()
+    {
+        //Second Slot is selected to be swapped 
+        isSwapped[1] = true;
+        setWeaponSlot(2);
     }
 
-    public void setUpgradeinSlot2()
+    public void setWeaponSlot(int slot)
     {
-        //Second Slot is selected to be upgraded 
-        isUpgraded[1] = true;
-        setUpgradeinSlot(2);
-    }
-
-
-    // to be called by setUpgradeinSlot2() and ...1()
-    public void setUpgradeinSlot(int slot)
-    {
-        string selectedUpgrade = PlayerController.instance.pickedUpgrade.name;
+/*
+        string selectedWeapon = PlayerController.instance.pickedUpgrade.name;
         PlayerController.instance.setUpgrade(slot, selectedUpgrade);
 
         print(selectedUpgrade + " upgrade applied to slot " + slot);
@@ -69,6 +56,6 @@ public class UpgradeUIManager2 : MonoBehaviour
         GameManager.instance.onToggleUpgradeMenu.Invoke(upgradeMenu.activeSelf);
 
         //Destroy upgrade
-        Destroy(PlayerController.instance.pickedUpgrade);
+        Destroy(PlayerController.instance.pickedUpgrade);*/
     }
 }
