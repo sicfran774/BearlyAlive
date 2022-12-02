@@ -20,7 +20,7 @@ public class Slingshot : Technique
     private bool selfCooling;
     private float selfCooldown = 1.1f;
 
-
+    // MUST BE CALLED AFTER ADD COMPONENT
     public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
         actorBody = gameObject.GetComponent<Rigidbody2D>();
         base.Initialize(defaultDamage, defaultCooldown);
@@ -38,7 +38,8 @@ public class Slingshot : Technique
     }
 
     public override void SetUpgrade(string upgrade) {
-        base.upgrade = upgrade;// placeholder implementation.
+        base.upgrade = upgrade;
+        SlingshotBox.tag = upgrade;
     }
     
     private void move() {
