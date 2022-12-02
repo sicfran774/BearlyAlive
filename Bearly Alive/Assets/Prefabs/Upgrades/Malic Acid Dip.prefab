@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5529508410319079103}
   - component: {fileID: 5529508410319079102}
   - component: {fileID: -5706977312970926675}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Malic Acid Dip
-  m_TagString: UpgradeSour
+  m_TagString: Upgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

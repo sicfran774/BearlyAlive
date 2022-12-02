@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7960857820453859400}
   - component: {fileID: 7960857820453859401}
   - component: {fileID: -6586122670153868637}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pop Rocks
-  m_TagString: UpgradeKnockback
+  m_TagString: Upgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

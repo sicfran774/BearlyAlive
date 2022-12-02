@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8862213298099621940}
   - component: {fileID: 8862213298099621941}
   - component: {fileID: -4083406379890591723}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tajin Rubdown
-  m_TagString: UpgradeSpicy
+  m_TagString: Upgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

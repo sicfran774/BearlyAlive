@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7048679697390591096}
   - component: {fileID: 7048679697390591097}
   - component: {fileID: 7667704373301154755}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rock Candy
-  m_TagString: UpgradeRock
+  m_TagString: Upgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

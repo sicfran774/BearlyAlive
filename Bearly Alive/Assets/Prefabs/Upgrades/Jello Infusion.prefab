@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3692480849727891497}
   - component: {fileID: 3692480849727891496}
   - component: {fileID: -3681264258723759087}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Jello Infusion
-  m_TagString: UpgradeJello
+  m_TagString: Upgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
