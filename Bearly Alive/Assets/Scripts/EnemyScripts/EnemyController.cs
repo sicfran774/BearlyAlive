@@ -106,19 +106,29 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //If hit with bullet, damage the enemy
-        if(collision.gameObject.tag == "Bullet")
+        if(collision.tag == "Bullet")
         {
             healthRemaining--;
-            if(healthRemaining <= 0)
-            {
-                //Increase score when enemy health is <=0
-                GameManager.instance.IncreaseScore(1);
-                //refresh the HUD
-                //hud.refresh();
+        }
 
-                Destroy(gameObject);
+        if(collision.gameObject.name == "Boomerang(Clone)")
+        {
+            healthRemaining--;
+        }
 
-            }
+        if(collision.gameObject.name == "Slash(Clone)")
+        {
+            healthRemaining--;
+        }
+
+        if(collision.gameObject.name == "Slingshot(Clone)")
+        {
+            healthRemaining--;
+        }
+
+        if(collision.gameObject.name == "Whip(Clone)")
+        {
+            healthRemaining--;
         }
 
         //If the enemy touches something spicy or sour, will become poisoned or burning
