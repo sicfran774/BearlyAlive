@@ -12,11 +12,16 @@ public class EnemyController : MonoBehaviour
     public HudManager hud;
     int healthRemaining;
 
-    //TODO: Add scripts to reference for these
+    //Bullet things
     public GameObject player;
     public GameObject bullet;
     public GameObject bulletSpawnPoint;
     private Transform bulletSpawned;
+
+    //Enemy shooting at player
+    public float shootingRange;
+    public float fireRate;
+    private float nextFireTime;
     
     //Help get enemy angle and direction for attacks
     private Vector2 direction;
@@ -55,7 +60,12 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //direction = PointAtPlayer(player.transform);
+        float distanceFromPlayer = Vector2.Distance(player.transform.position, transform.position);
+        if (distanceFromPlayer <= shootingRange && nextFireTime < Time.time)
+        {
+            Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.identity);
+            nextFireTime = Time.time + fireRate;
+        }
 
         //We want to shoot when the enemy "sees" the player, still every few seconds though
         //Shoot();
@@ -90,28 +100,6 @@ public class EnemyController : MonoBehaviour
 
         if(currentTime >= waitTime)
             currentTime = 0;
-
-        
-            
-        /*void MoveEnemy ()
-        {
-            //Will need to test later, requires a pathfinding script
-            int currentX = Mathf.RoundToInt(transform.position.x);
-            int currentY = Mathf.RoundToInt(transform.position.y);
-            GetComponent<BoxCollider2D>().enabled = false;
-            target.GetComponent<BoxCollider2D>().enabled = false;
-            AStar astar = new AStar(new LineCastAStarCost(blockingLayer), currentX, currentY, Mathf.RoundToInt(target.position.x), Mathf.RoundToInt(target.position.y));
-            astar.findPath();
-            AStarNode2D nextStep = (AStarNode2D)astar.solution[1];
-
-            //GetComponent<BoxCollider2D>().enabled = true;
-            target.GetComponent<BoxCollider2D>().enabled = true;
-
-            int xDir = nextStep.x - currentX;
-            int yDir = nextStep.y - currentY;
-
-            AttemptMove <Player> (xDir, yDir);
-        }*/
     }
 
     // Handles Enemy's objects trigger collisions
@@ -134,9 +122,10 @@ public class EnemyController : MonoBehaviour
         }
 
         //If the enemy touches something spicy or sour, will become poisoned or burning
+        //If the enemy is affected by an explosion, push the enemy a certain distance
 
         //TODO: Change to random chance and not guarantee
-        if(collision.tag == "Player")
+        if(collision.tag == "UpgradeSour")
         {
             if(Random.Range(1, 100) <= 11)
             {
@@ -146,7 +135,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        if(collision.tag == "Spicy")
+        if(collision.tag == "UpgradeSpicy")
         {
             if(Random.Range(1, 100) <= 11)
             {
@@ -154,7 +143,11 @@ public class EnemyController : MonoBehaviour
             } else {
                 isSpicy = false;
             }
+        }
 
+        if(collision.tag == "UpgradeKnockback")
+        {
+            //TODO: Explosion!
         }
     }
 
@@ -168,15 +161,7 @@ public class EnemyController : MonoBehaviour
     void OnUpgradeMenuToggle(bool active)
     {
         shot = !active;
-
-        //Enemy movement in slow motion
-        Time.timeScale = 0.1f;
-   
-        //Reset to normal speed when upgrade menu is exited 
-        if(active == false)
-        {
-            Time.timeScale = 1f;
-        }
+        //TODO disable movement
     }
 
     //Allows the enemy to face the player as it tracks them
