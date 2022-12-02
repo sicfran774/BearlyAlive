@@ -11,6 +11,8 @@ public class UpgradeUIManager2 : MonoBehaviour
     public bool isFirstUpgraded;
     public bool isSecondUpgraded;
 
+    public bool[] isUpgraded = new bool[2];
+
     public static UpgradeUIManager2 instance = null;
 
     private void Awake()
@@ -86,6 +88,10 @@ public class UpgradeUIManager2 : MonoBehaviour
         Destroy(PlayerController.instance.pickedUpgrade);
     }
 
-
+    // to be called by setUpgradeinSlot2() and ...1()
+    public void setUpgradeinSlot(int slot)
+    {
+        // implement the code here. 
+    }
 
 }
