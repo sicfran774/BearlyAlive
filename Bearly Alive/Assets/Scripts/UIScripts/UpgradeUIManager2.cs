@@ -38,7 +38,30 @@ public class UpgradeUIManager2 : MonoBehaviour
     // to be called by setUpgradeinSlot2() and ...1()
     public void setUpgradeinSlot(int slot)
     {
-        string selectedUpgrade = PlayerController.instance.pickedUpgrade.name;
+        //choose correct upgrade tag to pass to setUpgrade(int string)
+        string pickupName = PlayerController.instance.pickedUpgrade.name;
+        string selectedUpgrade = "";
+
+        switch(pickupName) {
+            case "Tajin Rubdown":
+                selectedUpgrade = "UpgradeSpicy";
+                break;
+            case "Jello Infusion":
+                selectedUpgrade = "UpgradeJello";
+                break;
+            case "Malic Acid Dip":
+                selectedUpgrade = "UpgradeSour";
+                break;
+            case "Pop Rocks":
+                selectedUpgrade = "UpgradeKnockback";
+                break;
+            case "Rock Candy":
+                selectedUpgrade = "UpgradeRock";
+                break;
+            default:
+                break;
+        }
+
         PlayerController.instance.setUpgrade(slot, selectedUpgrade);
 
         print(selectedUpgrade + " upgrade applied to slot " + slot);
