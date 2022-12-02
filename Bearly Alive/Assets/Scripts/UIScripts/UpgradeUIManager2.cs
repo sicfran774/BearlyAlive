@@ -8,8 +8,7 @@ public class UpgradeUIManager2 : MonoBehaviour
 
     //upgrade menu object
     public GameObject upgradeMenu;
-    public bool isFirstUpgraded;
-    public bool isSecondUpgraded;
+    public bool[] isUpgraded = new bool[2];
 
     public static UpgradeUIManager2 instance = null;
 
@@ -26,16 +25,16 @@ public class UpgradeUIManager2 : MonoBehaviour
     {
         string selectedUpgrade = PlayerController.instance.pickedUpgrade.name;
         //ToDo:
-        isFirstUpgraded = true;
+        isUpgraded[0] = true;
 
-        print("Is First upgraded: " + isFirstUpgraded);
+        print("Is First upgraded: " + isUpgraded[0]);
 
         print(selectedUpgrade + " upgrade applied to slot 1");
 
         PlayerController.instance.setUpgrade(1, selectedUpgrade);
 
         //Display upgrade image in UI first slot 
-        if (isFirstUpgraded == true)
+        if (isUpgraded[0] == true)
         {
             Sprite getSprite = SpriteUI.instance.sprite;
             GameManager.instance.upgradeImageFirstSlot = GetComponent<Image>();
@@ -45,7 +44,7 @@ public class UpgradeUIManager2 : MonoBehaviour
         }
 
         //Display upgrade image in UI second slot 
-        if (isSecondUpgraded == true)
+        if (isUpgraded[1] == true)
         {
             Sprite getSprite = SpriteUI.instance.sprite;
          
@@ -68,9 +67,9 @@ public class UpgradeUIManager2 : MonoBehaviour
         string selectedUpgrade = PlayerController.instance.pickedUpgrade.name;
 
         //ToDo:
-        isSecondUpgraded = true;
+        isUpgraded[1] = true;
  
-        print("Is Second upgraded: " + isSecondUpgraded);
+        print("Is Second upgraded: " + isUpgraded[1]);
 
         print(selectedUpgrade + " upgrade applied to slot 2");
 
