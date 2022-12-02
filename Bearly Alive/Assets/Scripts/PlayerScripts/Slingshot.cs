@@ -10,7 +10,7 @@ public class Slingshot : Technique
     public float slingSpeed = 300f;
     public float slingDuration = .7f;
 
-    // to access hitbox
+    // reference to Weapon GameObject to access hitbox
     public GameObject SlingshotBox;
 
     // for applying movement to actor
@@ -22,7 +22,14 @@ public class Slingshot : Technique
 
     // MUST BE CALLED AFTER ADD COMPONENT
     public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
+
+        // obtain reference to weapon GameObject. <<<<< IT MUST BE THE 0th CHILD >>>>
+        SlingshotBox = transform.GetChild(0).gameObject;
+
+        // obtain reference to rigidBody for moving player
         actorBody = gameObject.GetComponent<Rigidbody2D>();
+
+        // call overloaded initialize from Technique
         base.Initialize(defaultDamage, defaultCooldown);
         
     }
@@ -37,9 +44,11 @@ public class Slingshot : Technique
 
     }
 
-    public override void SetUpgrade(string upgrade) {
-        base.upgrade = upgrade;
-        SlingshotBox.tag = upgrade;
+    // sets the weapon object's tage to upgrade
+    public override void SetUpgrade(string newUpgrade) {
+        upgrade = newUpgrade;
+
+        SlingshotBox.tag = newUpgrade;
     }
     
     private void move() {
@@ -61,8 +70,7 @@ public class Slingshot : Technique
 
         float t = 0.0f;
 
-        // activate protective&damaging hitbox. IT MUST BE THE 0th CHILD
-        SlingshotBox = transform.GetChild(0).gameObject;
+        // activate protective&damaging hitbox. 
         SlingshotBox.SetActive(true);
 
         // lock movement and direction
