@@ -35,7 +35,7 @@ public class ChiSpit : Technique
 
     // Act will have different behavior depending on which upgrade is set.
     public override void SetUpgrade(string newUpgrade) {
-
+        upgrade = newUpgrade;
     }
 
     // Handles Player's firing, Projectile Sound, reloading and Weapon's Ammo UI.
@@ -50,8 +50,12 @@ public class ChiSpit : Technique
             SoundManager.instance.playBulletSound();
             GameManager.instance.DecreaseAmmo(1);
             hudManager.refresh();
-            Instantiate(GameManager.instance.ChiSpitProjectile, transform.position, transform.rotation);
-            print("Bullets Remaining: " + rounds);
+
+            // spawn bullet, then set its upgrade tag
+            GameObject latestBullet = Instantiate(GameManager.instance.ChiSpitProjectile, transform.position, transform.rotation);
+            latestBullet.tag = upgrade;
+
+            // debug print("Bullets Remaining: " + rounds);
         }
 
         if(rounds == 0)
