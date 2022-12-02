@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5706977312970926675}
   m_Layer: 0
   m_Name: Malic Acid Dip
-  m_TagString: Upgrade
+  m_TagString: UpgradeSour
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4818f1d684695c4ca67442f100be038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeName: {fileID: 8961288645487650681, guid: be2e67f7daab78c42908154bd7b7dc33, type: 3}
-  upgradeImage: {fileID: 7041413992085293247, guid: c6f2968d08ce5cc4cb95100cec56e146, type: 3}
-  upgradeDescription: {fileID: 8255938989958702571, guid: e3002353a3b9f5c47b17a0de8d9255a6, type: 3}
   sprite: {fileID: 21300000, guid: 719426fdea020f54a8617a2a295b4d3b, type: 3}
