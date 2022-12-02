@@ -1718,6 +1718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tajin Rubdown
       objectReference: {fileID: 0}
+    - target: {fileID: 8862213298099621942, guid: 7ff998bd021c5544899be8f1f1c0185c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -4083406379890591723, guid: 7ff998bd021c5544899be8f1f1c0185c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7ff998bd021c5544899be8f1f1c0185c, type: 3}
@@ -4867,7 +4871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3626741453739157574, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6668216004771154351, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: m_Constraints
