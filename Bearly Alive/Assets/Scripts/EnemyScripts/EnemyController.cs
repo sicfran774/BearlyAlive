@@ -168,7 +168,15 @@ public class EnemyController : MonoBehaviour
     void OnUpgradeMenuToggle(bool active)
     {
         shot = !active;
-        //TODO disable movement
+
+        //Enemy movement in slow motion
+        Time.timeScale = 0.1f;
+   
+        //Reset to normal speed when upgrade menu is exited 
+        if(active == false)
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     //Allows the enemy to face the player as it tracks them

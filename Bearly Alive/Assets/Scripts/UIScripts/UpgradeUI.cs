@@ -58,7 +58,6 @@ public class UpgradeUI : MonoBehaviour
             upgradeName.text = "[UPGRADE] " + gameObject.name;
             print("I AM " + gameObject.name);
             upgradePanel.SetActive(true);
-
         }
     }
 
