@@ -351,7 +351,7 @@ public class PlayerController : MonoBehaviour
         float t = 0.0f;
 
 
-
+        movement = movement.normalized;
 
         while (t < duration)
         {

@@ -49,14 +49,14 @@ public class Boomerang : Technique
 
     public override void SetUpgrade(string newUpgrade)
     {
-        // TODO
+        upgrade = newUpgrade;
     }
 
 
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Boomerang")
+        if(collision.gameObject.name == "Boomerang(Clone)")
         {
             if (returning)
             {
@@ -73,6 +73,8 @@ public class Boomerang : Technique
     {
         // Create Boomerang Game Object
         boomerang = Instantiate(GameManager.instance.Boomerang, new Vector2(transform.position.x, transform.position.y), Quaternion.Euler(0f, 0f, 0f));
+        boomerang.tag = upgrade;
+
         // Get RigidBody and Collider components
         boomerangRigidBody = boomerang.GetComponent<Rigidbody2D>();
         coll = boomerang.GetComponent<Collider2D>();
@@ -138,8 +140,5 @@ public class Boomerang : Technique
         Destroy(boomerang);
         // Reset cooldown
         techsCooling = false;
-
-
     }
-
 }

@@ -42,7 +42,7 @@ public abstract class Technique : Action
     public virtual void Initialize(int damage = 0, float cooldown = 0) {
         this.damage = damage;
         this.cooldown = cooldown;
-        upgrade = "none";
+        upgrade = "UpgradeNone";
     }
 
     // use when player installs an upgrade on a technique

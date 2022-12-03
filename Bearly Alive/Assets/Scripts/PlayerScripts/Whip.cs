@@ -46,7 +46,8 @@ public class Whip : Technique
 
     public override void SetUpgrade(string newUpgrade)
     {
-        // TODO
+        upgrade = newUpgrade;
+        childWhipGameObject.tag = upgrade;
     }
 
 
