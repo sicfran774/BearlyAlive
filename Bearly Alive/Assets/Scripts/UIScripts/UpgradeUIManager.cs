@@ -36,14 +36,38 @@ public class UpgradeUIManager : MonoBehaviour
 
 
     // to be called by setUpgradeinSlot2() and ...1()
-    private void setUpgradeinSlot(int slot)
+    public void setUpgradeinSlot(int slot)
     {
-        string selectedUpgrade = PlayerController.instance.pickedUpgrade.name;
+        //choose correct upgrade tag to pass to setUpgrade(int string)
+        string pickupName = PlayerController.instance.pickedUpgrade.name;
+        string selectedUpgrade = "";
+
+        switch (pickupName)
+        {
+            case "Tajin Rubdown":
+                selectedUpgrade = "UpgradeSpicy";
+                break;
+            case "Jello Infusion":
+                selectedUpgrade = "UpgradeJello";
+                break;
+            case "Malic Acid Dip":
+                selectedUpgrade = "UpgradeSour";
+                break;
+            case "Pop Rocks":
+                selectedUpgrade = "UpgradeKnockback";
+                break;
+            case "Rock Candy":
+                selectedUpgrade = "UpgradeRock";
+                break;
+            default:
+                break;
+        }
+
         PlayerController.instance.setUpgrade(slot, selectedUpgrade);
 
         print(selectedUpgrade + " upgrade applied to slot " + slot);
 
-      /*  //Display upgrade image in UI first slot 
+        //Display upgrade image in UI first slot 
         if (isUpgraded[0] == true)
         {
             Sprite getSprite = SpriteUI.instance.sprite;
@@ -60,7 +84,7 @@ public class UpgradeUIManager : MonoBehaviour
 
             UpgradeUI.instance.upgradeImageSecondSlot = GetComponent<Image>();
             UpgradeUI.instance.upgradeImageSecondSlot.sprite = getSprite;
-        }*/
+        }
 
         //Disable upgrade menu when player selects technique to upgrade
         upgradeMenu.SetActive(!upgradeMenu.activeSelf);
