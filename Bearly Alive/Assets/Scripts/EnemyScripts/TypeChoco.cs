@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyController))]
+[RequireComponent(typeof(TypeChoco))]
 
-public class EnemyController : MonoBehaviour
+public class TypeChoco : MonoBehaviour
 {
     //Straightforward variables to control enemy basic attributes
     public int _MAX_HEALTH = 2;
@@ -106,29 +106,19 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //If hit with bullet, damage the enemy
-        if(collision.tag == "Bullet")
+        if(collision.gameObject.tag == "Bullet")
         {
             healthRemaining--;
-        }
+            if(healthRemaining <= 0)
+            {
+                //Increase score when enemy health is <=0
+                GameManager.instance.IncreaseScore(1);
+                //refresh the HUD
+                //hud.refresh();
 
-        if(collision.gameObject.name == "Boomerang(Clone)")
-        {
-            healthRemaining--;
-        }
+                Destroy(gameObject);
 
-        if(collision.gameObject.name == "Slash(Clone)")
-        {
-            healthRemaining--;
-        }
-
-        if(collision.gameObject.name == "Slingshot(Clone)")
-        {
-            healthRemaining--;
-        }
-
-        if(collision.gameObject.name == "Whip(Clone)")
-        {
-            healthRemaining--;
+            }
         }
 
         //If the enemy touches something spicy or sour, will become poisoned or burning
@@ -171,16 +161,7 @@ public class EnemyController : MonoBehaviour
     void OnUpgradeMenuToggle(bool active)
     {
         shot = !active;
-     
-        //Enemy movement in slow motion
-        Time.timeScale = 0.1f;
-
-        //Reset to normal speed when upgrade menu is exited 
-        if (active == false)
-        {
-            Time.timeScale = 1f;
-        }
-
+        //TODO disable movement
     }
 
     //Allows the enemy to face the player as it tracks them

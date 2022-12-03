@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyController))]
-
-public class EnemyController : MonoBehaviour
+public class TypeMallow : MonoBehaviour
 {
     //Straightforward variables to control enemy basic attributes
     public int _MAX_HEALTH = 2;
@@ -12,17 +10,6 @@ public class EnemyController : MonoBehaviour
     public HudManager hud;
     int healthRemaining;
 
-    //Bullet things
-    public GameObject player;
-    public GameObject bullet;
-    public GameObject bulletSpawnPoint;
-    private Transform bulletSpawned;
-
-    //Enemy shooting at player
-    public float shootingRange;
-    public float fireRate;
-    private float nextFireTime;
-    
     //Help get enemy angle and direction for attacks
     private Vector2 direction;
     private float angle;
@@ -30,7 +17,6 @@ public class EnemyController : MonoBehaviour
     //A timer originally used for shots, but now used for sour and spice damage
     public float waitTime;
     private float currentTime;
-    private bool shot;
 
     //IF enemy is poisoned or burning
     private bool isSour = false;
@@ -44,10 +30,6 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Find player and initialize bullet spawnpoint
-        player = GameObject.FindWithTag("Player");
-        bulletSpawnPoint = this.gameObject;
-
         //Build enemy
         enemy = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
@@ -60,13 +42,6 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float distanceFromPlayer = Vector2.Distance(player.transform.position, transform.position);
-        if (distanceFromPlayer <= shootingRange && nextFireTime < Time.time)
-        {
-            Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.identity);
-            nextFireTime = Time.time + fireRate;
-        }
-
         //We want to shoot when the enemy "sees" the player, still every few seconds though
         //Shoot();
         if(currentTime == 0) 
@@ -106,29 +81,19 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //If hit with bullet, damage the enemy
-        if(collision.tag == "Bullet")
+        if(collision.gameObject.tag == "Bullet")
         {
             healthRemaining--;
-        }
+            if(healthRemaining <= 0)
+            {
+                //Increase score when enemy health is <=0
+                GameManager.instance.IncreaseScore(1);
+                //refresh the HUD
+                //hud.refresh();
 
-        if(collision.gameObject.name == "Boomerang(Clone)")
-        {
-            healthRemaining--;
-        }
+                Destroy(gameObject);
 
-        if(collision.gameObject.name == "Slash(Clone)")
-        {
-            healthRemaining--;
-        }
-
-        if(collision.gameObject.name == "Slingshot(Clone)")
-        {
-            healthRemaining--;
-        }
-
-        if(collision.gameObject.name == "Whip(Clone)")
-        {
-            healthRemaining--;
+            }
         }
 
         //If the enemy touches something spicy or sour, will become poisoned or burning
@@ -170,16 +135,6 @@ public class EnemyController : MonoBehaviour
     //Handle what happens when upgrade menu is toggled  
     void OnUpgradeMenuToggle(bool active)
     {
-        shot = !active;
-     
-        //Enemy movement in slow motion
-        Time.timeScale = 0.1f;
-
-        //Reset to normal speed when upgrade menu is exited 
-        if (active == false)
-        {
-            Time.timeScale = 1f;
-        }
 
     }
 
@@ -198,15 +153,5 @@ public class EnemyController : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         return new Vector2(targ.x, targ.y);
-    }
-
-    //A basic shoot function that will be used for other attacks in the future
-    public void Shoot()
-    {
-        shot = true;
-
-        bulletSpawned = Instantiate(bullet.transform, bulletSpawnPoint.transform.position, Quaternion.identity);
-        bulletSpawned.rotation = transform.rotation;
-        bulletSpawned.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y).normalized * projectileSpeed * 10;
     }
 }

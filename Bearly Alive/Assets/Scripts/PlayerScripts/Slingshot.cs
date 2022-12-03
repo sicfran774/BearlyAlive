@@ -44,7 +44,7 @@ public class Slingshot : Technique
 
     }
 
-    // sets the weapon object's tage to upgrade
+    // sets the weapon object's tag to upgrade
     public override void SetUpgrade(string newUpgrade) {
         upgrade = newUpgrade;
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponSwap : MonoBehaviour
 {
@@ -24,38 +25,60 @@ public class WeaponSwap : MonoBehaviour
 
     public void setWeaponSlot(int slot)
     {
-/*
-        string selectedWeapon = PlayerController.instance.pickedUpgrade.name;
+        //choose correct upgrade tag to pass to setUpgrade(int string)
+        string pickupName = PlayerController.instance.pickedUpgrade.name;
+        string selectedUpgrade = "";
+
+        switch(pickupName) {
+            case "Tajin Rubdown":
+                selectedUpgrade = "UpgradeSpicy";
+                break;
+            case "Jello Infusion":
+                selectedUpgrade = "UpgradeJello";
+                break;
+            case "Malic Acid Dip":
+                selectedUpgrade = "UpgradeSour";
+                break;
+            case "Pop Rocks":
+                selectedUpgrade = "UpgradeKnockback";
+                break;
+            case "Rock Candy":
+                selectedUpgrade = "UpgradeRock";
+                break;
+            default:
+                break;
+        }
+
         PlayerController.instance.setUpgrade(slot, selectedUpgrade);
 
         print(selectedUpgrade + " upgrade applied to slot " + slot);
 
         //Display upgrade image in UI first slot 
-        if (isUpgraded[0] == true)
+        if (isSwapped[0] == true)
         {
             Sprite getSprite = SpriteUI.instance.sprite;
-            GameManager.instance.upgradeImageFirstSlot = GetComponent<Image>();
+            UpgradeUI.instance.upgradeImageFirstSlot = GetComponent<Image>();
             print(getSprite);
-            GameManager.instance.upgradeImageFirstSlot.sprite = getSprite;
+            UpgradeUI.instance.upgradeImageFirstSlot.sprite = getSprite;
 
         }
 
         //Display upgrade image in UI second slot 
-        if (isUpgraded[1] == true)
+        if (isSwapped[1] == true)
         {
             Sprite getSprite = SpriteUI.instance.sprite;
 
-            GameManager.instance.upgradeImageSecondSlot = GetComponent<Image>();
-            GameManager.instance.upgradeImageSecondSlot.sprite = getSprite;
+            UpgradeUI.instance.upgradeImageSecondSlot = GetComponent<Image>();
+            UpgradeUI.instance.upgradeImageSecondSlot.sprite = getSprite;
         }
 
         //Disable upgrade menu when player selects technique to upgrade
         upgradeMenu.SetActive(!upgradeMenu.activeSelf);
 
         //If upgrade menu is active, pass argument in delegate 
-        GameManager.instance.onToggleUpgradeMenu.Invoke(upgradeMenu.activeSelf);
+        UpgradeUI.instance.onToggleUpgradeMenu.Invoke(upgradeMenu.activeSelf);
 
         //Destroy upgrade
-        Destroy(PlayerController.instance.pickedUpgrade);*/
+        Destroy(PlayerController.instance.pickedUpgrade);
     }
 }
