@@ -54,7 +54,7 @@ public class TypeGumball : MonoBehaviour
         healthRemaining = _MAX_HEALTH;
 
         //Method called when delegate is invoked 
-        GameManager.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+        UpgradeUI.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
     }
 
     // Update is called once per frame

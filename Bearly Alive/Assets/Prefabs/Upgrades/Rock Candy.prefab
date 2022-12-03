@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7048679697390591094}
   - component: {fileID: 7048679697390591096}
   - component: {fileID: 7048679697390591097}
-  - component: {fileID: 7667704373301154755}
+  - component: {fileID: 5933489651093098293}
   m_Layer: 8
   m_Name: Rock Candy
   m_TagString: Upgrade
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7667704373301154755
+--- !u!114 &5933489651093098293
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7048679697390591098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4818f1d684695c4ca67442f100be038, type: 3}
+  m_Script: {fileID: 11500000, guid: 642d7afedc3d41d49b55df202f30d587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 40e39639b2780af42ba56a33b1271398, type: 3}

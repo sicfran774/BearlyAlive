@@ -1,74 +1,140 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UpgradeUI : MonoBehaviour
 {
+    //Instance created for class 
+    public static UpgradeUI instance = null;
 
-    GameObject upgradePanel;
-    Text upgradeName;
-    Image upgradeImage;
-    Text upgradeDescription;
+    //Ugrade Menu UI labels 
+    public Text firstTechniqueLabel;
+    public Text secondTechniqueLabel;
 
-    public Sprite sprite;
+    public Text firstTechniqueDescriptionLabel;
+    public Text secondTechniqueDescriptionLabel;
 
-    Rigidbody2D body;
-    Collider2D coll;
+    public Text upgradeLabel;
+    public Text upgradeDescriptionLabel;
+    public Image upgradeImageFirstSlot;
+    public Image upgradeImageSecondSlot;
+
+    //upgrade menu object
+    public GameObject upgradeMenu;
+
+    //Allows to call events in scripts, used for upgrade menu 
+    public delegate void UpgradeMenuCallback(bool active);
+
+    //An instance for call backs  
+    public UpgradeMenuCallback onToggleUpgradeMenu;
 
 
-    private void Start()
+    private void Awake()
     {
-        body = GetComponent<Rigidbody2D>();
-        coll = GetComponent<Collider2D>();
-        upgradePanel = UpgradeUIManager.instance.UpgradeDetailsUI;
-        upgradeName = UpgradeUIManager.instance.upgradeName;
-        upgradeImage = UpgradeUIManager.instance.upgradeImage;
-        upgradeDescription = UpgradeUIManager.instance.upgradeDescription;
-        upgradePanel.SetActive(false);
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void ToggleUpgradeMenu()
     {
-        if (collision.gameObject.tag == "Player")
-        {
 
-            switch (gameObject.name)
+        //Inverse current active state
+        upgradeMenu.SetActive(!upgradeMenu.activeSelf);
+
+        //If upgrade menu is active, pass argument in delegate 
+        onToggleUpgradeMenu.Invoke(upgradeMenu.activeSelf);
+
+        //First Technique label is updated to upgrade menu 
+        if (PlayerController.instance.techniques[0] != null)
+        {
+            //Use regular expressions to prase first technique
+            string first_technique = PlayerController.instance.techniques[0].ToString();
+            string first_technique_re = first_technique.Split('(', ')')[1];
+
+            firstTechniqueLabel.text = first_technique_re;
+            switch (first_technique_re)
             {
-                case "Tajin Rubdown":
-                    upgradeDescription.text = "Technique will deal Fire Damage";
+                case "Boomerang":
+                    firstTechniqueDescriptionLabel.text = "Technique can be thrown at enemies far away\n"
+                        + "Power: ?\n" + "Range: ? \n" + "Speed: ?\n" + "Ammo: ?";
                     break;
-                case "Jelly Infusion":
-                    upgradeDescription.text = "Technique will reflect projectiles";
+                case "ChiSpit":
+                    firstTechniqueDescriptionLabel.text = "Rapid fire projectiles channeled by the universe’s candy energy\n"
+                        + "Power: 1\n" + "Range: Short\n" + "Speed: Fast\n" + "Ammo: 15";
                     break;
-                case "Malic Acid Dip":
-                    upgradeDescription.text = "Technique will deal Poison Damage";
+                case "Slash":
+                    firstTechniqueDescriptionLabel.text = "Blunt weapon effective at crushing candy\n"
+                        + "Power: 10\n" + "Range: Short\n" + "Speed: Medium\n" + "Ammo: Unlimited";
                     break;
-                case "Pop Rocks":
-                    upgradeDescription.text = "Technique will deal Explosive Damage";
+                case "Slingshot":
+                    firstTechniqueDescriptionLabel.text = "Projectiles that damage enemies in the way\n"
+                        + "Power: 5\n" + "Range: Far\n" + "Speed: Medium\n" + "Ammo: Unlimited";
                     break;
-                case "Rock Candy":
-                    upgradeDescription.text = "Technique will deal Piercing Damage";
+                case "Whip":
+                    firstTechniqueDescriptionLabel.text = "Whip through multiple enemies\n"
+                        + "Power: 10\n" + "Range: Medium\n" + "Speed: Slow\n" + "Ammo: Unlimited";
                     break;
             }
-
-            upgradeImage.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
-            upgradeName.text = "[UPGRADE] " + gameObject.name;
-            print("I AM " + gameObject.name);
-            upgradePanel.SetActive(true);
         }
-    }
 
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
+        //Second Technique label is updated to upgrade menu 
+        if (PlayerController.instance.techniques[1] != null)
         {
-            upgradePanel.SetActive(false);
+            //Use regular expressions to prase second technique
+            string second_technique = PlayerController.instance.techniques[1].ToString();
+            string second_technique_re = second_technique.Split('(', ')')[1];
+
+            secondTechniqueLabel.text = second_technique_re;
+            switch (second_technique_re)
+            {
+                case "Boomerang":
+                    secondTechniqueDescriptionLabel.text = "Technique can be thrown at enemies far away\n"
+                        + "Power: ?\n" + "Range: ? \n" + "Speed: ?\n" + "Ammo: ?";
+                    break;
+                case "ChiSpit":
+                    secondTechniqueDescriptionLabel.text = "Rapid fire projectiles channeled by the universe’s candy energy\n"
+                        + "Power: 1\n" + "Range: Short\n" + "Speed: Fast\n" + "Ammo: 15";
+                    break;
+                case "Slash":
+                    secondTechniqueDescriptionLabel.text = "Blunt weapon effective at crushing candy\n"
+                        + "Power: 10\n" + "Range: Short\n" + "Speed: Medium\n" + "Ammo: Unlimited";
+                    break;
+                case "Slingshot":
+                    secondTechniqueDescriptionLabel.text = "Projectiles that damage enemies in the way\n"
+                        + "Power: 5\n" + "Range: Far\n" + "Speed: Medium\n" + "Ammo: Unlimited";
+                    break;
+                case "Whip":
+                    secondTechniqueDescriptionLabel.text = "Whip through multiple enemies\n"
+                        + "Power: 10\n" + "Range: Medium\n" + "Speed: Slow\n" + "Ammo: Unlimited";
+                    break;
+            }
         }
+
+        //Add upgrade and description to the UI 
+        upgradeLabel.text = PlayerController.instance.pickedUpgrade.name;
+        print(PlayerController.instance.pickedUpgrade.name);
+
+        switch (PlayerController.instance.pickedUpgrade.name)
+        {
+            case "Tajin Rubdown":
+                upgradeDescriptionLabel.text = "Upgrade will deal Fire Damage";
+                break;
+            case "Jello Infusion":
+                upgradeDescriptionLabel.text = "Upgrade will reflect projectiles";
+                break;
+            case "Malic Acid Dip":
+                upgradeDescriptionLabel.text = "Upgrade will deal Poison Damage";
+                break;
+            case "Pop Rocks":
+                upgradeDescriptionLabel.text = "Upgrade will deal Explosive Damage";
+                break;
+            case "Rock Candy":
+                upgradeDescriptionLabel.text = "Upgrade will deal Piercing Damage";
+                break;
+        }
+
     }
-
-
 }

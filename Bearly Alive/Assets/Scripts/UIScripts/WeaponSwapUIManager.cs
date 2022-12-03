@@ -3,40 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeUIManager2 : MonoBehaviour
+public class WeaponSwap : MonoBehaviour
 {
     //upgrade menu object
     public GameObject upgradeMenu;
-    public bool[] isUpgraded = new bool[2];
+    public bool[] isSwapped = new bool[2];
 
-    public static UpgradeUIManager2 instance = null;
-
-    private void Awake()
+    public void setWeaponSlot1()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
+        //First Slot is selected to be swapped 
+        isSwapped[0] = true;
+        setWeaponSlot(1);
     }
 
-    //Apply upgrade based on what technique player chooses 
-    public void setUpgradeinSlot1()
-    {   
-        //First Slot is selected to be upgraded 
-        isUpgraded[0] = true;
-        setUpgradeinSlot(1);
-    }
-
-    public void setUpgradeinSlot2()
+    public void setWeaponSlot2()
     {
-        //Second Slot is selected to be upgraded 
-        isUpgraded[1] = true;
-        setUpgradeinSlot(2);
+        //Second Slot is selected to be swapped 
+        isSwapped[1] = true;
+        setWeaponSlot(2);
     }
 
-
-    // to be called by setUpgradeinSlot2() and ...1()
-    public void setUpgradeinSlot(int slot)
+    public void setWeaponSlot(int slot)
     {
         //choose correct upgrade tag to pass to setUpgrade(int string)
         string pickupName = PlayerController.instance.pickedUpgrade.name;
@@ -67,7 +54,7 @@ public class UpgradeUIManager2 : MonoBehaviour
         print(selectedUpgrade + " upgrade applied to slot " + slot);
 
         //Display upgrade image in UI first slot 
-        if (isUpgraded[0] == true)
+        if (isSwapped[0] == true)
         {
             Sprite getSprite = SpriteUI.instance.sprite;
             UpgradeUI.instance.upgradeImageFirstSlot = GetComponent<Image>();
@@ -77,7 +64,7 @@ public class UpgradeUIManager2 : MonoBehaviour
         }
 
         //Display upgrade image in UI second slot 
-        if (isUpgraded[1] == true)
+        if (isSwapped[1] == true)
         {
             Sprite getSprite = SpriteUI.instance.sprite;
 

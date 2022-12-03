@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
         rounds = GameManager.instance.bullets;
 
         //Method called when delegate is invoked 
-        GameManager.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+        UpgradeUI.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
 
         //Refresh HUD at the start of the game
         hudManager.refresh();
