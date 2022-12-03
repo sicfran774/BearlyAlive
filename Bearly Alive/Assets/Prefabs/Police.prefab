@@ -137,6 +137,8 @@ MonoBehaviour:
   shootingRange: 28.3
   fireRate: 1.1
   waitTime: 1
+  isFacingLeft: 0
+  spawnFacingLeft: 0
 --- !u!114 &8794955684243271479
 MonoBehaviour:
   m_ObjectHideFlags: 0

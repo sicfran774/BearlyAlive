@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4064551643397478215}
   - component: {fileID: 5561056083849472926}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Prisoner
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,8 +134,8 @@ MonoBehaviour:
   player: {fileID: 7575347867245439747, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
   bullet: {fileID: 6768108042419747499, guid: 9c89962e100d6944d8330f5c2e2eecb4, type: 3}
   bulletSpawnPoint: {fileID: 8667829567553451782}
-  shootingRange: 28.3
-  fireRate: 1.1
+  shootingRange: 0.2
+  fireRate: 0.3
   waitTime: 1
   isFacingLeft: 0
   spawnFacingLeft: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   radius: 0.95
   height: 2.06
   canMove: 1
-  maxSpeed: 2.11
+  maxSpeed: 3.37
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -216,9 +216,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 3.43
+  slowdownDistance: 0
   pickNextWaypointDist: 2.64
-  endReachedDistance: 2.35
+  endReachedDistance: 0.72
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
