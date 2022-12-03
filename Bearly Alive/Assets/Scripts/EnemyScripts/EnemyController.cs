@@ -36,6 +36,11 @@ public class EnemyController : MonoBehaviour
     private bool isSour = false;
     private bool isSpicy = false;
 
+    [HideInInspector]
+    public bool isFacingLeft;
+    public bool spawnFacingLeft;
+    private Vector2 facingLeft;
+
     Rigidbody2D enemy;
     Collider2D coll;
 
@@ -184,7 +189,7 @@ public class EnemyController : MonoBehaviour
     }
 
     //Allows the enemy to face the player as it tracks them
-    private Vector2 PointAtPlayer(Transform player)
+    /*private Vector2 PointAtPlayer(Transform player)
     {
         Vector3 targ = player.position;
         targ.z = 0f;
@@ -193,12 +198,14 @@ public class EnemyController : MonoBehaviour
         targ.x = targ.x - objectPos.x;
         targ.y = targ.y - objectPos.y;
 
-        angle = (Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg) - 90f;
+        //angle = (Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg) - 90f;
 
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
 
         return new Vector2(targ.x, targ.y);
-    }
+    }*/
 
     //A basic shoot function that will be used for other attacks in the future
     public void Shoot()
