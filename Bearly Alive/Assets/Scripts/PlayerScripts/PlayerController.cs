@@ -147,7 +147,6 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<Technique>().enabled = !active;
         }
-        //projectile.SetActive(!active);
     }
 
     private void FixedUpdate()

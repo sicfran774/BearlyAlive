@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         //Disable upgrade menu when game first starts 
-        UpgradeUI.instance.upgradeMenu.SetActive(!UpgradeUI.instance.upgradeMenu.activeSelf);
+        //UpgradeUI.instance.upgradeMenu.SetActive(!UpgradeUI.instance.upgradeMenu.activeSelf);
 
         if (instance == null)
         {

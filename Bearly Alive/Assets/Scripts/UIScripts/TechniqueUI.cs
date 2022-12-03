@@ -35,9 +35,6 @@ public class TechniqueUI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
-
         if (collision.gameObject.tag == "Player")
         {
 
@@ -66,8 +63,8 @@ public class TechniqueUI : MonoBehaviour
                     break;
                 case "Boomerang":
                     techniqueDescription.text = "Toss a slow, wide deadly projectile but leaves you defenseless";
-                    techniqueCooldown.text = "Cooldown: " + Slingshot.defaultCooldown;
-                    techniqueDamage.text = "Damage: " + Slingshot.defaultDamage;
+                    techniqueCooldown.text = "Cooldown: " + Boomerang.defaultCooldown;
+                    techniqueDamage.text = "Damage: " + Boomerang.defaultDamage;
                     break;
             }
 

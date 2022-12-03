@@ -10,6 +10,7 @@ public class UpgradeUIManager : MonoBehaviour
     private bool[] isUpgraded = new bool[2];
 
     public static UpgradeUIManager instance = null;
+  
 
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class UpgradeUIManager : MonoBehaviour
         //choose correct upgrade tag to pass to setUpgrade(int string)
         string pickupName = PlayerController.instance.pickedUpgrade.name;
         string selectedUpgrade = "";
-
+      
         switch (pickupName)
         {
             case "Tajin Rubdown":
@@ -68,22 +69,17 @@ public class UpgradeUIManager : MonoBehaviour
         print(selectedUpgrade + " upgrade applied to slot " + slot);
 
         //Display upgrade image in UI first slot 
-        if (isUpgraded[0] == true)
+        if (slot == 1)
         {
-            Sprite getSprite = SpriteUI.instance.sprite;
-            UpgradeUI.instance.upgradeImageFirstSlot = GetComponent<Image>();
-            print(getSprite);
-            UpgradeUI.instance.upgradeImageFirstSlot.sprite = getSprite;
+
+            UpgradeUI.instance.applyUpgradeText(1, pickupName);
 
         }
 
         //Display upgrade image in UI second slot 
-        if (isUpgraded[1] == true)
+        if (slot == 2)
         {
-            Sprite getSprite = SpriteUI.instance.sprite;
-
-            UpgradeUI.instance.upgradeImageSecondSlot = GetComponent<Image>();
-            UpgradeUI.instance.upgradeImageSecondSlot.sprite = getSprite;
+            UpgradeUI.instance.applyUpgradeText(2, pickupName);
         }
 
         //Disable upgrade menu when player selects technique to upgrade
