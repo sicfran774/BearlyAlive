@@ -47,7 +47,8 @@ public class Slash : Technique
 
     public override void SetUpgrade(string newUpgrade)
     {
-        // TODO
+        upgrade = newUpgrade;
+        swordChildObject.tag = upgrade;
     }
 
 
