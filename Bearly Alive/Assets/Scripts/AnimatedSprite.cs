@@ -16,15 +16,15 @@ public class AnimatedSprite : MonoBehaviour
    }
 
     //start animating
-   private void onEnable()
+   private void OnEnable()
    {
         // call animate at specified framerate
         InvokeRepeating(nameof(Animate), framerate, framerate);
    }
 
-   private void onDisable()
+   private void OnDisable()
    {
-    CancelInvoke();
+        CancelInvoke();
    }
 
    private void Animate()

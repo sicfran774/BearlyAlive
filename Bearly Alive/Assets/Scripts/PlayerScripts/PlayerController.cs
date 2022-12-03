@@ -270,6 +270,9 @@ public class PlayerController : MonoBehaviour
                 healthBar.TookDamage(5);
                 if (healthBar.currentHealth <= 0)
                 {
+                    // play death animation
+                    GetComponent<DeathAnimation>().enabled = true;
+
                     print("YOU HAVE DIED!");
                 }
             }
