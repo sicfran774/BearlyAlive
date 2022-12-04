@@ -2340,7 +2340,7 @@ GameObject:
   - component: {fileID: 862593180}
   - component: {fileID: 862593179}
   m_Layer: 5
-  m_Name: 'PressTtoLearnText '
+  m_Name: 'PressEtoLearnText '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2399,7 +2399,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press T to Learn Technique
+  m_Text: Press E to Learn Technique
 --- !u!222 &862593180
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3762,7 +3762,7 @@ GameObject:
   - component: {fileID: 1249724114}
   - component: {fileID: 1249724113}
   m_Layer: 5
-  m_Name: PressFToUpgradeText
+  m_Name: PressEToUpgradeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3821,7 +3821,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press F to equip upgrade
+  m_Text: Press E to equip upgrade
 --- !u!222 &1249724114
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5212,7 +5212,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1639266759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 601d45178e9ab234d90936bb6564f97d, type: 3}
+  m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeMenu: {fileID: 344564628}
@@ -5681,7 +5681,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1759302386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 601d45178e9ab234d90936bb6564f97d, type: 3}
+  m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeMenu: {fileID: 344564628}
@@ -7274,11 +7274,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7336451514289359239, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 3.06
+      value: 18.285715
       objectReference: {fileID: 0}
     - target: {fileID: -7336451514289359239, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 3.76
+      value: 18.285715
       objectReference: {fileID: 0}
     - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: sword
@@ -7320,6 +7320,14 @@ PrefabInstance:
       propertyPath: dodgeRollDuration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+      propertyPath: pressEForTechLabel
+      value: 
+      objectReference: {fileID: 862593179}
+    - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+      propertyPath: pressEToUpgradeLabel
+      value: 
+      objectReference: {fileID: 1249724113}
     - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: dodgeRollCooldownTimer
       value: 2
