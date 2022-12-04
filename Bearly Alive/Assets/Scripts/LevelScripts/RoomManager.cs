@@ -25,9 +25,6 @@ public class RoomManager : MonoBehaviour
 {
     public static RoomManager instance = null;
 
-    [Header("Level Name")]
-    public string levelName;
-
     public int minRooms;
     public int maxRooms;
     public GameObject roomOne;
@@ -35,23 +32,15 @@ public class RoomManager : MonoBehaviour
 
     [Space(20)]
 
-    //must import specific enemy types
-    [Header("Types of Enemies")]
-    public GameObject enemyOne;
-
-    [Space(20)]
-
-    [SerializeField] public bool playerEnteredRoom = false;
-    private List<EnemyDataJson> enemyOrder;
-
+    public static List<GameObject> roomList = new List<GameObject>();
     [SerializeField] private int roomCount = 0;
     private int[] rooms;
     private List<int> endRooms;
     private Queue<int> cellQueue;
     private GameObject roomsParent;
     private bool addRoomsToGrid;
-    private const float OriginOffsetX = -492;
-    private const float OriginOffsetY = -180;
+    private const float OriginOffsetX = -500;
+    private const float OriginOffsetY = -200;
 
     System.Random rand = new System.Random();
 
@@ -72,7 +61,7 @@ public class RoomManager : MonoBehaviour
     {
         //Enemy spawning
         //SaveEnemyLocationsIntoFile();
-        enemyOrder = EnemyPlaceScript.LoadEnemyData(Application.persistentDataPath + "/levelOne.json");
+        
 
         //Level generation
         roomsParent = GameObject.Find("Rooms");
@@ -85,11 +74,7 @@ public class RoomManager : MonoBehaviour
 
     private void Update()
     {
-        if (playerEnteredRoom)
-        {
-            playerEnteredRoom = false;
-            StartCoroutine(PlaceEnemies(enemyOrder));
-        }
+
         if (addRoomsToGrid)
         {
             StartCoroutine(AddRoomsToGrid());
@@ -121,12 +106,12 @@ public class RoomManager : MonoBehaviour
             yield return null;
 
         }
-
     }
 
     void RestartRoomGen()
     {
-        foreach (GameObject room in GameObject.FindGameObjectsWithTag("Room"))
+        roomList.Clear();
+        foreach (GameObject room in GameObject.FindGameObjectsWithTag("Wall"))
         {
             Destroy(room);
         }
@@ -191,6 +176,7 @@ public class RoomManager : MonoBehaviour
         newRoom.transform.position = new Vector2(x, y);
         newRoom.tag = "Wall";
         newRoom.name = "Cell " + i ;
+        roomList.Add(newRoom);
 
         if (roomsParent != null)
         {
@@ -235,13 +221,13 @@ public class RoomManager : MonoBehaviour
         switch (dir)
         {
             case 0:
-                wall.transform.position = new Vector2(x - 68.3457f, y - 6.91f); //I know these numbers are scuffed... sorry
+                wall.transform.position = new Vector2(x - 45, y);
                 wall.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90f));
                 wall.tag = "Wall";
                 wall.name = "cell " + i + " left";
                 break;
             case 1:
-                wall.transform.position = new Vector2(x + 26.66f, y - 6.91f);
+                wall.transform.position = new Vector2(x + 50, y);
                 wall.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90f));
                 wall.tag = "Wall";
                 wall.name = "cell " + i + " right";
@@ -260,30 +246,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    IEnumerator PlaceEnemies(List<EnemyDataJson> enemyOrder)
-    {
-        foreach(EnemyDataJson enemy in enemyOrder)
-        {
-            if(enemy == null)
-            {
-                continue;
-            }
-
-            GameObject newEnemy = SpawnEnemy(enemy.enemyType);
-            newEnemy.transform.position = new Vector2(enemy.position[0], enemy.position[1]);
-
-            yield return new WaitForSeconds(enemy.spawnTimeForNextEnemy);
-        }
-    }
-    GameObject SpawnEnemy(string type)
-    {
-        switch (type) {
-            case "enemyOne": 
-                return Instantiate(enemyOne, roomsParent.transform);
-            default:
-                return Instantiate(enemyOne, roomsParent.transform);
-        }
-    }
+    
     IEnumerator AddRoomsToGrid()
     {
         yield return new WaitForSeconds(1);
@@ -291,21 +254,9 @@ public class RoomManager : MonoBehaviour
 
         addRoomsToGrid = false;
         roomsParent = GameObject.Find("Rooms");
-        foreach (GameObject room in GameObject.FindGameObjectsWithTag("Room"))
+        foreach (GameObject room in GameObject.FindGameObjectsWithTag("Wall"))
         {
             room.transform.parent = roomsParent.transform;
         }
-    }
-
-    void SaveEnemyLocationsIntoFile()
-    {
-        List<EnemyData> data = new List<EnemyData>();
-
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            data.Add(new EnemyData(enemy, 0));
-            Debug.Log(enemy);
-        }
-        EnemyPlaceScript.SaveEnemyPlacements(data);
     }
 }
