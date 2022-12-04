@@ -63,23 +63,23 @@ public class UpgradeUI : MonoBehaviour
             switch (first_technique_re)
             {
                 case "Boomerang":
-                    secondTechniqueDescriptionLabel.text = "Toss a slow, wide deadly projectile but leaves you defenseless\n"
+                    firstTechniqueDescriptionLabel.text = "Toss a slow, wide deadly projectile but leaves you defenseless\n"
                         + "Cooldown: " + Boomerang.defaultCooldown + "\n" + "Damage: " + Boomerang.defaultDamage;
                     break;
                 case "ChiSpit":
-                    secondTechniqueDescriptionLabel.text = "Rapid fire projectiles channeled by the universe’s candy energy\n"
+                    firstTechniqueDescriptionLabel.text = "Rapid fire projectiles channeled by the universe’s candy energy\n"
                         + "Cooldown: " + ChiSpit.defaultCooldown + "\n" + "Damage: " + ChiSpit.defaultDamage;
                     break;
                 case "Slash":
-                    secondTechniqueDescriptionLabel.text = "Perform a deadly circular slash, dealing AOE Damage\n"
+                    firstTechniqueDescriptionLabel.text = "Perform a deadly circular slash, dealing AOE Damage\n"
                     + "Cooldown: " + Slash.defaultCooldown + "\n" + "Damage: " + Slash.defaultDamage;
                     break;
                 case "Slingshot":
-                    secondTechniqueDescriptionLabel.text = "Dash Toward a Direction, damaging Enemies on the way\n"
+                    firstTechniqueDescriptionLabel.text = "Dash Toward a Direction, damaging Enemies on the way\n"
                     + "Cooldown: " + Slingshot.defaultCooldown + "\n" + "Damage: " + Slingshot.defaultDamage;
                     break;
                 case "Whip":
-                    secondTechniqueDescriptionLabel.text = "Precise Attack with High Damage, but only hits 1 enemy\n"
+                    firstTechniqueDescriptionLabel.text = "Precise Attack with High Damage, but only hits 1 enemy\n"
                     + "Cooldown: " + Whip.defaultCooldown + "\n" + "Damage: " + Whip.defaultDamage;
                     break;
             }
