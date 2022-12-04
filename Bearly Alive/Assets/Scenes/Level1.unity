@@ -1666,6 +1666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 184059407}
+  roomManager: {fileID: 0}
 --- !u!1001 &528161764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5173,8 +5174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeMenu: {fileID: 344564628}
-  emptySprite: {fileID: 0}
 --- !u!1 &1669058511
 GameObject:
   m_ObjectHideFlags: 0
@@ -5642,8 +5641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeMenu: {fileID: 344564628}
-  emptySprite: {fileID: 0}
 --- !u!1 &1759333205
 GameObject:
   m_ObjectHideFlags: 0
@@ -5960,7 +5957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865453c01a520ac4f8c82d606f18a27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aIPath: {fileID: 1631304016}
+  aIPath: {fileID: 0}
 --- !u!1 &1824295436
 GameObject:
   m_ObjectHideFlags: 0
