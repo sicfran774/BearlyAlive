@@ -403,22 +403,7 @@ public class PlayerController : MonoBehaviour
 			// apply rotation about z
 			transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
 
-			// if(Mathf.Abs(movement.x) > Mathf.Abs(movement.y)) {
-			//     transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
-
-			// }
-			// else if (Mathf.Abs(movement.x) < Mathf.Abs(movement.y))
-			// {
-			//     transform.eulerAngles = new Vector3(xRotation, transform.eulerAngles.y, transform.eulerAngles.z);
-			// }
-			// else
-			// {
-			//     transform.eulerAngles = new Vector3(xRotation, yRotation, transform.eulerAngles.z);
-			// }
-
-
-
-
+            // apply movemnt
 			player.MovePosition(currPosition);
 
             t += Time.deltaTime;
