@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd38e76f45c96e84ea2a33b14237f3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MAX_HEALTH: 2
+  _MAX_HEALTH: 5
   projectileSpeed: 4
   hud: {fileID: 0}
   player: {fileID: 7575347867245439747, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
@@ -196,7 +196,7 @@ MonoBehaviour:
   radius: 0.95
   height: 2.06
   canMove: 1
-  maxSpeed: 7.49
+  maxSpeed: 7.67
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
