@@ -12,6 +12,7 @@ public class DeathAnimation : MonoBehaviour
    private void Reset()
    {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        this.enabled = false;
    }
 
    private void OnEnable() 
