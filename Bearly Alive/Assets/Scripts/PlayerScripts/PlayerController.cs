@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerController))]
 
@@ -309,6 +310,9 @@ public class PlayerController : MonoBehaviour
                     GetComponent<AnimatedSprite>().enabled = false;
                     // TODO GetComponent<DeathAnimation>().enabled = true;
                     print("YOU HAVE DIED!");
+
+                    //Load game over scene 
+                    SceneManager.LoadScene("GameOver");
                 }
             }
         }
