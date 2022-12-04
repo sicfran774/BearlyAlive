@@ -49,7 +49,6 @@ public class TechniqueUIManager : MonoBehaviour
 
     public void ToggleWeaponMenu()
     {
-
         //Inverse current active state
         WeaponSwapMenu.SetActive(!WeaponSwapMenu.activeSelf);
 

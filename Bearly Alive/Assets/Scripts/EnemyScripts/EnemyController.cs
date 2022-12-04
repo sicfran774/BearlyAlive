@@ -183,6 +183,7 @@ public class EnemyController : MonoBehaviour
 
     }
 
+
     //Allows the enemy to face the player as it tracks them
     /*private Vector2 PointAtPlayer(Transform player)
     {

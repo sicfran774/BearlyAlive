@@ -338,23 +338,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-
-        if(other.gameObject.tag == "Technique")
-        {
-            if (Input.GetKey(KeyCode.E))
-            {
-                LearnTechnique<Slash>(1);
-                Destroy(other.gameObject);
-            }
-        }
-
-    }
-
-
-
-
     // Handles Players dodge roll action. Player is not allowed to move when 
     // player is rolling. After rollSpeed reaches below 5f, player is allowed
     // to move and the cooldown timer begins.
