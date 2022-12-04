@@ -44,10 +44,6 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D enemy;
     Collider2D coll;
 
-    public float speed;
-    public Transform target;
-    public SpriteRenderer spriteRenderer;
-
     private int x;
 
     // Start is called before the first frame update
@@ -75,10 +71,6 @@ public class EnemyController : MonoBehaviour
             Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.identity);
             nextFireTime = Time.time + fireRate;
         }
-
-        Vector2 direction = (target.position - transform.position).normalized; 
-        spriteRenderer.flipX = direction.x < 0;
-        transform.position = (direction * speed * Time.deltaTime);
 
         //We want to shoot when the enemy "sees" the player, still every few seconds though
         //Shoot();
