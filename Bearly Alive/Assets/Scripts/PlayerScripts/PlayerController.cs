@@ -85,13 +85,21 @@ public class PlayerController : MonoBehaviour
 
     //Text object when upgrade is collided 
     [SerializeField]
-    private Text pressFLabel; 
+    private Text pressFLabel;
+
+    [SerializeField]
+    private Text pressTLabel;
 
     //Upgrade UI attributes
-    public bool canpickup;
+    public bool canpickupUpgrade;
+
+    public bool canpickupTechnique;
 
     //public string pickedUpgrade;
     public GameObject pickedUpgrade;
+
+    public GameObject pickedTechnique;
+
 
     //public Animation reference
     private AnimatedSprite animating;
@@ -112,6 +120,8 @@ public class PlayerController : MonoBehaviour
         //Method called when delegate is invoked 
         UpgradeUI.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
 
+        TechniqueUIManager.instance.onToggleWeaponMenu += OnWeaponMenuToggle;
+
         //Refresh HUD at the start of the game
         hudManager.refresh();
 
@@ -125,8 +135,12 @@ public class PlayerController : MonoBehaviour
 
         //Upgrade pick up attributes 
         pressFLabel.enabled = false;
-        canpickup = false;
+        canpickupUpgrade = false;
         pickedUpgrade = null;
+
+        canpickupTechnique = false;
+        pickedTechnique = null;
+        pressTLabel.enabled = false;
     }
 
     private void Awake()
@@ -160,6 +174,19 @@ public class PlayerController : MonoBehaviour
             GetComponent<Technique>().enabled = !active;
         }
     }
+
+
+    void OnWeaponMenuToggle(bool active)
+    {
+        //Disable player movement and shooting
+        GetComponent<PlayerController>().enabled = !active;
+
+        if (GetComponent<Technique>() != null)
+        {
+            GetComponent<Technique>().enabled = !active;
+        }
+    }
+
 
     private void FixedUpdate()
     {
@@ -259,8 +286,15 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Technique")
         {
-            print("ENTERED Technique"); 
-            print(collision.gameObject.name);
+            //Display label on UI
+            pressTLabel.enabled = true;
+
+            //Player can now pick up upgrade
+            canpickupTechnique = true;
+
+            //Assign picked upgrade for upgrade menu UI
+            pickedTechnique = collision.gameObject;
+
         }
 
         if (collision.gameObject.tag == "Upgrade")
@@ -271,12 +305,11 @@ public class PlayerController : MonoBehaviour
             pressFLabel.enabled = true;
 
             //Player can now pick up upgrade
-            canpickup = true;
+            canpickupUpgrade = true;
 
             //Assign picked upgrade for upgrade menu UI
             pickedUpgrade = collision.gameObject;
 
-            print(collision.gameObject.name);
         }
 
         if (collision.gameObject.tag == "EnemyBullet")
@@ -308,9 +341,19 @@ public class PlayerController : MonoBehaviour
 
             pickedUpgrade = null;
 
-            canpickup = false;
+            canpickupUpgrade = false;
 
         }
+        else if(collision.gameObject.tag == "Technique")
+        {
+            pressTLabel.enabled = false;
+
+            pickedTechnique = null;
+
+            canpickupTechnique = false;
+        }
+
+
     }
 
     private void OnTriggerStay2D(Collider2D other)
