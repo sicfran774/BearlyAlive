@@ -4,53 +4,35 @@ using UnityEngine;
 
 public class DeathAnimation : MonoBehaviour
 {
-   public Sprite dying;
-   public Sprite dead;
+   public Sprite[] sprites;
+   private int frame = 0;
+   public float framerate = 1f / 6f;
 
    public SpriteRenderer spriteRenderer;
+
+   private PlayerController controller;
 
    private void Reset()
    {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        controller = GetComponent<PlayerController>();
         this.enabled = false;
    }
 
    private void OnEnable() 
    {
-        UpdateSprite();
-        DisablePhysics();
-        StartCoroutine(Animate());
-        
-   }
-
-   private void UpdateSprite()
-   {
-          spriteRenderer.enabled = true;
-          spriteRenderer.sortingOrder = 10;
-          if (dying != null) {
-              spriteRenderer.sprite = dying; 
+          if (controller.dead) {
+                InvokeRepeating(nameof(Animate), framerate, framerate);
           }
           
    }
 
-   private void DisablePhysics()
+   private void Animate()
    {
-          GetComponent<Rigidbody2D>().isKinematic = true;
+        frame++;
+
+        if(frame >= 0 && frame < sprites.Length) {
+            spriteRenderer.sprite = sprites[frame];
+        }
    }
-
-   private IEnumerator Animate()
-   {
-          float elapsed = 0f;
-          float duration = 1f;
-
-          while (elapsed < duration) {
-               spriteRenderer.sprite = dying;
-               elapsed += Time.deltaTime;
-               yield return null;
-          }
-
-          spriteRenderer.sprite = dead;
-   }
-
-
 }
