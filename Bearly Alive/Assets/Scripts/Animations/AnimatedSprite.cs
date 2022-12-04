@@ -21,9 +21,7 @@ public class AnimatedSprite : MonoBehaviour
    private void OnEnable()
    {
         // call animate at specified framerate
-          if (controller.isMoving) {
-               InvokeRepeating(nameof(Animate), framerate, framerate);
-          }
+          InvokeRepeating(nameof(Animate), framerate, framerate);
    }
 
    private void OnDisable()

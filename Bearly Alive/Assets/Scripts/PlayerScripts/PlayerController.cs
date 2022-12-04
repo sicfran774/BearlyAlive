@@ -155,9 +155,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(isMoving);
         if (!slashing)
         {
             FollowCursor();
+        }
+
+        if (isMoving) {
+            animating.enabled = true;
         }
 
         DoActions();
