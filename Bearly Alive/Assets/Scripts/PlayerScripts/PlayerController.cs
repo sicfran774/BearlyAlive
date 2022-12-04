@@ -29,6 +29,12 @@ public class PlayerController : MonoBehaviour
    // Cooldown Value for Using Slash Technique
     public float slashCooldown = 0.7f;
     int rounds;
+    
+    // Used for animating
+    public bool isMoving {
+        get;
+        private set;
+    }
 
 
     // Boolean for any technique being on cooldown
@@ -195,7 +201,11 @@ public class PlayerController : MonoBehaviour
             }
 
             Vector2 currPosition = transform.position;
-            Vector2 newPosition = movement * Time.deltaTime * walkSpeed + currPosition;
+            Vector2 displacement = movement * Time.deltaTime * walkSpeed;
+            Vector2 newPosition =  displacement + currPosition;
+
+            // player is moving if displacement is not zero
+            isMoving = (displacement != 0);
 
             player.MovePosition(newPosition);
         }
