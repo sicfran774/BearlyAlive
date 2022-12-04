@@ -1531,7 +1531,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 23
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1575,6 +1575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 184059407}
+  roomManager: {fileID: 1582932174}
 --- !u!1001 &528161764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4432,6 +4433,7 @@ MonoBehaviour:
   roomOne: {fileID: 142334216049624477, guid: 46ec3c273ea07d0438407fc2fd189702, type: 3}
   entranceWall: {fileID: 2998629726270957969, guid: 311266895ad740c459a881eb2a389004, type: 3}
   roomCount: 0
+  doneGeneratingRooms: 0
 --- !u!1 &1593050622
 GameObject:
   m_ObjectHideFlags: 0

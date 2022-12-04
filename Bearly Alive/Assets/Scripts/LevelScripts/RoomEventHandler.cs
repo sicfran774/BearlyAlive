@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class RoomEventHandler : MonoBehaviour
@@ -17,30 +20,44 @@ public class RoomEventHandler : MonoBehaviour
     [SerializeField] private bool rewarded = false;
 
     private List<EnemyDataJson> enemyOrder;
+    private List<GameObject> tempWalls;
+    private RoomManager roomManager;
+    private int index;
+    
 
     void Start()
     {
         //enemyOrder = EnemyPlaceScript.LoadEnemyData(Application.persistentDataPath + "/" + levelName + ".json");
+        tempWalls = new List<GameObject>();
+        roomManager = GameObject.Find("RoomManager").GetComponent<RoomManager>();
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (playerEnteredRoom)
         {
             playerEnteredRoom = false;
             playerInRoom = true;
+
+            SetCurrentRoom();
+            index = Int32.Parse(roomManager.playerCurrentRoom.name);
+
+            CloseWalls();
             //StartCoroutine(PlaceEnemies(enemyOrder));
         }
 
         if (playerInRoom)
         {
+            SetCurrentRoom();
             noEnemiesRemaining = CheckIfRoomIsClear();
         }
         
         if (noEnemiesRemaining && playerInRoom && !rewarded)
         {
+            RemoveWalls();
             DropLoot();
         }
+        //print(currentRoom);
     }
 
     bool CheckIfRoomIsClear()
@@ -49,10 +66,33 @@ public class RoomEventHandler : MonoBehaviour
         return (transform.childCount == 0) ? true : false;
     }
 
+    void SetCurrentRoom()
+    {
+        //This converts the name (which is just the cell number) so that we can use it later to generate walls in the correct position
+        roomManager.playerCurrentRoom = transform.parent.gameObject;
+    }
+
     void DropLoot()
     {
         Debug.Log("Room cleared, dropping loot!");
         rewarded = true;
+    }
+
+    void CloseWalls()
+    {
+        //Add walls to each entrance to trap player, then add each wall to an array to destroy later
+        tempWalls.Add(roomManager.AddWall(index, 0));
+        tempWalls.Add(roomManager.AddWall(index, 1));
+        tempWalls.Add(roomManager.AddWall(index, 2));
+        tempWalls.Add(roomManager.AddWall(index, 3));
+    }
+
+    void RemoveWalls()
+    {
+        foreach(GameObject wall in tempWalls)
+        {
+            Destroy(wall);
+        }
     }
 
     IEnumerator PlaceEnemies(List<EnemyDataJson> enemyOrder)
@@ -97,7 +137,7 @@ public class RoomEventHandler : MonoBehaviour
     {
         if (collision.tag == "Player" && !noEnemiesRemaining)
         {
-            Debug.Log("Player entered room!");
+            Debug.Log("Player entered new room!");
             playerEnteredRoom = true;
         }
     }
@@ -114,7 +154,6 @@ public class RoomEventHandler : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            Debug.Log("Player left room!");
             playerInRoom = false;
         }
     }

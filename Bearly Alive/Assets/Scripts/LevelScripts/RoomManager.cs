@@ -32,13 +32,17 @@ public class RoomManager : MonoBehaviour
 
     [Space(20)]
 
-    public static List<GameObject> roomList = new List<GameObject>();
     [SerializeField] private int roomCount = 0;
     private int[] rooms;
     private List<int> endRooms;
     private Queue<int> cellQueue;
     private GameObject roomsParent;
+
+    public GameObject playerCurrentRoom { get; set; }
+
     private bool addRoomsToGrid;
+    public bool doneGeneratingRooms = false;
+
     private const float OriginOffsetX = -500;
     private const float OriginOffsetY = -200;
 
@@ -74,7 +78,6 @@ public class RoomManager : MonoBehaviour
 
     private void Update()
     {
-
         if (addRoomsToGrid)
         {
             StartCoroutine(AddRoomsToGrid());
@@ -98,6 +101,7 @@ public class RoomManager : MonoBehaviour
             if(roomCount >= minRooms)
             {
                 StartCoroutine(CloseWalls());
+                doneGeneratingRooms = true;
                 yield break;
             }
 
@@ -110,7 +114,6 @@ public class RoomManager : MonoBehaviour
 
     void RestartRoomGen()
     {
-        roomList.Clear();
         foreach (GameObject room in GameObject.FindGameObjectsWithTag("Wall"))
         {
             Destroy(room);
@@ -175,8 +178,7 @@ public class RoomManager : MonoBehaviour
         GameObject newRoom = Instantiate(roomOne);
         newRoom.transform.position = new Vector2(x, y);
         newRoom.tag = "Wall";
-        newRoom.name = "Cell " + i ;
-        roomList.Add(newRoom);
+        newRoom.name = i.ToString();
 
         if (roomsParent != null)
         {
@@ -213,7 +215,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    void AddWall(int i, int dir) //dir --> 0, left; 1, right; 2, below; 3, above
+    public GameObject AddWall(int i, int dir) //dir --> 0, left; 1, right; 2, below; 3, above
     {
         float x = (i % 10) * 100 + OriginOffsetX;
         float y = (i / 10) * 50 + OriginOffsetY;
@@ -244,6 +246,7 @@ public class RoomManager : MonoBehaviour
                 break;
             default: break;
         }
+        return wall;
     }
 
     
