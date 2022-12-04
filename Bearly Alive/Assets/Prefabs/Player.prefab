@@ -156,6 +156,7 @@ MonoBehaviour:
   dodgeRollCooldownTimer: 1.25
   dodgeRollDuration: 10
   rollSpeed: 750
+  dead: 0
   pressFLabel: {fileID: 0}
   canpickup: 0
   pickedUpgrade: {fileID: 0}
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7575347867245439747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8d0ef184ae6048ff94f316fe5848a96, type: 3}
   m_Name: 
