@@ -205,7 +205,7 @@ public class PlayerController : MonoBehaviour
             Vector2 newPosition =  displacement + currPosition;
 
             // player is moving if displacement is not zero
-            isMoving = (displacement != 0);
+            isMoving = (displacement != Vector2.zero);
 
             player.MovePosition(newPosition);
         }
