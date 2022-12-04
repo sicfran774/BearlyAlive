@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public HealthBar healthBar;
 
 
-
+    //
     // HUD Manager for Player's Actions 
     public HudManager hudManager;
 
@@ -245,6 +245,7 @@ public class PlayerController : MonoBehaviour
             // player is moving if displacement is not zero
             isMoving = (displacement != Vector2.zero);
 
+            
             player.MovePosition(newPosition);
         }
     }
