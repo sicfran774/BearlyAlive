@@ -8,8 +8,11 @@ public class UpgradeUIManager : MonoBehaviour
     //upgrade menu object
     public GameObject upgradeMenu;
     private bool[] isUpgraded = new bool[2];
+    private Sprite[] upgradeSprites = new Sprite[2];
+
 
     public static UpgradeUIManager instance = null;
+  
 
     private void Awake()
     {
@@ -21,9 +24,10 @@ public class UpgradeUIManager : MonoBehaviour
 
     //Apply upgrade based on what technique player chooses 
     public void setUpgradeinSlot1()
-    {   
+    {
         //First Slot is selected to be upgraded 
         isUpgraded[0] = true;
+        upgradeSprites[0] = UpgradeUI.instance.upgradeImage.sprite;
         setUpgradeinSlot(1);
     }
 
@@ -31,6 +35,7 @@ public class UpgradeUIManager : MonoBehaviour
     {
         //Second Slot is selected to be upgraded 
         isUpgraded[1] = true;
+        upgradeSprites[1] = UpgradeUI.instance.upgradeImage.sprite;
         setUpgradeinSlot(2);
     }
 
@@ -70,8 +75,7 @@ public class UpgradeUIManager : MonoBehaviour
         //Display upgrade image in UI first slot 
         if (isUpgraded[0] == true)
         {
-            Sprite getSprite = SpriteUI.instance.sprite;
-            UpgradeUI.instance.upgradeImageFirstSlot = GetComponent<Image>();
+            Sprite getSprite = upgradeSprites[0];
             print(getSprite);
             UpgradeUI.instance.upgradeImageFirstSlot.sprite = getSprite;
 
@@ -80,9 +84,8 @@ public class UpgradeUIManager : MonoBehaviour
         //Display upgrade image in UI second slot 
         if (isUpgraded[1] == true)
         {
-            Sprite getSprite = SpriteUI.instance.sprite;
-
-            UpgradeUI.instance.upgradeImageSecondSlot = GetComponent<Image>();
+            Sprite getSprite = upgradeSprites[1];
+            print(getSprite);
             UpgradeUI.instance.upgradeImageSecondSlot.sprite = getSprite;
         }
 

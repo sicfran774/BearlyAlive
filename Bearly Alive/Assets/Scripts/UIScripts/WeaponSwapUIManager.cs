@@ -54,7 +54,7 @@ public class WeaponSwap : MonoBehaviour
         print(selectedUpgrade + " upgrade applied to slot " + slot);
 
         //Display upgrade image in UI first slot 
-        if (isSwapped[0] == true)
+      /*  if (isSwapped[0] == true)
         {
             Sprite getSprite = SpriteUI.instance.sprite;
             UpgradeUI.instance.upgradeImageFirstSlot = GetComponent<Image>();
@@ -71,7 +71,7 @@ public class WeaponSwap : MonoBehaviour
             UpgradeUI.instance.upgradeImageSecondSlot = GetComponent<Image>();
             UpgradeUI.instance.upgradeImageSecondSlot.sprite = getSprite;
         }
-
+*/
         //Disable upgrade menu when player selects technique to upgrade
         upgradeMenu.SetActive(!upgradeMenu.activeSelf);
 

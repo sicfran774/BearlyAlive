@@ -147,7 +147,6 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<Technique>().enabled = !active;
         }
-        //projectile.SetActive(!active);
     }
 
     private void FixedUpdate()
@@ -285,6 +284,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Upgrade")
         {
             pressFLabel.enabled = false;
+
+            pickedUpgrade = null;
+
+            canpickup = false;
 
         }
     }
