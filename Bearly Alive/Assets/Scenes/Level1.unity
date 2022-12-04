@@ -5860,7 +5860,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769104893}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
 --- !u!1 &1787513883
 GameObject:
   m_ObjectHideFlags: 0
@@ -5962,8 +5961,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aIPath: {fileID: 1631304016}
-=======
->>>>>>> f4b05873c9136e423071adb79265a4a49de8ee58
 --- !u!1 &1824295436
 GameObject:
   m_ObjectHideFlags: 0
