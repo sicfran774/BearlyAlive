@@ -496,6 +496,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1350336625}
     m_Modifications:
+    - target: {fileID: -504844212981979422, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: hud
       value: 
@@ -1331,7 +1335,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 23.026798
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1355,7 +1359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -20}
+  m_LocalPosition: {x: 0, y: 4.8, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1369,7 +1373,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91dd3d4e202b7c04e8e5951c2c1a72a0, type: 3}
   m_Name: 
@@ -1597,6 +1601,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1350336625}
     m_Modifications:
+    - target: {fileID: -504844212981979422, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: hud
       value: 
@@ -1779,7 +1787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACAn+sOTfu4WwIAABIFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE2P2jAQ/SvI51IRxIforQ0s2wO7aGm1l1yMPSEWjh35Y/lY8d87dhKSUvUU5703M2/Gk3wSoWwFzGmzNoJvNAfybUDCmXwZdOQznOlBq524Qqt5F9wVQUSj5o06oRFPQpjVJTgj2Hd1kEE8QtArkWtTrvgBUm2dRTin0gJSRrsQrRD6HJAzPoaLEHLB03geTlc8LUaDGx4ZKAemk7bCVlarvGKSlhXwYLkTz6eNelrLFDbTKIJxpqUUtnFC3KWKnaa0sh77QAEXFDuL5Sf4WoA4FC647Ae/5rkF11gy9LIUBgdUZyU/dD21ktpj7euDSh/qTJNx9FQn3fzDD5NI50aXz23dZBRquEKw4xu9MGpdb6x9eNkZT+J4TlQe6V7CewHqRa+N9ooj6YwPod7CeNm93ltLC2DHDq+tPoC++v/lhB5usftzKkW5D9TXSQ3spI7zjlcPBm/mJxqOi2GbFIgGF78t/KKH/gY1xJMw1iHVdKmCvb32JkjJKs4sdONdqo2CCDemK1BUussW07jHK3zgemUfmCcavpWmeMO1n8BDSIQ7/Wj0QG316X5ZttCnDdji1TspFHSmA/GCc0q1UvWG9WfShu28ySnrhR284H+vFmH7/WLBgY5hNJnBjA/3CZsvckqn81mS8zEncfeEwj6p3NZGm/HgrakuucI9a38hg7WhVdx2buhpLa6l7o1cqFzvmAFQr3WGu3EwWAS/Sr7iAge0A+eEivdNPjMiNTsCz+6Jstjp6uwMzbosGanEh3YByUga/xkZCfB9l7cGPgScQvE22Y3c/gBQSwMEFAAACAgAAICf6+JCtadtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFJyUpKlZUpqolGqgYlZqlmKbpJhsrllWmKiqbmZYVqKUYpSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAICf6w5N+7hbAgAAEgUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAICf6+JCtadtAAAAeAAAAAkAJAAAAAAAAAAAAAAAqAIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABgAwAAAAA=
+    dataString: UEsDBBQAAAgIAACAn+t1SZJVWgIAABMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMtu2zAQ/BWD56awjDzg3lrFcXpIYsQtctFlTa4swhQp8BHbCfzvXVKSpTonUTOzy9mH9Mmkdg1yb+zSSvFkBLIfExbP7NtkIB/xAFuj1/IDe82bFL6KIkiaV/DSEJ7FMGdq9Fbyn3qronhKYNCyNLZeiC3mxnlHcAnKIVHW+BitCfqcsAM9ruYx5Ein2V08fdBpPp2c6MhRe7SDtBfedLJWFTRXUDcoouVBnE3P8lanqZpOEp1zo5R0nRXmj00qNYfGBSqEBEIClZbuv6bXCuW28tHmOPilLB36zpuF47201KE2K/tl2rbV4HatsXdQId5zk82Spzbp0xf+Kkt0aU392N/bFuQryXevcOTg/KivY/h+MJ6l/uxB7WCj8K1C/WyW1gQtiPQ2xNDgcHY/vJ5LyyvkuwFvrV6Aofk6nX6IsYZTqv6QK1lvIvX9ugXWyqR+p9mjpcn8JsNpM1yXgtDo4q/DP7Adr1BHPEjrPFFdlTra25hgo5QtUs9iNcHnxmpMcGe6QQ3KH1eUxl+O8IIbXXvBPED8WLrLO67/Bi5CEjzop9MLamX252G5yuyf0FUvwSupcTAdiWfqU260bjds3JM+bB1sCXwUtg1S/L9ajG8287lAmOH0+hZvxdUm43fzEuDm7jYrxUywtHtSU52gVq3Rrj00NT0k17Rn/T9ksrTQpG0XFvZL+VGbUculLs2aW0T90mY4G0dLl9BXKRZCUoPW6L3Uad7ss2DK8B2K4pyoSJUuDt5CMWQpWCPfjY9IwfL00yhYhM+7vLL4LnEfL++TndjpH1BLAwQUAAAICAAAgJ/r4kK1p20AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UnJSkqVlSmqiUaqBiVmqWYpukmGyuWVaYqKpuZlhWopRilIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAgJ/rdUmSVVoCAAATBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAgJ/r4kK1p20AAAB4AAAACQAkAAAAAAAAAAAAAACnAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAF8DAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1807,11 +1815,43 @@ MonoBehaviour:
     _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
     _AreaColors:
     - {r: 0, g: 0, b: 0, a: 0}
-  tagNames: []
+  tagNames:
+  - Basic Ground
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   euclideanEmbedding:
@@ -1987,6 +2027,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1350336625}
     m_Modifications:
+    - target: {fileID: -504844212981979422, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: hud
       value: 
@@ -2506,8 +2550,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207981558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10.8}
-  m_LocalScale: {x: 75, y: 50, z: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 10.8}
+  m_LocalScale: {x: 100, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3104,6 +3148,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1350336625}
     m_Modifications:
+    - target: {fileID: -504844212981979422, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: hud
       value: 
@@ -4957,7 +5005,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072330249}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

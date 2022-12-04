@@ -1,11 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 /*  Room generation must consist of a few things:
  *  1.  Where/what kind of enemies spawn
@@ -85,7 +81,6 @@ public class RoomManager : MonoBehaviour
         cellQueue = new Queue<int>();
 
         StartCoroutine(BeginLevelGeneration());
-        StartCoroutine(CloseWalls());
     }
 
     private void Update()
@@ -117,20 +112,24 @@ public class RoomManager : MonoBehaviour
 
             if(roomCount >= minRooms)
             {
+                StartCoroutine(CloseWalls());
                 yield break;
             }
 
             //If it reaches this point then min amount of rooms not reached, must try again
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            RestartRoomGen();
             yield return null;
 
         }
 
     }
 
-    public void ResetScene()
+    void RestartRoomGen()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        foreach (GameObject room in GameObject.FindGameObjectsWithTag("Room"))
+        {
+            Destroy(room);
+        }
     }
 
     void GenerateLevel()
