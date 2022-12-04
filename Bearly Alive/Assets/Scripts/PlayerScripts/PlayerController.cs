@@ -282,6 +282,10 @@ public class PlayerController : MonoBehaviour
         {
             pressFLabel.enabled = false;
 
+            pickedUpgrade = null;
+
+            canpickup = false;
+
         }
     }
 

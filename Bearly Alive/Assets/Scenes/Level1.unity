@@ -264,7 +264,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1238,8 +1238,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 140.62683, y: -29.6567}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 143.2, y: -38.687}
+  m_SizeDelta: {x: 76, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &436293239
 CanvasRenderer:
@@ -1535,6 +1535,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8613500042809212163, guid: d002c0fe70ec642458a259d890d9cf54, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4699515290314620805, guid: d002c0fe70ec642458a259d890d9cf54, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2150,7 +2154,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -3206,7 +3210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeMenu: {fileID: 0}
 --- !u!114 &1192376469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3899,7 +3902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeMenu: {fileID: 0}
 --- !u!114 &1411829494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5012,7 +5014,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1639266759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 601d45178e9ab234d90936bb6564f97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeMenu: {fileID: 344564628}
@@ -5480,7 +5482,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1759302386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 601d45178e9ab234d90936bb6564f97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeMenu: {fileID: 344564628}
