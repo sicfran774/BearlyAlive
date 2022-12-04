@@ -1,3 +1,17 @@
+/*************************************************************** 
+*file: PlayerSpriteRenderer.cs 
+*author: M. Tene 
+*class: CS 4700 – Game Development 
+*assignment: program 4 
+*date last modified: 12/4/2022 
+* 
+*purpose: this program handles logic for the sprite renderer of the player: decision on which sprite/animation
+        to select and display. 
+* 
+****************************************************************/ 
+
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
