@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     // Boolean to mark death for animation
     // player is currently alive
-    public bool dead = false;
+    public bool isDead = false;
 
     //CHANGED TO PUBLIC SO I CAN USE IN GAMEMANAGER
     // Variables to hold the two known player actions
@@ -159,10 +159,6 @@ public class PlayerController : MonoBehaviour
         if (!slashing)
         {
             FollowCursor();
-        }
-
-        if (isMoving) {
-            animating.enabled = true;
         }
 
         DoActions();
@@ -338,9 +334,9 @@ public class PlayerController : MonoBehaviour
                 healthBar.TookDamage(5);
                 if (healthBar.currentHealth <= 0)
                 {
-                    dead = true;
+                    isDead = true;
                     GetComponent<AnimatedSprite>().enabled = false;
-                    GetComponent<DeathAnimation>().enabled = true;
+                    // TODO GetComponent<DeathAnimation>().enabled = true;
                     print("YOU HAVE DIED!");
                 }
             }

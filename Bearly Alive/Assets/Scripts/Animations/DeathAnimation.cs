@@ -20,11 +20,7 @@ public class DeathAnimation : MonoBehaviour
 
    private void OnEnable() 
    {
-          print("in death animation");
-          if (controller.dead) {
-                InvokeRepeating(nameof(Animate), framerate, framerate);
-          }
-          
+     InvokeRepeating(nameof(Animate), framerate, framerate);     
    }
 
    private void Animate()
