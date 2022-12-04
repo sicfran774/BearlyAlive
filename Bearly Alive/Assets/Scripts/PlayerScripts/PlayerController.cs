@@ -397,22 +397,29 @@ public class PlayerController : MonoBehaviour
             float xRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
             float yRotation = Mathf.Lerp(yRot, yEndRot, t / duration) % 360f;
 
-            if(Mathf.Abs(movement.x) > Mathf.Abs(movement.y)) {
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
+            // calculate rotation about z
+            float zRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
 
-            }
-            else if (Mathf.Abs(movement.x) < Mathf.Abs(movement.y))
-            {
-                transform.eulerAngles = new Vector3(xRotation, transform.eulerAngles.y, transform.eulerAngles.z);
-            }
-            else
-            {
-                transform.eulerAngles = new Vector3(xRotation, yRotation, transform.eulerAngles.z);
-            }
+			// apply rotation about z
+			transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
+
+			// if(Mathf.Abs(movement.x) > Mathf.Abs(movement.y)) {
+			//     transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
+
+			// }
+			// else if (Mathf.Abs(movement.x) < Mathf.Abs(movement.y))
+			// {
+			//     transform.eulerAngles = new Vector3(xRotation, transform.eulerAngles.y, transform.eulerAngles.z);
+			// }
+			// else
+			// {
+			//     transform.eulerAngles = new Vector3(xRotation, yRotation, transform.eulerAngles.z);
+			// }
 
 
 
-            player.MovePosition(currPosition);
+
+			player.MovePosition(currPosition);
 
             t += Time.deltaTime;
 
