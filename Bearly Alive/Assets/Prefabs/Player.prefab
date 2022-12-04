@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6668216004771154351}
   - component: {fileID: 1197868453199097258}
   - component: {fileID: 6201662383608174917}
+  - component: {fileID: 5277514853334967068}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -105,7 +106,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 8}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -155,6 +156,7 @@ MonoBehaviour:
   dodgeRollCooldownTimer: 1.25
   dodgeRollDuration: 10
   rollSpeed: 750
+  dead: 0
   pressFLabel: {fileID: 0}
   canpickup: 0
   pickedUpgrade: {fileID: 0}
@@ -171,8 +173,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 98b5e1977ef43479ba0c8fff3852208e, type: 3}
+  - {fileID: 21300000, guid: 767704510fcdb444c85b2d98e07a74b4, type: 3}
   - {fileID: 21300000, guid: 0646334c4a9e64a8981d6e7a9cb2a23a, type: 3}
   - {fileID: 21300000, guid: 767704510fcdb444c85b2d98e07a74b4, type: 3}
   - {fileID: 21300000, guid: 0646334c4a9e64a8981d6e7a9cb2a23a, type: 3}
   framerate: 0.16666667
+--- !u!114 &5277514853334967068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7575347867245439747}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d0ef184ae6048ff94f316fe5848a96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: d9524dd26cd6a4ca4b252961b09bbd9e, type: 3}
+  - {fileID: 21300000, guid: cc8014404f7ad42ada0d3ecb99ecff06, type: 3}
+  framerate: 0.16666667
+  spriteRenderer: {fileID: 7575347867245439772}

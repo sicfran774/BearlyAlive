@@ -29,6 +29,12 @@ public class PlayerController : MonoBehaviour
    // Cooldown Value for Using Slash Technique
     public float slashCooldown = 0.7f;
     int rounds;
+    
+    // Used for animating
+    public bool isMoving {
+        get;
+        private set;
+    }
 
 
     // Boolean for any technique being on cooldown
@@ -58,6 +64,10 @@ public class PlayerController : MonoBehaviour
     // Boolean to stop player object from following the cursor when 
     // player is currently performing slash
     bool slashing = false;
+
+    // Boolean to mark death for animation
+    // player is currently alive
+    public bool dead = false;
 
     //CHANGED TO PUBLIC SO I CAN USE IN GAMEMANAGER
     // Variables to hold the two known player actions
@@ -91,11 +101,14 @@ public class PlayerController : MonoBehaviour
     public GameObject pickedTechnique;
 
 
+    //public Animation reference
+    private AnimatedSprite animating;
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        animating = GetComponent<AnimatedSprite>();
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -208,9 +221,18 @@ public class PlayerController : MonoBehaviour
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
+            
+            if (Mathf.Abs(movement.x) > 0)
+            {
+                animating.enabled = true;
+            }
 
             Vector2 currPosition = transform.position;
-            Vector2 newPosition = movement * Time.deltaTime * walkSpeed + currPosition;
+            Vector2 displacement = movement * Time.deltaTime * walkSpeed;
+            Vector2 newPosition =  displacement + currPosition;
+
+            // player is moving if displacement is not zero
+            isMoving = (displacement != Vector2.zero);
 
             player.MovePosition(newPosition);
         }
@@ -301,6 +323,9 @@ public class PlayerController : MonoBehaviour
                 healthBar.TookDamage(5);
                 if (healthBar.currentHealth <= 0)
                 {
+                    dead = true;
+                    GetComponent<AnimatedSprite>().enabled = false;
+                    GetComponent<DeathAnimation>().enabled = true;
                     print("YOU HAVE DIED!");
                 }
             }

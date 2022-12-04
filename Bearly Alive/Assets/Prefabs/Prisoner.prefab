@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4064551643397478215}
   - component: {fileID: 5561056083849472926}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Prisoner
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 8667829567553451782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -21.486427, y: 17.271824, z: -22.674913}
-  m_LocalScale: {x: 0.1875, y: 0.1875, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,7 +107,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 72, y: 72}
+    oldSize: {x: 18, y: 18}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -134,9 +134,11 @@ MonoBehaviour:
   player: {fileID: 7575347867245439747, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
   bullet: {fileID: 6768108042419747499, guid: 9c89962e100d6944d8330f5c2e2eecb4, type: 3}
   bulletSpawnPoint: {fileID: 8667829567553451782}
-  shootingRange: 28.3
-  fireRate: 1.1
+  shootingRange: 0.2
+  fireRate: 0.3
   waitTime: 1
+  isFacingLeft: 0
+  spawnFacingLeft: 0
 --- !u!114 &8794955684243271479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +197,7 @@ MonoBehaviour:
   radius: 0.95
   height: 2.06
   canMove: 1
-  maxSpeed: 2.11
+  maxSpeed: 3.37
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -204,7 +206,7 @@ MonoBehaviour:
   repathRateCompatibility: NaN
   canSearchCompability: 0
   orientation: 1
-  enableRotation: 1
+  enableRotation: 0
   autoRepath:
     mode: 2
     interval: 0.5
@@ -214,9 +216,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 3.43
+  slowdownDistance: 0
   pickNextWaypointDist: 2.64
-  endReachedDistance: 2.35
+  endReachedDistance: 0.72
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
