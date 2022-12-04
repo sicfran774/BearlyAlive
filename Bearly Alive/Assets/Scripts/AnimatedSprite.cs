@@ -8,11 +8,13 @@ public class AnimatedSprite : MonoBehaviour
    public float framerate = 1f / 6f;
 
    private SpriteRenderer spriteRenderer;
+   private PlayerController controller;
    private int frame;
 
    private void Awake()
    {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        controller = GetComponent<PlayerController>();
    }
 
     //start animating

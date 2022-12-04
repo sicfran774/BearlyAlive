@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour
     // player is currently performing slash
     bool slashing = false;
 
+    // Boolean to mark death for animation
+    // player is currently alive
+    public bool dead = false;
+
     //CHANGED TO PUBLIC SO I CAN USE IN GAMEMANAGER
     // Variables to hold the two known player actions
     public Technique[] techniques {
@@ -269,9 +273,9 @@ public class PlayerController : MonoBehaviour
                 healthBar.TookDamage(5);
                 if (healthBar.currentHealth <= 0)
                 {
-                    // play death animation
+                    dead = true;
+                    GetComponent<AnimatedSprite>().enabled = false;
                     GetComponent<DeathAnimation>().enabled = true;
-
                     print("YOU HAVE DIED!");
                 }
             }
