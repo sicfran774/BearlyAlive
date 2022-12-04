@@ -35,11 +35,6 @@ public class DeathAnimation : MonoBehaviour
 
    private void DisablePhysics()
    {
-          Collider2D[] colliders = GetComponents<Collider2D>();
-          foreach (Collider2D collider in colliders) {
-               collider.enabled = false;
-          }
-
           GetComponent<Rigidbody2D>().isKinematic = true;
    }
 
