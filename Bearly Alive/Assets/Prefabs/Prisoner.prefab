@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1735724731975648028}
   - component: {fileID: 4064551643397478215}
   - component: {fileID: 5561056083849472926}
+  - component: {fileID: -2584339425206227771}
   m_Layer: 7
   m_Name: Prisoner
   m_TagString: Enemy
@@ -137,8 +138,6 @@ MonoBehaviour:
   shootingRange: 0.2
   fireRate: 0.3
   waitTime: 1
-  isFacingLeft: 0
-  spawnFacingLeft: 0
 --- !u!114 &8794955684243271479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,3 +238,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eb249f579a47541e2ad32d565216aa99, type: 3}
   - {fileID: 21300000, guid: 76cfd27b08b744324acfdddda0b0e7fe, type: 3}
   framerate: 0.16666667
+--- !u!114 &-2584339425206227771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667829567553451782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8941a8066f597ee4a9ec243b8f6a25e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7575347867245439773, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}

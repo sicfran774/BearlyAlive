@@ -36,11 +36,6 @@ public class EnemyController : MonoBehaviour
     private bool isSour = false;
     private bool isSpicy = false;
 
-    [HideInInspector]
-    public bool isFacingLeft;
-    public bool spawnFacingLeft;
-    private Vector2 facingLeft;
-
     Rigidbody2D enemy;
     Collider2D coll;
 
@@ -111,7 +106,7 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //If hit with bullet, damage the enemy
-        if(collision.tag == "Bullet")
+        if(collision.gameObject.name == "Bullet(Clone)")
         {
             healthRemaining--;
         }
