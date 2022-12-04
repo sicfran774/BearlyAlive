@@ -36,12 +36,24 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //User can pick up upgrade, which toggles upgrade menu 
-        if (PlayerController.instance.canpickup == true)
+        if (PlayerController.instance.canpickupUpgrade == true)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
                 UpgradeUI.instance.ToggleUpgradeMenu();
                 print("Toggle menu");
+            }
+
+       
+
+        }
+
+        if (PlayerController.instance.canpickupTechnique)
+        {
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                TechniqueUIManager.instance.ToggleWeaponMenu();
+                print("Toggle Weapon menu");
             }
         }
 
