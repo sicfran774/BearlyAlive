@@ -5316,11 +5316,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1639266759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 601d45178e9ab234d90936bb6564f97d, type: 3}
+  m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeMenu: {fileID: 344564628}
-  emptySprite: {fileID: 7482667652216324306, guid: 6a59c082137dc034a90bc3411fc8b0ed, type: 3}
+  emptySprite: {fileID: 0}
 --- !u!1 &1669058511
 GameObject:
   m_ObjectHideFlags: 0
@@ -5785,11 +5785,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1759302386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 601d45178e9ab234d90936bb6564f97d, type: 3}
+  m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeMenu: {fileID: 344564628}
-  emptySprite: {fileID: 7482667652216324306, guid: 6a59c082137dc034a90bc3411fc8b0ed, type: 3}
+  emptySprite: {fileID: 0}
 --- !u!1 &1759333205
 GameObject:
   m_ObjectHideFlags: 0
