@@ -46,7 +46,7 @@ public class ChiSpit : Technique
         if (rounds > 0)
         {
             // Start Animation
-            GetComponent<TechniqueAnimation>().enabled = true;
+            //GetComponent<TechniqueAnimation>().enabled = true; // this bugged the firing
             // Fire Bullet
             rounds--;
             SoundManager.instance.playBulletSound();
