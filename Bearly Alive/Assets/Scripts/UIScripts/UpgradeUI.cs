@@ -84,7 +84,9 @@ public class UpgradeUI : MonoBehaviour
                     break;
             }
 
-            
+            appliedUpgradeSlot1Text.text = "Current Upgrade: " + PlayerController.instance.techniques[0].upgrade.Replace("Upgrade", "");
+
+
         }
 
         //Second Technique label is updated to upgrade menu 
@@ -118,6 +120,10 @@ public class UpgradeUI : MonoBehaviour
                     + "Cooldown: " + Whip.defaultCooldown + "\n" + "Damage: " + Whip.defaultDamage;
                     break;
             }
+
+
+            appliedUpgradeSlot2Text.text = "Current Upgrade: " + PlayerController.instance.techniques[1].upgrade.Replace("Upgrade", "");
+
         }
 
         //Add upgrade and description to the UI 
