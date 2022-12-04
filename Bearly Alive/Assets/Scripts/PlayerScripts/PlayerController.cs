@@ -75,10 +75,10 @@ public class PlayerController : MonoBehaviour
 
     //Text object when upgrade is collided 
     [SerializeField]
-    private Text pressFLabel;
+    private Text pressEForUpgradeLabel;
 
     [SerializeField]
-    private Text pressTLabel;
+    private Text pressEForTechLabel;
 
     //Upgrade UI attributes
     public bool canpickupUpgrade;
@@ -124,13 +124,13 @@ public class PlayerController : MonoBehaviour
         //LearnTechnique<Boomerang>(2);
 
         //Upgrade pick up attributes 
-        pressFLabel.enabled = false;
+        pressEForUpgradeLabel.enabled = false;
         canpickupUpgrade = false;
         pickedUpgrade = null;
 
         canpickupTechnique = false;
         pickedTechnique = null;
-        pressTLabel.enabled = false;
+        pressEForTechLabel.enabled = false;
     }
 
     private void Awake()
@@ -269,7 +269,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Technique")
         {
             //Display label on UI
-            pressTLabel.enabled = true;
+            pressEForTechLabel.enabled = true;
 
             //Player can now pick up upgrade
             canpickupTechnique = true;
@@ -284,7 +284,7 @@ public class PlayerController : MonoBehaviour
             print("ENTERED Upgrade");
 
             //Display label on UI
-            pressFLabel.enabled = true;
+            pressEForUpgradeLabel.enabled = true;
 
             //Player can now pick up upgrade
             canpickupUpgrade = true;
@@ -319,7 +319,7 @@ public class PlayerController : MonoBehaviour
         //Enabel text when player collides with upgrade
         if (collision.gameObject.tag == "Upgrade")
         {
-            pressFLabel.enabled = false;
+            pressEForUpgradeLabel.enabled = false;
 
             pickedUpgrade = null;
 
@@ -328,7 +328,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Technique")
         {
-            pressTLabel.enabled = false;
+            pressEForTechLabel.enabled = false;
 
             pickedTechnique = null;
 
