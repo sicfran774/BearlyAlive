@@ -55,6 +55,7 @@ public class EnemyController : MonoBehaviour
 
         //Method called when delegate is invoked 
         UpgradeUI.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+        TechniqueUIManager.instance.onToggleWeaponMenu += OnWeaponMenuToggle;
     }
 
     // Update is called once per frame
@@ -172,6 +173,22 @@ public class EnemyController : MonoBehaviour
     {
         shot = !active;
      
+        //Enemy movement in slow motion
+        Time.timeScale = 0.1f;
+
+        //Reset to normal speed when upgrade menu is exited 
+        if (active == false)
+        {
+            Time.timeScale = 1f;
+        }
+
+    }
+
+    //Handle what happens when weapon menu is toggled  
+    void OnWeaponMenuToggle(bool active)
+    {
+        shot = !active;
+
         //Enemy movement in slow motion
         Time.timeScale = 0.1f;
 
