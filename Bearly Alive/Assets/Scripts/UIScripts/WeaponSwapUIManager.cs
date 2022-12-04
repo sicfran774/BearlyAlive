@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WeaponSwap : MonoBehaviour
+public class WeaponSwapUIManager : MonoBehaviour
 {
     //upgrade menu object
-    public GameObject upgradeMenu;
-    public bool[] isSwapped = new bool[2];
+    public GameObject WeaponMenu;
+    private static bool[] isSwapped = new bool[2];
+    //private Sprite[] techniqueSprites = new Sprite[2];
 
     public void setWeaponSlot1()
     {
@@ -26,59 +27,63 @@ public class WeaponSwap : MonoBehaviour
     public void setWeaponSlot(int slot)
     {
         //choose correct upgrade tag to pass to setUpgrade(int string)
-        string pickupName = PlayerController.instance.pickedUpgrade.name;
+        string pickupName = PlayerController.instance.pickedTechnique.name;
         string selectedUpgrade = "";
 
         switch(pickupName) {
-            case "Tajin Rubdown":
+            case "Boomerang":
                 selectedUpgrade = "UpgradeSpicy";
+                PlayerController.instance.LearnTechnique<Boomerang>(slot);
                 break;
-            case "Jello Infusion":
+            case "Slash":
                 selectedUpgrade = "UpgradeJello";
+                PlayerController.instance.LearnTechnique<Slash>(slot);
                 break;
-            case "Malic Acid Dip":
+            case "ChiSpit":
                 selectedUpgrade = "UpgradeSour";
+                PlayerController.instance.LearnTechnique<ChiSpit>(slot);
                 break;
-            case "Pop Rocks":
+            case "Whip":
                 selectedUpgrade = "UpgradeKnockback";
+                PlayerController.instance.LearnTechnique<Whip>(slot);
                 break;
-            case "Rock Candy":
+            case "SlingShot":
                 selectedUpgrade = "UpgradeRock";
+                PlayerController.instance.LearnTechnique<Slingshot>(slot);
                 break;
             default:
                 break;
         }
 
-        PlayerController.instance.setUpgrade(slot, selectedUpgrade);
+
 
         print(selectedUpgrade + " upgrade applied to slot " + slot);
 
         //Display upgrade image in UI first slot 
-      /*  if (isSwapped[0] == true)
+        if (isSwapped[0] == true && UpgradeUIManager.instance != null)
         {
-            Sprite getSprite = SpriteUI.instance.sprite;
-            UpgradeUI.instance.upgradeImageFirstSlot = GetComponent<Image>();
-            print(getSprite);
-            UpgradeUI.instance.upgradeImageFirstSlot.sprite = getSprite;
+            UpgradeUIManager.instance.removeUpgrade(slot);
+            //Sprite getSprite = techniqueSprites[0];
+            //UpgradeUI.instance.upgradeImageFirstSlot.sprite = getSprite;
 
         }
 
         //Display upgrade image in UI second slot 
-        if (isSwapped[1] == true)
+        if (isSwapped[1] == true && UpgradeUIManager.instance != null)
         {
-            Sprite getSprite = SpriteUI.instance.sprite;
+            UpgradeUIManager.instance.removeUpgrade(slot);
 
-            UpgradeUI.instance.upgradeImageSecondSlot = GetComponent<Image>();
-            UpgradeUI.instance.upgradeImageSecondSlot.sprite = getSprite;
+            //Sprite getSprite = techniqueSprites[1];
+            //UpgradeUI.instance.upgradeImageSecondSlot.sprite = getSprite;
         }
-*/
+
         //Disable upgrade menu when player selects technique to upgrade
-        upgradeMenu.SetActive(!upgradeMenu.activeSelf);
+        WeaponMenu.SetActive(!WeaponMenu.activeSelf);
 
         //If upgrade menu is active, pass argument in delegate 
-        UpgradeUI.instance.onToggleUpgradeMenu.Invoke(upgradeMenu.activeSelf);
+        TechniqueUIManager.instance.onToggleWeaponMenu.Invoke(WeaponMenu.activeSelf);
 
         //Destroy upgrade
-        Destroy(PlayerController.instance.pickedUpgrade);
+        Destroy(PlayerController.instance.pickedTechnique);
     }
 }

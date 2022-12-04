@@ -8,7 +8,9 @@ public class UpgradeUIManager : MonoBehaviour
     //upgrade menu object
     public GameObject upgradeMenu;
     private bool[] isUpgraded = new bool[2];
-    private Sprite[] upgradeSprites = new Sprite[2];
+    public static Sprite[] upgradeSprites = new Sprite[2];
+
+    public Sprite emptySprite;
 
 
     public static UpgradeUIManager instance = null;
@@ -20,6 +22,18 @@ public class UpgradeUIManager : MonoBehaviour
         {
             instance = this;
         }
+        print(upgradeSprites[0]);
+    }
+
+
+    public Sprite getSprite(int slot)
+    {
+        if(upgradeSprites[slot] == null)
+        {
+
+            return emptySprite;
+        }
+        return upgradeSprites[slot];
     }
 
     //Apply upgrade based on what technique player chooses 
@@ -37,6 +51,25 @@ public class UpgradeUIManager : MonoBehaviour
         isUpgraded[1] = true;
         upgradeSprites[1] = UpgradeUI.instance.upgradeImage.sprite;
         setUpgradeinSlot(2);
+    }
+
+    public void removeUpgrade(int slot)
+    {
+        if(upgradeSprites[slot - 1] != null)
+        {
+            upgradeSprites[slot - 1] = null;
+            if (slot == 1)
+            {
+                UpgradeUI.instance.upgradeImageFirstSlot.sprite = null;
+
+            }
+            else
+            {
+                UpgradeUI.instance.upgradeImageSecondSlot.sprite = null;
+
+            }
+
+        }
     }
 
 
