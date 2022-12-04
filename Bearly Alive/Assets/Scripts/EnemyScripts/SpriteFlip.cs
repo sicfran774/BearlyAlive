@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 
-public class EnemyAnimation : MonoBehaviour
+public class SpriteFlip : MonoBehaviour
 {
     public Transform player;
     private SpriteRenderer spriteRenderer;
@@ -18,6 +18,6 @@ public class EnemyAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.spriteRenderer.flipX = player.transform.position.x < this.transform.position.x;
+        this.spriteRenderer.flipX = player.transform.position.x > this.transform.position.x;
     }
 }

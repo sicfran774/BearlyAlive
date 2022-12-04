@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1735724731975648028}
   - component: {fileID: 4064551643397478215}
   - component: {fileID: 5561056083849472926}
-  - component: {fileID: -2584339425206227771}
+  - component: {fileID: -8893081873575247439}
   m_Layer: 7
   m_Name: Prisoner
   m_TagString: Enemy
@@ -104,7 +104,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 1.0007429, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -115,7 +115,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 6.001486, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &2208610958130710475
 MonoBehaviour:
@@ -238,7 +238,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eb249f579a47541e2ad32d565216aa99, type: 3}
   - {fileID: 21300000, guid: 76cfd27b08b744324acfdddda0b0e7fe, type: 3}
   framerate: 0.16666667
---- !u!114 &-2584339425206227771
+--- !u!114 &-8893081873575247439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
