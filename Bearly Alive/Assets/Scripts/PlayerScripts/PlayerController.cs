@@ -36,11 +36,6 @@ public class PlayerController : MonoBehaviour
         private set;
     }
 
-
-    // Boolean for any technique being on cooldown
-    // If true, prevent player from using other techniques
-    bool techniqueCooldown = false;
-
     // Cooldown Value for DodgeRollAction
     public float dodgeRollCooldownTimer = 1.25f;
 
@@ -53,17 +48,12 @@ public class PlayerController : MonoBehaviour
     // Used to prevent player from taking damage when performing DodgeRoll Action
     bool isInvulnerable = false;
 
-    public float dodgeRollDuration = 1f;
+    public float dodgeRollDuration = 0.7f;
 
     // The Speed of the DodgeRoll Action
     public float rollSpeed = 200f;
     // Variable to implement dodgeroll function
     float currRollSpeed;
-
-
-    // Boolean to stop player object from following the cursor when 
-    // player is currently performing slash
-    bool slashing = false;
 
     // Boolean to mark death for animation
     // player is currently alive
@@ -156,11 +146,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         print(isMoving);
-        if (!slashing)
-        {
-            FollowCursor();
-        }
-
         DoActions();
     }
 
@@ -249,26 +234,6 @@ public class PlayerController : MonoBehaviour
             player.MovePosition(newPosition);
         }
     }
-
-
-    // Handles Player's aim by having player always follow the
-    // position of the mouse cursor
-    void FollowCursor()
-    {
-        if (!Technique.cursorLock) {
-            //Get the Screen position of the mouse
-            Vector3 mouseOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            Vector3 rotation = (mouseOnScreen - transform.position).normalized;
-
-            //Get the angle between the points
-            float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-
-            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + -90f));
-            }
-    }
-
-
     // Handles the implementation of the player's ability: Dodge Roll
     // 2 Second Cooldown between uses
     void PlayerRollAbility()
@@ -382,22 +347,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
-    // Resets the cooldown boolean variable. Called by Invoke Function
-    // from specific time.
-    void ResetTechniqueCooldown()
-    {
-        techniqueCooldown = false;
-    }
-
-
-    
-    // Resets the slashing boolean variable to have player object follow the cursor.
-    // Called by Invoke Function inside HandleSlashTechnique
-    void ResetFollowCursor()
-    {
-        slashing = false;
-    }
 
 
 
