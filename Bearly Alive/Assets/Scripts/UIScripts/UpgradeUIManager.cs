@@ -8,6 +8,8 @@ public class UpgradeUIManager : MonoBehaviour
     //upgrade menu object
     public GameObject upgradeMenu;
     private bool[] isUpgraded = new bool[2];
+    private Sprite[] upgradeSprites = new Sprite[2];
+
 
     public static UpgradeUIManager instance = null;
   
@@ -22,9 +24,10 @@ public class UpgradeUIManager : MonoBehaviour
 
     //Apply upgrade based on what technique player chooses 
     public void setUpgradeinSlot1()
-    {   
+    {
         //First Slot is selected to be upgraded 
         isUpgraded[0] = true;
+        upgradeSprites[0] = UpgradeUI.instance.upgradeImage.sprite;
         setUpgradeinSlot(1);
     }
 
@@ -32,6 +35,7 @@ public class UpgradeUIManager : MonoBehaviour
     {
         //Second Slot is selected to be upgraded 
         isUpgraded[1] = true;
+        upgradeSprites[1] = UpgradeUI.instance.upgradeImage.sprite;
         setUpgradeinSlot(2);
     }
 
@@ -42,7 +46,7 @@ public class UpgradeUIManager : MonoBehaviour
         //choose correct upgrade tag to pass to setUpgrade(int string)
         string pickupName = PlayerController.instance.pickedUpgrade.name;
         string selectedUpgrade = "";
-      
+
         switch (pickupName)
         {
             case "Tajin Rubdown":
@@ -69,17 +73,20 @@ public class UpgradeUIManager : MonoBehaviour
         print(selectedUpgrade + " upgrade applied to slot " + slot);
 
         //Display upgrade image in UI first slot 
-        if (slot == 1)
+        if (isUpgraded[0] == true)
         {
-
-            UpgradeUI.instance.applyUpgradeText(1, pickupName);
+            Sprite getSprite = upgradeSprites[0];
+            print(getSprite);
+            UpgradeUI.instance.upgradeImageFirstSlot.sprite = getSprite;
 
         }
 
         //Display upgrade image in UI second slot 
-        if (slot == 2)
+        if (isUpgraded[1] == true)
         {
-            UpgradeUI.instance.applyUpgradeText(2, pickupName);
+            Sprite getSprite = upgradeSprites[1];
+            print(getSprite);
+            UpgradeUI.instance.upgradeImageSecondSlot.sprite = getSprite;
         }
 
         //Disable upgrade menu when player selects technique to upgrade
