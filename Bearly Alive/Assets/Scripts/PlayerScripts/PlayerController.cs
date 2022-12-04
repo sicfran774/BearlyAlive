@@ -87,12 +87,14 @@ public class PlayerController : MonoBehaviour
     //public string pickedUpgrade;
     public GameObject pickedUpgrade;
 
-
+    //public Animation reference
+    private AnimatedSprite animating;
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        animating = GetComponent<AnimatedSprite>();
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -186,6 +188,11 @@ public class PlayerController : MonoBehaviour
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
+            
+            if (Mathf.Abs(movement.x) > 0)
+            {
+                animating.enabled = true;
+            }
 
             Vector2 currPosition = transform.position;
             Vector2 newPosition = movement * Time.deltaTime * walkSpeed + currPosition;

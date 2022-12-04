@@ -16,7 +16,6 @@ public class DeathAnimation : MonoBehaviour
    {
         spriteRenderer = GetComponent<SpriteRenderer>();
         controller = GetComponent<PlayerController>();
-        this.enabled = false;
    }
 
    private void OnEnable() 
