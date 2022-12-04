@@ -29,6 +29,12 @@ public class PlayerController : MonoBehaviour
    // Cooldown Value for Using Slash Technique
     public float slashCooldown = 0.7f;
     int rounds;
+    
+    // Used for animating
+    public bool isMoving {
+        get;
+        private set;
+    }
 
 
     // Boolean for any technique being on cooldown
@@ -59,6 +65,10 @@ public class PlayerController : MonoBehaviour
     // player is currently performing slash
     bool slashing = false;
 
+    // Boolean to mark death for animation
+    // player is currently alive
+    public bool dead = false;
+
     //CHANGED TO PUBLIC SO I CAN USE IN GAMEMANAGER
     // Variables to hold the two known player actions
     public Technique[] techniques {
@@ -75,20 +85,30 @@ public class PlayerController : MonoBehaviour
 
     //Text object when upgrade is collided 
     [SerializeField]
-    private Text pressFLabel; 
+    private Text pressFLabel;
+
+    [SerializeField]
+    private Text pressTLabel;
 
     //Upgrade UI attributes
-    public bool canpickup;
+    public bool canpickupUpgrade;
+
+    public bool canpickupTechnique;
 
     //public string pickedUpgrade;
     public GameObject pickedUpgrade;
 
+    public GameObject pickedTechnique;
 
+
+    //public Animation reference
+    private AnimatedSprite animating;
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        animating = GetComponent<AnimatedSprite>();
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -98,7 +118,9 @@ public class PlayerController : MonoBehaviour
         rounds = GameManager.instance.bullets;
 
         //Method called when delegate is invoked 
-        GameManager.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+        UpgradeUI.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+
+        TechniqueUIManager.instance.onToggleWeaponMenu += OnWeaponMenuToggle;
 
         //Refresh HUD at the start of the game
         hudManager.refresh();
@@ -113,8 +135,12 @@ public class PlayerController : MonoBehaviour
 
         //Upgrade pick up attributes 
         pressFLabel.enabled = false;
-        canpickup = false;
+        canpickupUpgrade = false;
         pickedUpgrade = null;
+
+        canpickupTechnique = false;
+        pickedTechnique = null;
+        pressTLabel.enabled = false;
     }
 
     private void Awake()
@@ -147,8 +173,20 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<Technique>().enabled = !active;
         }
-        //projectile.SetActive(!active);
     }
+
+
+    void OnWeaponMenuToggle(bool active)
+    {
+        //Disable player movement and shooting
+        GetComponent<PlayerController>().enabled = !active;
+
+        if (GetComponent<Technique>() != null)
+        {
+            GetComponent<Technique>().enabled = !active;
+        }
+    }
+
 
     private void FixedUpdate()
     {
@@ -183,9 +221,18 @@ public class PlayerController : MonoBehaviour
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
+            
+            if (Mathf.Abs(movement.x) > 0)
+            {
+                animating.enabled = true;
+            }
 
             Vector2 currPosition = transform.position;
-            Vector2 newPosition = movement * Time.deltaTime * walkSpeed + currPosition;
+            Vector2 displacement = movement * Time.deltaTime * walkSpeed;
+            Vector2 newPosition =  displacement + currPosition;
+
+            // player is moving if displacement is not zero
+            isMoving = (displacement != Vector2.zero);
 
             player.MovePosition(newPosition);
         }
@@ -239,8 +286,15 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Technique")
         {
-            print("ENTERED Technique"); 
-            print(collision.gameObject.name);
+            //Display label on UI
+            pressTLabel.enabled = true;
+
+            //Player can now pick up upgrade
+            canpickupTechnique = true;
+
+            //Assign picked upgrade for upgrade menu UI
+            pickedTechnique = collision.gameObject;
+
         }
 
         if (collision.gameObject.tag == "Upgrade")
@@ -251,12 +305,11 @@ public class PlayerController : MonoBehaviour
             pressFLabel.enabled = true;
 
             //Player can now pick up upgrade
-            canpickup = true;
+            canpickupUpgrade = true;
 
             //Assign picked upgrade for upgrade menu UI
             pickedUpgrade = collision.gameObject;
 
-            print(collision.gameObject.name);
         }
 
         if (collision.gameObject.tag == "EnemyBullet")
@@ -270,6 +323,9 @@ public class PlayerController : MonoBehaviour
                 healthBar.TookDamage(5);
                 if (healthBar.currentHealth <= 0)
                 {
+                    dead = true;
+                    GetComponent<AnimatedSprite>().enabled = false;
+                    GetComponent<DeathAnimation>().enabled = true;
                     print("YOU HAVE DIED!");
                 }
             }
@@ -283,7 +339,21 @@ public class PlayerController : MonoBehaviour
         {
             pressFLabel.enabled = false;
 
+            pickedUpgrade = null;
+
+            canpickupUpgrade = false;
+
         }
+        else if(collision.gameObject.tag == "Technique")
+        {
+            pressTLabel.enabled = false;
+
+            pickedTechnique = null;
+
+            canpickupTechnique = false;
+        }
+
+
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -351,7 +421,7 @@ public class PlayerController : MonoBehaviour
         float t = 0.0f;
 
 
-
+        movement = movement.normalized;
 
         while (t < duration)
         {

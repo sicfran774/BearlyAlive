@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3692480849727891499}
   - component: {fileID: 3692480849727891497}
   - component: {fileID: 3692480849727891496}
-  - component: {fileID: -3681264258723759087}
+  - component: {fileID: -8563239585362464369}
   m_Layer: 8
   m_Name: Jello Infusion
   m_TagString: Upgrade
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-3681264258723759087
+--- !u!114 &-8563239585362464369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3692480849727891495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4818f1d684695c4ca67442f100be038, type: 3}
+  m_Script: {fileID: 11500000, guid: 642d7afedc3d41d49b55df202f30d587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: dd316dc951807584ea0534f3bebeeb28, type: 3}

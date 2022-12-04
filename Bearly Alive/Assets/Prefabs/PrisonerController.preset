@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PrisonerController
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: fd38e76f45c96e84ea2a33b14237f3db, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: _MAX_HEALTH
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: projectileSpeed
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: hud
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: player
+    value: 
+    objectReference: {fileID: 7575347867245439747, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+  - target: {fileID: 0}
+    propertyPath: bullet
+    value: 
+    objectReference: {fileID: 6768108042419747499, guid: 9c89962e100d6944d8330f5c2e2eecb4, type: 3}
+  - target: {fileID: 0}
+    propertyPath: bulletSpawnPoint
+    value: 
+    objectReference: {fileID: 8667829567553451782, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+  - target: {fileID: 0}
+    propertyPath: shootingRange
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRate
+    value: 0.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: waitTime
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isFacingLeft
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spawnFacingLeft
+    value: 0
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []

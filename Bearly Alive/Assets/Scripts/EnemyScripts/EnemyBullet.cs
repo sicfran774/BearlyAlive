@@ -28,6 +28,10 @@ public class EnemyBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (collision.gameObject.name == "SlingshotBox")
+        {
+            Destroy(gameObject);
+        }
     }
 
     void DestoryProjectile()
