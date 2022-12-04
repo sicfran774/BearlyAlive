@@ -1,11 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 /*  Room generation must consist of a few things:
  *  1.  Where/what kind of enemies spawn
@@ -29,33 +25,30 @@ public class RoomManager : MonoBehaviour
 {
     public static RoomManager instance = null;
 
-    [Header("Level Name")]
-    public string levelName;
-
     public int minRooms;
     public int maxRooms;
     public GameObject roomOne;
+    public GameObject roomTwo;
+    public GameObject roomThree;
+    public GameObject roomFour;
+    public GameObject emptyRoom;
     public GameObject entranceWall;
 
     [Space(20)]
-
-    //must import specific enemy types
-    [Header("Types of Enemies")]
-    public GameObject enemyOne;
-
-    [Space(20)]
-
-    [SerializeField] public bool playerEnteredRoom = false;
-    private List<EnemyDataJson> enemyOrder;
 
     [SerializeField] private int roomCount = 0;
     private int[] rooms;
     private List<int> endRooms;
     private Queue<int> cellQueue;
     private GameObject roomsParent;
+
+    public GameObject playerCurrentRoom { get; set; }
+
     private bool addRoomsToGrid;
-    private const float OriginOffsetX = -492;
-    private const float OriginOffsetY = -180;
+    public bool doneGeneratingRooms = false;
+
+    private const float OriginOffsetX = -500;
+    private const float OriginOffsetY = -200;
 
     System.Random rand = new System.Random();
 
@@ -76,7 +69,7 @@ public class RoomManager : MonoBehaviour
     {
         //Enemy spawning
         //SaveEnemyLocationsIntoFile();
-        enemyOrder = EnemyPlaceScript.LoadEnemyData(Application.persistentDataPath + "/levelOne.json");
+        
 
         //Level generation
         roomsParent = GameObject.Find("Rooms");
@@ -85,16 +78,10 @@ public class RoomManager : MonoBehaviour
         cellQueue = new Queue<int>();
 
         StartCoroutine(BeginLevelGeneration());
-        StartCoroutine(CloseWalls());
     }
 
     private void Update()
     {
-        if (playerEnteredRoom)
-        {
-            playerEnteredRoom = false;
-            StartCoroutine(PlaceEnemies(enemyOrder));
-        }
         if (addRoomsToGrid)
         {
             StartCoroutine(AddRoomsToGrid());
@@ -117,20 +104,24 @@ public class RoomManager : MonoBehaviour
 
             if(roomCount >= minRooms)
             {
+                StartCoroutine(CloseWalls());
+                doneGeneratingRooms = true;
                 yield break;
             }
 
             //If it reaches this point then min amount of rooms not reached, must try again
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            RestartRoomGen();
             yield return null;
 
         }
-
     }
 
-    public void ResetScene()
+    void RestartRoomGen()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        foreach (GameObject room in GameObject.FindGameObjectsWithTag("Wall"))
+        {
+            Destroy(room);
+        }
     }
 
     void GenerateLevel()
@@ -188,10 +179,20 @@ public class RoomManager : MonoBehaviour
     {
         float x = (i % 10) * 100 + OriginOffsetX;
         float y = (i / 10) * 50 + OriginOffsetY;
-        GameObject newRoom = Instantiate(roomOne);
+        GameObject newRoom;
+
+        if (i == 45) 
+        { 
+            newRoom = Instantiate(emptyRoom); //Origin will always be empty room
+        }
+        else 
+        {
+            newRoom = Instantiate(PickRandomRoom()); //Other rooms can be any variation
+        }
+
         newRoom.transform.position = new Vector2(x, y);
         newRoom.tag = "Wall";
-        newRoom.name = "Cell " + i ;
+        newRoom.name = i.ToString();
 
         if (roomsParent != null)
         {
@@ -208,6 +209,20 @@ public class RoomManager : MonoBehaviour
             {
                 addRoomsToGrid = true;
             }
+        }
+    }
+
+    GameObject PickRandomRoom()
+    {
+        int num = rand.Next(0, 5);
+        switch (num)
+        {
+            case 0: return emptyRoom;
+            case 1: return roomOne;
+            case 2: return roomTwo;
+            case 3: return roomThree;
+            case 4: return roomFour;
+            default: return emptyRoom;
         }
     }
 
@@ -228,7 +243,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    void AddWall(int i, int dir) //dir --> 0, left; 1, right; 2, below; 3, above
+    public GameObject AddWall(int i, int dir) //dir --> 0, left; 1, right; 2, below; 3, above
     {
         float x = (i % 10) * 100 + OriginOffsetX;
         float y = (i / 10) * 50 + OriginOffsetY;
@@ -236,13 +251,13 @@ public class RoomManager : MonoBehaviour
         switch (dir)
         {
             case 0:
-                wall.transform.position = new Vector2(x - 68.3457f, y - 6.91f); //I know these numbers are scuffed... sorry
+                wall.transform.position = new Vector2(x - 45, y);
                 wall.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90f));
                 wall.tag = "Wall";
                 wall.name = "cell " + i + " left";
                 break;
             case 1:
-                wall.transform.position = new Vector2(x + 26.66f, y - 6.91f);
+                wall.transform.position = new Vector2(x + 50, y);
                 wall.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90f));
                 wall.tag = "Wall";
                 wall.name = "cell " + i + " right";
@@ -259,32 +274,10 @@ public class RoomManager : MonoBehaviour
                 break;
             default: break;
         }
+        return wall;
     }
 
-    IEnumerator PlaceEnemies(List<EnemyDataJson> enemyOrder)
-    {
-        foreach(EnemyDataJson enemy in enemyOrder)
-        {
-            if(enemy == null)
-            {
-                continue;
-            }
-
-            GameObject newEnemy = SpawnEnemy(enemy.enemyType);
-            newEnemy.transform.position = new Vector2(enemy.position[0], enemy.position[1]);
-
-            yield return new WaitForSeconds(enemy.spawnTimeForNextEnemy);
-        }
-    }
-    GameObject SpawnEnemy(string type)
-    {
-        switch (type) {
-            case "enemyOne": 
-                return Instantiate(enemyOne, roomsParent.transform);
-            default:
-                return Instantiate(enemyOne, roomsParent.transform);
-        }
-    }
+    
     IEnumerator AddRoomsToGrid()
     {
         yield return new WaitForSeconds(1);
@@ -292,21 +285,9 @@ public class RoomManager : MonoBehaviour
 
         addRoomsToGrid = false;
         roomsParent = GameObject.Find("Rooms");
-        foreach (GameObject room in GameObject.FindGameObjectsWithTag("Room"))
+        foreach (GameObject room in GameObject.FindGameObjectsWithTag("Wall"))
         {
             room.transform.parent = roomsParent.transform;
         }
-    }
-
-    void SaveEnemyLocationsIntoFile()
-    {
-        List<EnemyData> data = new List<EnemyData>();
-
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            data.Add(new EnemyData(enemy, 0));
-            Debug.Log(enemy);
-        }
-        EnemyPlaceScript.SaveEnemyPlacements(data);
     }
 }
