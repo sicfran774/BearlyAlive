@@ -61,11 +61,7 @@ Preset:
     value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: isFacingLeft
-    value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: spawnFacingLeft
-    value: 0
+    propertyPath: playerCharacter
+    value: 
     objectReference: {fileID: 0}
   m_ExcludedProperties: []

@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerController))]
 
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public HealthBar healthBar;
 
 
-
+    //
     // HUD Manager for Player's Actions 
     public HudManager hudManager;
 
@@ -36,11 +37,6 @@ public class PlayerController : MonoBehaviour
         private set;
     }
 
-
-    // Boolean for any technique being on cooldown
-    // If true, prevent player from using other techniques
-    bool techniqueCooldown = false;
-
     // Cooldown Value for DodgeRollAction
     public float dodgeRollCooldownTimer = 1.25f;
 
@@ -53,21 +49,16 @@ public class PlayerController : MonoBehaviour
     // Used to prevent player from taking damage when performing DodgeRoll Action
     bool isInvulnerable = false;
 
-    public float dodgeRollDuration = 1f;
+    public float dodgeRollDuration = 0.7f;
 
     // The Speed of the DodgeRoll Action
     public float rollSpeed = 200f;
     // Variable to implement dodgeroll function
     float currRollSpeed;
 
-
-    // Boolean to stop player object from following the cursor when 
-    // player is currently performing slash
-    bool slashing = false;
-
     // Boolean to mark death for animation
     // player is currently alive
-    public bool dead = false;
+    public bool isDead = false;
 
     //CHANGED TO PUBLIC SO I CAN USE IN GAMEMANAGER
     // Variables to hold the two known player actions
@@ -85,10 +76,10 @@ public class PlayerController : MonoBehaviour
 
     //Text object when upgrade is collided 
     [SerializeField]
-    private Text pressFLabel;
+    private Text pressEForUpgradeLabel;
 
     [SerializeField]
-    private Text pressTLabel;
+    private Text pressEForTechLabel;
 
     //Upgrade UI attributes
     public bool canpickupUpgrade;
@@ -134,13 +125,13 @@ public class PlayerController : MonoBehaviour
         //LearnTechnique<Boomerang>(2);
 
         //Upgrade pick up attributes 
-        pressFLabel.enabled = false;
+        pressEForUpgradeLabel.enabled = false;
         canpickupUpgrade = false;
         pickedUpgrade = null;
 
         canpickupTechnique = false;
         pickedTechnique = null;
-        pressTLabel.enabled = false;
+        pressEForTechLabel.enabled = false;
     }
 
     private void Awake()
@@ -155,11 +146,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!slashing)
-        {
-            FollowCursor();
-        }
-
         DoActions();
     }
 
@@ -197,17 +183,27 @@ public class PlayerController : MonoBehaviour
     private void DoActions() {
         if (!playerRolling)
         {
+            if (!Technique.cursorLock && !Technique.moveLock)
+            {
                 PlayerRollAbility();
-                if (Input.GetButton("Fire1") && !techniqueCooldown)
-                {
-                    techniques[0].Act();
-                }
-                if (Input.GetButton("Fire2") && !techniqueCooldown)
-                {
-                    techniques[1].Act();
-                }
-        }else{
-                //HandleDodgeRoll();
+
+            }
+            if (Input.GetButton("Fire1") && techniques[0] != null)
+            {
+                techniques[0].Act();
+            }
+            if (Input.GetButton("Fire2") && techniques[1] != null)
+            {
+                techniques[1].Act();
+            }
+            //if (!Technique.techsCooling)
+            //{
+            //    PlayerRollAbility();
+            //}
+
+        }
+        else{
+
         }
 
     }
@@ -234,29 +230,16 @@ public class PlayerController : MonoBehaviour
             // player is moving if displacement is not zero
             isMoving = (displacement != Vector2.zero);
 
+            // set sprite rotation based on displacement
+            if (movement.x > 0f) {
+                transform.eulerAngles = Vector3.zero;
+            } else if (movement.x < 0f) {
+                transform.eulerAngles = new Vector3(0f, 180f, 0f);
+            }
+
             player.MovePosition(newPosition);
         }
     }
-
-
-    // Handles Player's aim by having player always follow the
-    // position of the mouse cursor
-    void FollowCursor()
-    {
-        if (!Technique.cursorLock) {
-            //Get the Screen position of the mouse
-            Vector3 mouseOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            Vector3 rotation = (mouseOnScreen - transform.position).normalized;
-
-            //Get the angle between the points
-            float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-
-            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + -90f));
-            }
-    }
-
-
     // Handles the implementation of the player's ability: Dodge Roll
     // 2 Second Cooldown between uses
     void PlayerRollAbility()
@@ -287,7 +270,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Technique")
         {
             //Display label on UI
-            pressTLabel.enabled = true;
+            pressEForTechLabel.enabled = true;
 
             //Player can now pick up upgrade
             canpickupTechnique = true;
@@ -302,7 +285,7 @@ public class PlayerController : MonoBehaviour
             print("ENTERED Upgrade");
 
             //Display label on UI
-            pressFLabel.enabled = true;
+            pressEForUpgradeLabel.enabled = true;
 
             //Player can now pick up upgrade
             canpickupUpgrade = true;
@@ -323,10 +306,13 @@ public class PlayerController : MonoBehaviour
                 healthBar.TookDamage(5);
                 if (healthBar.currentHealth <= 0)
                 {
-                    dead = true;
+                    isDead = true;
                     GetComponent<AnimatedSprite>().enabled = false;
-                    GetComponent<DeathAnimation>().enabled = true;
+                    // TODO GetComponent<DeathAnimation>().enabled = true;
                     print("YOU HAVE DIED!");
+
+                    //Load game over scene 
+                    SceneManager.LoadScene("GameOver");
                 }
             }
         }
@@ -337,7 +323,7 @@ public class PlayerController : MonoBehaviour
         //Enabel text when player collides with upgrade
         if (collision.gameObject.tag == "Upgrade")
         {
-            pressFLabel.enabled = false;
+            pressEForUpgradeLabel.enabled = false;
 
             pickedUpgrade = null;
 
@@ -346,7 +332,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Technique")
         {
-            pressTLabel.enabled = false;
+            pressEForTechLabel.enabled = false;
 
             pickedTechnique = null;
 
@@ -355,39 +341,6 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-
-        if(other.gameObject.tag == "Technique")
-        {
-            if (Input.GetKey(KeyCode.E))
-            {
-                LearnTechnique<Slash>(1);
-                Destroy(other.gameObject);
-            }
-        }
-
-    }
-
-
-    // Resets the cooldown boolean variable. Called by Invoke Function
-    // from specific time.
-    void ResetTechniqueCooldown()
-    {
-        techniqueCooldown = false;
-    }
-
-
-    
-    // Resets the slashing boolean variable to have player object follow the cursor.
-    // Called by Invoke Function inside HandleSlashTechnique
-    void ResetFollowCursor()
-    {
-        slashing = false;
-    }
-
-
 
     // Handles Players dodge roll action. Player is not allowed to move when 
     // player is rolling. After rollSpeed reaches below 5f, player is allowed
@@ -431,23 +384,14 @@ public class PlayerController : MonoBehaviour
             float xRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
             float yRotation = Mathf.Lerp(yRot, yEndRot, t / duration) % 360f;
 
-            if(Mathf.Abs(movement.x) > Mathf.Abs(movement.y)) {
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
+            // calculate rotation about z
+            float zRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
 
-            }
-            else if (Mathf.Abs(movement.x) < Mathf.Abs(movement.y))
-            {
-                transform.eulerAngles = new Vector3(xRotation, transform.eulerAngles.y, transform.eulerAngles.z);
-            }
-            else
-            {
-                transform.eulerAngles = new Vector3(xRotation, yRotation, transform.eulerAngles.z);
-                print("HERE:+");
-            }
+			// apply rotation about z
+			transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
 
-
-
-            player.MovePosition(currPosition);
+            // apply movemnt
+			player.MovePosition(currPosition);
 
             t += Time.deltaTime;
 

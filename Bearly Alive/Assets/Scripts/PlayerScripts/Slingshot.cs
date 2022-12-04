@@ -7,7 +7,7 @@ public class Slingshot : Technique
     // to be manipulated by designer
     public const int defaultDamage = 5;
     public const float defaultCooldown = 0.4f;
-    public float slingSpeed = 500f;
+    public float slingSpeed = 1000f;
     public float slingDuration = .2f;
 
     // reference to Weapon GameObject to access hitbox

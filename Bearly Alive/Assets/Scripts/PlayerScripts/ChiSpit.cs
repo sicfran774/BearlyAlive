@@ -11,6 +11,9 @@ public class ChiSpit : Technique
     // the ammount of shots before reloading
     public int _MAX_AMMO = 15;
 
+    // grab HelperMethods for angling the bullets
+    public HelperMethods helpers;
+
     int rounds = 15;
 
 
@@ -21,6 +24,7 @@ public class ChiSpit : Technique
     // ALWAYS call after add component
     public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
         base.Initialize(defaultDamage, defaultCooldown);
+        helpers = GetComponent<HelperMethods>();
         hudManager = gameObject.GetComponent<PlayerController>().hudManager;
     }
 
@@ -54,7 +58,7 @@ public class ChiSpit : Technique
             hudManager.refresh();
 
             // spawn bullet, then set its upgrade tag
-            GameObject latestBullet = Instantiate(GameManager.instance.ChiSpitProjectile, transform.position, transform.rotation);
+            GameObject latestBullet = Instantiate(GameManager.instance.ChiSpitProjectile, transform.position, helpers.CursorAngle());
             latestBullet.tag = upgrade;
 
             // debug print("Bullets Remaining: " + rounds);

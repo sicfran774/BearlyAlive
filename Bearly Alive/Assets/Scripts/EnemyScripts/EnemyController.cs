@@ -36,11 +36,6 @@ public class EnemyController : MonoBehaviour
     private bool isSour = false;
     private bool isSpicy = false;
 
-    [HideInInspector]
-    public bool isFacingLeft;
-    public bool spawnFacingLeft;
-    private Vector2 facingLeft;
-
     Rigidbody2D enemy;
     Collider2D coll;
 
@@ -60,6 +55,7 @@ public class EnemyController : MonoBehaviour
 
         //Method called when delegate is invoked 
         UpgradeUI.instance.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+        TechniqueUIManager.instance.onToggleWeaponMenu += OnWeaponMenuToggle;
     }
 
     // Update is called once per frame
@@ -111,7 +107,7 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //If hit with bullet, damage the enemy
-        if(collision.tag == "Bullet")
+        if(collision.gameObject.name == "Bullet(Clone)")
         {
             healthRemaining--;
         }
@@ -121,7 +117,7 @@ public class EnemyController : MonoBehaviour
             healthRemaining--;
         }
 
-        if(collision.gameObject.name == "Slash(Clone)")
+        if(collision.gameObject.name == "Sword(Clone)")
         {
             healthRemaining--;
         }
@@ -187,6 +183,23 @@ public class EnemyController : MonoBehaviour
         }
 
     }
+
+    //Handle what happens when weapon menu is toggled  
+    void OnWeaponMenuToggle(bool active)
+    {
+        shot = !active;
+
+        //Enemy movement in slow motion
+        Time.timeScale = 0.1f;
+
+        //Reset to normal speed when upgrade menu is exited 
+        if (active == false)
+        {
+            Time.timeScale = 1f;
+        }
+
+    }
+
 
     //Allows the enemy to face the player as it tracks them
     /*private Vector2 PointAtPlayer(Transform player)
