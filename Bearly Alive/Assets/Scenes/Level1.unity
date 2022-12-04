@@ -676,6 +676,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1350336625}
     m_Modifications:
+    - target: {fileID: -2584339425206227771, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: hud
       value: 
@@ -696,6 +700,10 @@ PrefabInstance:
       propertyPath: bulletSpawnPoint
       value: 
       objectReference: {fileID: 34582520}
+    - target: {fileID: 5561056083849472926, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2158,6 +2166,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1350336625}
     m_Modifications:
+    - target: {fileID: -2584339425206227771, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: hud
       value: 
@@ -2178,6 +2190,10 @@ PrefabInstance:
       propertyPath: bulletSpawnPoint
       value: 
       objectReference: {fileID: 1248607099}
+    - target: {fileID: 5561056083849472926, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2646,6 +2662,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1350336625}
     m_Modifications:
+    - target: {fileID: -2584339425206227771, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: hud
       value: 
@@ -2666,6 +2686,10 @@ PrefabInstance:
       propertyPath: bulletSpawnPoint
       value: 
       objectReference: {fileID: 997496728}
+    - target: {fileID: 5561056083849472926, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4324,6 +4348,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1350336625}
     m_Modifications:
+    - target: {fileID: -2584339425206227771, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208610958130710475, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: hud
       value: 
@@ -4367,6 +4395,10 @@ PrefabInstance:
     - target: {fileID: 4064551643397478215, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: gravity.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5561056083849472926, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: m_RootOrder
@@ -5180,9 +5212,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1639266759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 601d45178e9ab234d90936bb6564f97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeMenu: {fileID: 344564628}
+  emptySprite: {fileID: 0}
 --- !u!1 &1669058511
 GameObject:
   m_ObjectHideFlags: 0
@@ -5647,9 +5681,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1759302386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc6532161ac9ed143a578cbfdc33f9c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 601d45178e9ab234d90936bb6564f97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeMenu: {fileID: 344564628}
+  emptySprite: {fileID: 0}
 --- !u!1 &1759333205
 GameObject:
   m_ObjectHideFlags: 0
@@ -7295,6 +7331,10 @@ PrefabInstance:
     - target: {fileID: 3626741453739157574, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277514853334967068, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6668216004771154351, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: m_Constraints

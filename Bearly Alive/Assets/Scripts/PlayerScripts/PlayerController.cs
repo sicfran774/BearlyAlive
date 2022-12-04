@@ -197,17 +197,27 @@ public class PlayerController : MonoBehaviour
     private void DoActions() {
         if (!playerRolling)
         {
+            if (!Technique.cursorLock && !Technique.moveLock)
+            {
                 PlayerRollAbility();
-                if (Input.GetButton("Fire1") && !techniqueCooldown)
-                {
-                    techniques[0].Act();
-                }
-                if (Input.GetButton("Fire2") && !techniqueCooldown)
-                {
-                    techniques[1].Act();
-                }
-        }else{
-                //HandleDodgeRoll();
+
+            }
+            if (Input.GetButton("Fire1") && techniques[0] != null)
+            {
+                techniques[0].Act();
+            }
+            if (Input.GetButton("Fire2") && techniques[1] != null)
+            {
+                techniques[1].Act();
+            }
+            //if (!Technique.techsCooling)
+            //{
+            //    PlayerRollAbility();
+            //}
+
+        }
+        else{
+
         }
 
     }
@@ -442,7 +452,6 @@ public class PlayerController : MonoBehaviour
             else
             {
                 transform.eulerAngles = new Vector3(xRotation, yRotation, transform.eulerAngles.z);
-                print("HERE:+");
             }
 
 

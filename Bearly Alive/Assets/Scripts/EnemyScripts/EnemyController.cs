@@ -116,7 +116,7 @@ public class EnemyController : MonoBehaviour
             healthRemaining--;
         }
 
-        if(collision.gameObject.name == "Slash(Clone)")
+        if(collision.gameObject.name == "Sword(Clone)")
         {
             healthRemaining--;
         }
