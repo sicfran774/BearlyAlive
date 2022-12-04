@@ -12,7 +12,7 @@ public class DeathAnimation : MonoBehaviour
 
    private PlayerController controller;
 
-   private void Reset()
+   private void Awake()
    {
         spriteRenderer = GetComponent<SpriteRenderer>();
         controller = GetComponent<PlayerController>();
@@ -20,6 +20,7 @@ public class DeathAnimation : MonoBehaviour
 
    private void OnEnable() 
    {
+          print("in death animation");
           if (controller.dead) {
                 InvokeRepeating(nameof(Animate), framerate, framerate);
           }
