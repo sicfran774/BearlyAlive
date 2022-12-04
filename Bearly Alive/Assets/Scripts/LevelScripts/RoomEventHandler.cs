@@ -11,18 +11,16 @@ public class RoomEventHandler : MonoBehaviour
     [Header("Types of Enemies")]
     public GameObject enemyOne;
 
-    [SerializeField] public bool playerEnteredRoom = false;
-    [SerializeField] public bool playerInRoom = false;
+    [SerializeField] private bool playerEnteredRoom = false; //This variable is used for one time spawning
+    [SerializeField] private bool playerInRoom = false;
     [SerializeField] private bool noEnemiesRemaining = false;
+    [SerializeField] private bool rewarded = false;
 
     private List<EnemyDataJson> enemyOrder;
-    private List<GameObject> enemies;
-    private GameObject roomsParent;
 
     void Start()
     {
-        enemyOrder = EnemyPlaceScript.LoadEnemyData(Application.persistentDataPath + "/" + levelName + ".json");
-        roomsParent = GameObject.Find("Rooms");
+        //enemyOrder = EnemyPlaceScript.LoadEnemyData(Application.persistentDataPath + "/" + levelName + ".json");
     }
 
     void Update()
@@ -31,36 +29,30 @@ public class RoomEventHandler : MonoBehaviour
         {
             playerEnteredRoom = false;
             playerInRoom = true;
-            StartCoroutine(PlaceEnemies(enemyOrder));
+            //StartCoroutine(PlaceEnemies(enemyOrder));
         }
 
         if (playerInRoom)
         {
-            UpdateEnemyListInRoom();
             noEnemiesRemaining = CheckIfRoomIsClear();
         }
         
-        if (noEnemiesRemaining && playerInRoom)
+        if (noEnemiesRemaining && playerInRoom && !rewarded)
         {
-
             DropLoot();
         }
-    }
-
-    void UpdateEnemyListInRoom()
-    {
-        GameObject.g
     }
 
     bool CheckIfRoomIsClear()
     {
         //If the room is clear, return true -- else return false
-        return enemyOrder == null ? true : false;
+        return (transform.childCount == 0) ? true : false;
     }
 
     void DropLoot()
     {
-
+        Debug.Log("Room cleared, dropping loot!");
+        rewarded = true;
     }
 
     IEnumerator PlaceEnemies(List<EnemyDataJson> enemyOrder)
@@ -83,9 +75,9 @@ public class RoomEventHandler : MonoBehaviour
         switch (type)
         {
             case "enemyOne":
-                return Instantiate(enemyOne, roomsParent.transform);
+                return Instantiate(enemyOne, transform);
             default:
-                return Instantiate(enemyOne, roomsParent.transform);
+                return Instantiate(enemyOne, transform);
         }
     }
 
@@ -99,5 +91,31 @@ public class RoomEventHandler : MonoBehaviour
             Debug.Log(enemy);
         }
         EnemyPlaceScript.SaveEnemyPlacements(data);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player" && !noEnemiesRemaining)
+        {
+            Debug.Log("Player entered room!");
+            playerEnteredRoom = true;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            playerInRoom = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            Debug.Log("Player left room!");
+            playerInRoom = false;
+        }
     }
 }
