@@ -28,6 +28,10 @@ public class RoomManager : MonoBehaviour
     public int minRooms;
     public int maxRooms;
     public GameObject roomOne;
+    public GameObject roomTwo;
+    public GameObject roomThree;
+    public GameObject roomFour;
+    public GameObject emptyRoom;
     public GameObject entranceWall;
 
     [Space(20)]
@@ -175,7 +179,17 @@ public class RoomManager : MonoBehaviour
     {
         float x = (i % 10) * 100 + OriginOffsetX;
         float y = (i / 10) * 50 + OriginOffsetY;
-        GameObject newRoom = Instantiate(roomOne);
+        GameObject newRoom;
+
+        if (i == 45) 
+        { 
+            newRoom = Instantiate(emptyRoom); //Origin will always be empty room
+        }
+        else 
+        {
+            newRoom = Instantiate(PickRandomRoom()); //Other rooms can be any variation
+        }
+
         newRoom.transform.position = new Vector2(x, y);
         newRoom.tag = "Wall";
         newRoom.name = i.ToString();
@@ -195,6 +209,20 @@ public class RoomManager : MonoBehaviour
             {
                 addRoomsToGrid = true;
             }
+        }
+    }
+
+    GameObject PickRandomRoom()
+    {
+        int num = rand.Next(0, 5);
+        switch (num)
+        {
+            case 0: return emptyRoom;
+            case 1: return roomOne;
+            case 2: return roomTwo;
+            case 3: return roomThree;
+            case 4: return roomFour;
+            default: return emptyRoom;
         }
     }
 
