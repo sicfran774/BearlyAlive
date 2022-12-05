@@ -7,7 +7,7 @@ public class Slingshot : Technique
     // to be manipulated by designer
     public const int defaultDamage = 5;
     public const float defaultCooldown = 0.4f;
-    public float slingSpeed = 1000f;
+    public float slingSpeed = 100f;
     public float slingDuration = .2f;
 
     // reference to Weapon GameObject to access hitbox
@@ -62,7 +62,7 @@ public class Slingshot : Technique
     private void move() {
 
         Vector2 currPosition = transform.position;
-        Vector2 displacement = transform.up * Time.deltaTime * slingSpeed;
+        Vector2 displacement = transform.up * Time.fixedDeltaTime * slingSpeed;
         currPosition += displacement;
         actorBody.MovePosition(currPosition);
     

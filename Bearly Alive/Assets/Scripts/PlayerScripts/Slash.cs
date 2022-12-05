@@ -171,7 +171,7 @@ public class Slash : Technique
         float t = 0.0f;
         while (t < duration)
         {
-            t += Time.fixedDeltaTime;
+            t += Time.deltaTime;
             float zRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 405.0f;
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
             yield return null;
