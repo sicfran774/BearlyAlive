@@ -48,6 +48,8 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         bulletSpawnPoint = this.gameObject;
 
+        GetComponentInChildren<ParticleSystem>().Stop();
+
         //Build enemy
         enemy = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
@@ -73,23 +75,39 @@ public class EnemyController : MonoBehaviour
         if(currentTime == 0) 
         {
             if(isSour)
+            {
                 tickDamage();
                 x++;
+            }
+
             if(x == 5)
+            {
                 isSour = false;
+                GetComponentInChildren<ParticleSystem>().Stop();
+            }
+
         }
 
-        if(currentTime > 0 && currentTime % 2 == 0)
+        if (currentTime > 0 && currentTime % 2 == 0)
         {
-            if(isSpicy)
+            if (isSpicy)
+            {
                 tickDamage();
                 x++;
+            }
+
             if(x == 3)
+            {
                 isSpicy = false;
+                GetComponentInChildren<ParticleSystem>().Stop();
+            }
+
+
+
         }
-        
+
         //See how health is doing every frame
-        if(healthRemaining <= 0) 
+        if (healthRemaining <= 0) 
         {
             GameManager.instance.IncreaseScore(1);
             Destroy(gameObject);
@@ -167,6 +185,71 @@ public class EnemyController : MonoBehaviour
     //Deal damage as per the timer given by each enemies' wait time variable
     void tickDamage()
     {
+
+        ParticleSystem.MainModule colorSystem = GetComponentInChildren<ParticleSystem>().main;
+
+
+        Gradient gradient = new Gradient();
+        GradientColorKey[] colorKeys = new GradientColorKey[2];
+        GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
+
+        switch (isSpicy)
+        {
+            case true: 
+                colorSystem.startColor = new ParticleSystem.MinMaxGradient(Color.red);
+                colorKeys[0].color = colorSystem.startColor.color;
+                colorKeys[0].time = 0f;
+
+                colorKeys[1].color = new Color(0.937255f, 0.6235294f, 0.1372549f, 1f);
+                colorKeys[1].time = 0.25f;
+
+                alphaKeys[0].alpha = 1f;
+                alphaKeys[0].time = 0f;
+
+                alphaKeys[1].alpha = 0.5f;
+                alphaKeys[1].time = 0.7f;
+
+                gradient.SetKeys(colorKeys, alphaKeys);
+
+                colorSystem.startColor = gradient;
+
+                GetComponentInChildren<ParticleSystem>().Play();
+
+                break;
+            case false:
+
+                break;
+        }
+
+        switch (isSour)
+        {
+            case true:
+                colorSystem.startColor = new ParticleSystem.MinMaxGradient(Color.green);
+                colorKeys[0].color = colorSystem.startColor.color;
+                colorKeys[0].time = 0f;
+
+                colorKeys[1].color = new Color(0f, 1f, 0.5668461f, 1f);
+                colorKeys[1].time = 0.25f;
+
+                alphaKeys[0].alpha = 1f;
+                alphaKeys[0].time = 0f;
+
+                alphaKeys[1].alpha = 0.5f;
+                alphaKeys[1].time = 0.7f;
+
+                gradient.SetKeys(colorKeys, alphaKeys);
+
+                colorSystem.startColor = gradient;
+
+                GetComponentInChildren<ParticleSystem>().Play();
+
+                break;
+
+            case false:
+                break;
+        }
+
+
         healthRemaining--;
     }
 
