@@ -42,6 +42,11 @@ public class SoundManager : MonoBehaviour
         audioSource.Play();
     }
 
+    public void playWalkSound()
+    {
+        audioSource.clip = soundEffects[2];
+        audioSource.Play();
+    }
 
 
 }

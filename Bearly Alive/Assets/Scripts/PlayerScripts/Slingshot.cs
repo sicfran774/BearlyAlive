@@ -62,7 +62,73 @@ public class Slingshot : Technique
 
     IEnumerator HandleSlingShot(float duration)
     {
-        
+        ParticleSystem.MainModule colorSystem = SlingshotBox.GetComponentInChildren<ParticleSystem>().main;
+
+
+        Gradient gradient = new Gradient();
+        GradientColorKey[] colorKeys = new GradientColorKey[2];
+        GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
+
+        switch (SlingshotBox.tag)
+        {
+            case "UpgradeNone": // Purple
+                colorSystem.startColor = new ParticleSystem.MinMaxGradient(new Color(0.5419722f, 0f, 1f, 1f));
+                colorKeys[0].color = colorSystem.startColor.color;
+                colorKeys[0].time = 0f;
+
+
+                break;
+            case "UpgradeSpicy": // Red
+                colorSystem.startColor = new ParticleSystem.MinMaxGradient(Color.red);
+                colorKeys[0].color = colorSystem.startColor.color;
+                colorKeys[0].time = 0f;
+
+                colorKeys[1].color = new Color(0.937255f, 0.6235294f, 0.1372549f, 1f);
+                colorKeys[1].time = 0.25f;
+
+                break;
+            case "UpgradeSour": // Green
+                colorSystem.startColor = new ParticleSystem.MinMaxGradient(Color.green);
+                colorKeys[0].color = colorSystem.startColor.color;
+                colorKeys[0].time = 0f;
+
+                colorKeys[1].color = new Color(0f, 1f, 0.5668461f, 1f);
+                colorKeys[1].time = 0.25f;
+
+                break;
+            case "UpgradeRock": // Yellow
+                colorSystem.startColor = new ParticleSystem.MinMaxGradient(new Color(1f, 0.966906f, 0f, 1f));
+                colorKeys[0].color = colorSystem.startColor.color;
+                colorKeys[0].time = 0f;
+
+
+
+                break;
+            case "UpgradeKnockback": // Black
+                colorSystem.startColor = new ParticleSystem.MinMaxGradient(Color.black);
+                colorKeys[0].color = colorSystem.startColor.color;
+                colorKeys[0].time = 0f;
+
+
+                break;
+            case "UpgradeJello": //Pink
+                colorSystem.startColor = new ParticleSystem.MinMaxGradient(new Color(1f, 0f, 0.7753048f, 1f));
+                colorKeys[0].color = colorSystem.startColor.color;
+                colorKeys[0].time = 0f;
+
+                break;
+        }
+
+
+        alphaKeys[0].alpha = 1f;
+        alphaKeys[0].time = 0f;
+
+        alphaKeys[1].alpha = 0.5f;
+        alphaKeys[1].time = 0.7f;
+
+        gradient.SetKeys(colorKeys, alphaKeys);
+
+        colorSystem.startColor = gradient;
 
         // set inter-technique coordination variables
         techsCooling = true;
