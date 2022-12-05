@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7575347867245439747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.0309, y: 0.3319, z: 0}
+  m_LocalPosition: {x: -7.0309, y: 0.3319, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -158,8 +158,8 @@ MonoBehaviour:
   dodgeRollDuration: 10
   rollSpeed: 750
   isDead: 0
-  pressFLabel: {fileID: 0}
-  pressTLabel: {fileID: 0}
+  pressEForUpgradeLabel: {fileID: 0}
+  pressEForTechLabel: {fileID: 0}
   canpickupUpgrade: 0
   canpickupTechnique: 0
   pickedUpgrade: {fileID: 0}

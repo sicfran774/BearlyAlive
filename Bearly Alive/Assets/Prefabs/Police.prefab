@@ -31,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8667829567553451782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.486427, y: 17.271824, z: -22.674913}
-  m_LocalScale: {x: 0.1875, y: 0.1875, z: 1}
+  m_LocalPosition: {x: -21.486427, y: 17.271824, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,7 +107,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 72, y: 72}
+    oldSize: {x: 18, y: 18}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -137,8 +137,6 @@ MonoBehaviour:
   shootingRange: 28.3
   fireRate: 1.1
   waitTime: 1
-  isFacingLeft: 0
-  spawnFacingLeft: 0
 --- !u!114 &8794955684243271479
 MonoBehaviour:
   m_ObjectHideFlags: 0
