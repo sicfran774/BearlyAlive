@@ -112,16 +112,21 @@ public class RoomEventHandler : MonoBehaviour
 
         //Randomly generate upgrade/techniques
         System.Random rand = new System.Random();
-        int randNum = rand.Next(0, upgrades.Length);
+        int randUpgradeNum = rand.Next(0, upgrades.Length);
+        int randTechniqueNum = rand.Next(0, techniques.Length);
 
         GameObject upgrade;
         GameObject technique;
 
-        upgrade = Instantiate(upgrades[randNum], transform.parent);
+        upgrade = Instantiate(upgrades[randUpgradeNum], transform.parent);
         upgrade.transform.position = new Vector2(upgrade.transform.position.x, upgrade.transform.position.y);
 
         //Drop in loot rooms
-        //technique = Instantiate(techniques[randNum], transform.parent);
+        if (index == roomManager.lootRoomIndex)
+        {
+            technique = Instantiate(techniques[randTechniqueNum], transform.parent);
+            technique.transform.position = new Vector2(upgrade.transform.position.x + 5, upgrade.transform.position.y);
+        }
 
     }
 

@@ -3370,6 +3370,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
+      propertyPath: bossRoom
+      value: 
+      objectReference: {fileID: 142334216049624477, guid: 46ec3c273ea07d0438407fc2fd189702, type: 3}
+    - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
+      propertyPath: lootRoom
+      value: 
+      objectReference: {fileID: 142334216049624477, guid: 228e77ce31bbc68499e6b6b27a1c8132, type: 3}
+    - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
+      propertyPath: maxLootRooms
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
       propertyPath: ignoreLayer.m_Bits
       value: 512
       objectReference: {fileID: 0}
