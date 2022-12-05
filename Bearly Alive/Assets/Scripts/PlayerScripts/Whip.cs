@@ -30,11 +30,11 @@ public class Whip : Technique
     {
         base.Initialize(defaultDamage, defaultCooldown);
         whip = GameManager.instance.Whip;
-        gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         whip.SetActive(false);
-        int direction = transform.position.y >= 0 ? 1 : -1;
         childWhipGameObject = Instantiate(whip, new Vector2(transform.position.x, transform.position.y + 6f), Quaternion.Euler(0f, 0f, 0f), transform);
         helper = GetComponent<HelperMethods>();
+
+		childWhipGameObject.transform.localPosition = Vector2.zero;
 
     }
 
@@ -164,7 +164,6 @@ public class Whip : Technique
         // Activate and position the weapon GameObject
         childWhipGameObject.SetActive(true);
         childWhipGameObject.transform.rotation = helper.CursorAngle();
-        childWhipGameObject.transform.localPosition = helper.CursorVector()*8;
 
        float t = 0.0f;
         while (t < duration)

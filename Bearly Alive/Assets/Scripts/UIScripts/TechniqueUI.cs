@@ -35,29 +35,34 @@ public class TechniqueUI : MonoBehaviour
             switch (gameObject.name)
             {
                 case "Slingshot":
+                case "SlingShot(Clone)":
                     techniqueDescription.text = "Dash Toward a Direction, damaging Enemies on the way\n"
                     + "Cooldown: " + Slingshot.defaultCooldown + "\n" + "Damage: " + Slingshot.defaultDamage;
                     break;
                 case "ChiSpit":
+                case "ChitSpit(Clone)":
                     techniqueDescription.text = "Rapid fire projectiles channeled by the universe’s candy energy\n"
                         + "Cooldown: " + ChiSpit.defaultCooldown + "\n" + "Damage: " + ChiSpit.defaultDamage;
                     break;
                 case "Slash":
+                case "Slash(Clone)":
                     techniqueDescription.text = "Perform a deadly circular slash, dealing AOE Damage\n"
                     + "Cooldown: " + Slash.defaultCooldown + "\n" + "Damage: " + Slash.defaultDamage;
                     break;
                 case "Whip":
+                case "Whip(Clone)":
                     techniqueDescription.text = "Precise Attack with High Damage, but only hits 1 enemy\n"
                     + "Cooldown: " + Whip.defaultCooldown + "\n" + "Damage: " + Whip.defaultDamage;
                     break;
                 case "Boomerang":
+                case "Boomerang(Clone)":
                     techniqueDescription.text = "Toss a slow, wide deadly projectile but leaves you defenseless\n"
                         + "Cooldown: " + Boomerang.defaultCooldown + "\n" + "Damage: " + Boomerang.defaultDamage;
                     break;
             }
 
             techniqueImage.GetComponent<Image>().sprite = techniqueSprite;
-            techniqueName.text = gameObject.name + " [TECHNIQUE]";
+            techniqueName.text = gameObject.name.Replace("(Clone)", "") + " [TECHNIQUE]";
             print("I AM " + gameObject.name);
 
         }

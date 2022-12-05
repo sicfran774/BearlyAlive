@@ -20,6 +20,9 @@ public class Slingshot : Technique
     private bool selfCooling;
     private float selfCooldown = 0.6f;
 
+    // for manipulating direciton
+    HelperMethods helper;
+
     // MUST BE CALLED AFTER ADD COMPONENT
     public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
 
@@ -31,6 +34,8 @@ public class Slingshot : Technique
 
         // call overloaded initialize from Technique
         base.Initialize(defaultDamage, defaultCooldown);
+
+        helper = GetComponent<HelperMethods>();
         
     }
 
@@ -39,6 +44,9 @@ public class Slingshot : Technique
     {
         if (!techsCooling && !selfCooling)
         {
+
+
+            // do movement and coordination
             StartCoroutine(HandleSlingShot(slingDuration));
         }
 
@@ -139,9 +147,12 @@ public class Slingshot : Technique
         // activate protective&damaging hitbox. 
         SlingshotBox.SetActive(true);
 
-        // lock movement and direction
+        // lock movement
         moveLock = true;
-        cursorLock = true;
+        
+        // set direction
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, helper.CursorAngle().eulerAngles.z - 90f));
+
         while(t < cooldown - duration) {
             t+= Time.deltaTime;
             
@@ -154,9 +165,11 @@ public class Slingshot : Technique
             yield return null;
         }
 
-        // unlock movement and direction
+        // reset angle
+        transform.rotation = Quaternion.identity;
+
+        // unlock movement
         moveLock = false;
-        cursorLock = false;
         techsCooling = false;
 
         // deactivate protective&damaging hitbox. IT MUST BE THE 0th CHILD
