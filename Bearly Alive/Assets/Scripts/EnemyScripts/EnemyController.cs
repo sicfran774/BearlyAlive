@@ -158,7 +158,9 @@ public class EnemyController : MonoBehaviour
 
         if(collision.tag == "UpgradeKnockback")
         {
-            //TODO: Explosion!
+            Vector2 d = (GetComponent<Collider>().transform.position - transform.position).normalized;
+            Vector2 knockback = d * 100;
+            enemy.AddForce(knockback, ForceMode2D.Impulse);
         }
     }
 
