@@ -47,6 +47,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: 
   enemyOne: {fileID: 8667829567553451782, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+  jellyInfusion: {fileID: 3692480849727891495, guid: 7a84553964f57c9469011a2ede79e453, type: 3}
+  malicAcid: {fileID: 5529508410319079101, guid: dc36ed7d741edac4c935b9003b8b6858, type: 3}
+  popRocks: {fileID: 7960857820453859446, guid: e9e68fff7f88b3d448edf74bc4355a31, type: 3}
+  rockCandy: {fileID: 7048679697390591098, guid: a2c3e76acc6b4784689c45f5fa02d8f7, type: 3}
+  tajinRubdown: {fileID: 8862213298099621942, guid: 7ff998bd021c5544899be8f1f1c0185c, type: 3}
+  upgrades: []
+  boomerang: {fileID: 4699515290314620806, guid: d002c0fe70ec642458a259d890d9cf54, type: 3}
+  chiSpit: {fileID: 770458684205821191, guid: 18fd65a1c4cf4b74bae0d095a79493f8, type: 3}
+  slash: {fileID: 7060753540013825167, guid: 7130b727eac9cea4db36156b948cb867, type: 3}
+  slingShot: {fileID: 5895372416479187537, guid: 2debc52a0b6f9884fb061e794a87ac08, type: 3}
+  whip: {fileID: 7384545109720684781, guid: 131f4130faa4fd9498aff496f1f55638, type: 3}
+  techniques: []
   playerEnteredRoom: 0
   playerInRoom: 0
   noEnemiesRemaining: 0

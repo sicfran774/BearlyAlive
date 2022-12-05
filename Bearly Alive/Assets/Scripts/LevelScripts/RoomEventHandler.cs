@@ -16,6 +16,22 @@ public class RoomEventHandler : MonoBehaviour
     [Header("Types of Enemies")]
     public GameObject enemyOne;
 
+    [Header("Types of Upgrades")]
+    public GameObject jellyInfusion;
+    public GameObject malicAcid;
+    public GameObject popRocks;
+    public GameObject rockCandy;
+    public GameObject tajinRubdown;
+    public GameObject[] upgrades;
+
+    [Header("Types of Techniques")]
+    public GameObject boomerang;
+    public GameObject chiSpit;
+    public GameObject slash;
+    public GameObject slingShot;
+    public GameObject whip;
+    public GameObject[] techniques;
+
     [SerializeField] private bool playerEnteredRoom = false; //This variable is used for one time spawning
     [SerializeField] private bool playerInRoom = false;
     [SerializeField] private bool noEnemiesRemaining = false;
@@ -32,6 +48,9 @@ public class RoomEventHandler : MonoBehaviour
         //enemyOrder = EnemyPlaceScript.LoadEnemyData(Application.persistentDataPath + "/" + levelName + ".json");
         tempWalls = new List<GameObject>();
         roomManager = GameObject.Find("RoomManager").GetComponent<RoomManager>();
+
+        upgrades = new GameObject[] { jellyInfusion, malicAcid, popRocks, rockCandy, tajinRubdown };
+        techniques = new GameObject[] { boomerang, chiSpit, slash, slingShot, whip};
     }
 
     void LateUpdate()
@@ -89,6 +108,19 @@ public class RoomEventHandler : MonoBehaviour
     {
         Debug.Log("Room cleared, dropping loot!");
         rewarded = true;
+
+        //Randomly generate upgrade/techniques
+        System.Random rand = new System.Random();
+        int randNum = rand.Next(0, upgrades.Length);
+
+        GameObject upgrade;
+        GameObject technique;
+
+        upgrade = Instantiate(upgrades[randNum], transform.parent);
+        upgrade.transform.position = new Vector2(upgrade.transform.position.x + 5, upgrade.transform.position.y);
+
+        technique = Instantiate(techniques[randNum], transform.parent);
+
     }
 
     void CloseWalls()
