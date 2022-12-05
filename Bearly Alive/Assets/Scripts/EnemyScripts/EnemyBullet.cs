@@ -35,7 +35,7 @@ public class EnemyBullet : MonoBehaviour
 
         } else if (collision.tag == "UpgradeJello") {
             bulletRB.velocity *= -1;
-            bulletRB.tag == "UpgradeNone";
+            bulletRB.tag = "UpgradeNone";
         }
     }
 
