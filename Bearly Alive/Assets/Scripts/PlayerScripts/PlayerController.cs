@@ -49,10 +49,10 @@ public class PlayerController : MonoBehaviour
     // Used to prevent player from taking damage when performing DodgeRoll Action
     bool isInvulnerable = false;
 
-    public float dodgeRollDuration = 0.7f;
+    public float dodgeRollDuration = 1f;
 
     // The Speed of the DodgeRoll Action
-    public float rollSpeed = 200f;
+    public float rollSpeed = 50f;
     // Variable to implement dodgeroll function
     float currRollSpeed;
 
@@ -197,10 +197,6 @@ public class PlayerController : MonoBehaviour
             {
                 techniques[1].Act();
             }
-            //if (!Technique.techsCooling)
-            //{
-            //    PlayerRollAbility();
-            //}
 
         }
         else{
@@ -225,7 +221,7 @@ public class PlayerController : MonoBehaviour
             }
 
             Vector2 currPosition = transform.position;
-            Vector2 displacement = movement * Time.deltaTime * walkSpeed;
+            Vector2 displacement = movement * Time.fixedDeltaTime * walkSpeed;
             Vector2 newPosition =  displacement + currPosition;
 
             // player is moving if displacement is not zero
@@ -239,7 +235,7 @@ public class PlayerController : MonoBehaviour
             }
 
             //Play walking audio 
-            SoundManager.instance.playWalkSound();
+            //SoundManager.instance.playWalkSound();
 
             player.MovePosition(newPosition);
         }
@@ -386,7 +382,7 @@ public class PlayerController : MonoBehaviour
         while (t < duration)
         {
             Vector2 currPosition = transform.position;
-            currPosition += movement * rollSpeed * Time.deltaTime;
+            currPosition += movement * rollSpeed * Time.fixedDeltaTime;
 
             float xRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
             float yRotation = Mathf.Lerp(yRot, yEndRot, t / duration) % 360f;
@@ -400,7 +396,7 @@ public class PlayerController : MonoBehaviour
             // apply movemnt
 			player.MovePosition(currPosition);
 
-            t += Time.deltaTime;
+            t += Time.fixedDeltaTime;
 
             yield return null;
         }
