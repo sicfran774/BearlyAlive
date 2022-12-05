@@ -231,7 +231,8 @@ public class RoomManager : MonoBehaviour
     {
         data = AstarPath.active.data;
         GridGraph gg = data.AddGraph(typeof(GridGraph)) as GridGraph;
-        int width = 90, depth = 40, nodeSize = 1;
+        int width = 90, depth = 40;
+        float nodeSize = 1.2f;
         gg.center = new Vector3(x, y, 0);
         gg.SetDimensions(width, depth, nodeSize);
         gg.is2D = true;
