@@ -6773,7 +6773,7 @@ PrefabInstance:
       objectReference: {fileID: 1474103796}
     - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: rollSpeed
-      value: 200
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 1197868453199097258, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
       propertyPath: hudManager
