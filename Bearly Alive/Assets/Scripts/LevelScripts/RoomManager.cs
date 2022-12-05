@@ -1,3 +1,4 @@
+using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,11 +37,15 @@ public class RoomManager : MonoBehaviour
 
     [Space(20)]
 
+    public LayerMask ignoreLayer;
+
     [SerializeField] private int roomCount = 0;
     private int[] rooms;
     private List<int> endRooms;
     private Queue<int> cellQueue;
     private GameObject roomsParent;
+
+    private AstarData data;
 
     public GameObject playerCurrentRoom { get; set; }
 
@@ -77,6 +82,7 @@ public class RoomManager : MonoBehaviour
         endRooms = new List<int>();
         cellQueue = new Queue<int>();
 
+        
         StartCoroutine(BeginLevelGeneration());
     }
 
@@ -106,6 +112,7 @@ public class RoomManager : MonoBehaviour
             {
                 StartCoroutine(CloseWalls());
                 doneGeneratingRooms = true;
+                
                 yield break;
             }
 
@@ -122,6 +129,12 @@ public class RoomManager : MonoBehaviour
         {
             Destroy(room);
         }
+
+        //get all active graph
+        data = AstarPath.active.data;
+
+        //empty all data graph
+        System.Array.Clear(data.graphs, 0, data.graphs.Length);
     }
 
     void GenerateLevel()
@@ -181,6 +194,8 @@ public class RoomManager : MonoBehaviour
         float y = (i / 10) * 50 + OriginOffsetY;
         GameObject newRoom;
 
+        CreateGridGraph(x, y);
+
         if (i == 45) 
         { 
             newRoom = Instantiate(emptyRoom); //Origin will always be empty room
@@ -210,6 +225,20 @@ public class RoomManager : MonoBehaviour
                 addRoomsToGrid = true;
             }
         }
+    }
+
+    void CreateGridGraph(float x, float y)
+    {
+        data = AstarPath.active.data;
+        GridGraph gg = data.AddGraph(typeof(GridGraph)) as GridGraph;
+        int width = 90, depth = 40, nodeSize = 1;
+        gg.center = new Vector3(x, y, 0);
+        gg.SetDimensions(width, depth, nodeSize);
+        gg.is2D = true;
+        gg.collision.type = ColliderType.Sphere;
+        gg.collision.use2D = true;
+        gg.collision.diameter = 3;
+        gg.collision.mask = ignoreLayer;
     }
 
     GameObject PickRandomRoom()
