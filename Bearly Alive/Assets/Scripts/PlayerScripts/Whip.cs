@@ -20,6 +20,9 @@ public class Whip : Technique
 
     private GameObject childWhipGameObject;
 
+    // for positioning the whip
+    HelperMethods helper;
+
 
     // Makes the sword hidden when it is first initializes when the game starts
     // ALWAYS call after add component
@@ -31,6 +34,8 @@ public class Whip : Technique
         whip.SetActive(false);
         int direction = transform.position.y >= 0 ? 1 : -1;
         childWhipGameObject = Instantiate(whip, new Vector2(transform.position.x, transform.position.y + 6f), Quaternion.Euler(0f, 0f, 0f), transform);
+        helper = GetComponent<HelperMethods>();
+
     }
 
     public override void Act()
@@ -76,12 +81,14 @@ public class Whip : Technique
     // based on the argument passed.
     IEnumerator PerformWhip(float duration)
     {
+        moveLock = true;
 
+        // Activate and position the weapon GameObject
         childWhipGameObject.SetActive(true);
-     
-        cursorLock = true;
+        childWhipGameObject.transform.rotation = helper.CursorAngle();
+        childWhipGameObject.transform.localPosition = helper.CursorVector()*8;
 
-        float t = 0.0f;
+       float t = 0.0f;
         while (t < duration)
         {
             t += Time.deltaTime;
@@ -89,6 +96,7 @@ public class Whip : Technique
         }
         cursorLock = false;
         childWhipGameObject.SetActive(false);
+        moveLock = false;
 
     }
 }

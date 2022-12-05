@@ -121,7 +121,8 @@ public class PlayerController : MonoBehaviour
         //LearnTechnique<Slingshot>(1);
         //LearnTechnique<Slash>(1);
         LearnTechnique<Slingshot>(2);
-        LearnTechnique<ChiSpit>(1);
+        LearnTechnique<Whip>(1);
+        //LearnTechnique<ChiSpit>(1);
         //LearnTechnique<Boomerang>(2);
 
         //Upgrade pick up attributes 
