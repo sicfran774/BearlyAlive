@@ -9,15 +9,15 @@ public class Boomerang : Technique
     private GameObject boomerang;
 
     // The amount of time for slash action to finish
-    public float duration = 2.5f;
+    public float duration = 0.4f;
 
-    public float tossSpeed = 2f;
+    public float tossSpeed = 4f;
 
-    public float standDuration = 0.7f;
+    public float standDuration = 0f;
 
-    public float returnSpeed = 2f;
+    public float returnSpeed = 3f;
 
-    public float rotationSpeed = 100f;
+    public float rotationSpeed = 300f;
 
     bool returning = false;
 
