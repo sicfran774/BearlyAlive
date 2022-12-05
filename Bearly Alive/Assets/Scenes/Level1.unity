@@ -2651,7 +2651,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 6a59c082137dc034a90bc3411fc8b0ed, type: 3}
-  m_Color: {r: 0.54432184, g: 0.8301887, b: 0.5776673, a: 1}
+  m_Color: {r: 0.2488875, g: 0.4433962, b: 0.27020353, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3372,7 +3372,7 @@ PrefabInstance:
     - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
       propertyPath: bossRoom
       value: 
-      objectReference: {fileID: 142334216049624477, guid: 46ec3c273ea07d0438407fc2fd189702, type: 3}
+      objectReference: {fileID: 142334216049624477, guid: 22641e0bc90cd784ea885b2286e8bb2e, type: 3}
     - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
       propertyPath: lootRoom
       value: 
