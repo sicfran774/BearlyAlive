@@ -238,6 +238,9 @@ public class PlayerController : MonoBehaviour
                 transform.eulerAngles = new Vector3(0f, 180f, 0f);
             }
 
+            //Play walking audio 
+            SoundManager.instance.playWalkSound();
+
             player.MovePosition(newPosition);
         }
     }
