@@ -83,24 +83,30 @@ public class UpgradeUIManager : MonoBehaviour
         switch (pickupName)
         {
             case "Tajin Rubdown":
+            case "Tajin Rubdown(Clone)":
                 selectedUpgrade = "UpgradeSpicy";
                 break;
             case "Jello Infusion":
+            case "Jello Infusion(Clone)":
                 selectedUpgrade = "UpgradeJello";
                 break;
             case "Malic Acid Dip":
+            case "Malic Acid Dip(Clone)":
                 selectedUpgrade = "UpgradeSour";
                 break;
             case "Pop Rocks":
+            case "Pop Rocks(Clone)":
                 selectedUpgrade = "UpgradeKnockback";
                 break;
             case "Rock Candy":
+            case "Rock Candy(Clone)":
                 selectedUpgrade = "UpgradeRock";
                 break;
             default:
                 break;
         }
 
+        print("SelectedUpgrade" + selectedUpgrade);
         PlayerController.instance.setUpgrade(slot, selectedUpgrade);
 
         print(selectedUpgrade + " upgrade applied to slot " + slot);

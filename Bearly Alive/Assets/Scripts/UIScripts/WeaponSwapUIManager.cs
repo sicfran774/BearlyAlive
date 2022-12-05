@@ -32,22 +32,27 @@ public class WeaponSwapUIManager : MonoBehaviour
 
         switch(pickupName) {
             case "Boomerang":
+            case "Boomerang(Clone)":
                 selectedUpgrade = "UpgradeSpicy";
                 PlayerController.instance.LearnTechnique<Boomerang>(slot);
                 break;
             case "Slash":
+            case "Slash(Clone)":
                 selectedUpgrade = "UpgradeJello";
                 PlayerController.instance.LearnTechnique<Slash>(slot);
                 break;
             case "ChiSpit":
+            case "ChiSpit(Clone)":
                 selectedUpgrade = "UpgradeSour";
                 PlayerController.instance.LearnTechnique<ChiSpit>(slot);
                 break;
             case "Whip":
+            case "Whip(Clone)":
                 selectedUpgrade = "UpgradeKnockback";
                 PlayerController.instance.LearnTechnique<Whip>(slot);
                 break;
             case "SlingShot":
+            case "SlingShot(Clone)":
                 selectedUpgrade = "UpgradeRock";
                 PlayerController.instance.LearnTechnique<Slingshot>(slot);
                 break;
