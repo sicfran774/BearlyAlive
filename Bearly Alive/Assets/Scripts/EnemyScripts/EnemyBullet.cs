@@ -22,15 +22,20 @@ public class EnemyBullet : MonoBehaviour
         if (collision.tag == "Wall")
         {
             Destroy(gameObject);
-        }
 
-        if (collision.tag == "Player")
-        {
-            Destroy(gameObject);
         }
-        if (collision.gameObject.name == "SlingshotBox")
+        else if (collision.tag == "Player")
         {
             Destroy(gameObject);
+
+        }
+        else if (collision.gameObject.name == "SlingshotBox")
+        {
+            Destroy(gameObject);
+
+        } else if (collision.tag == "UpgradeJello") {
+            bulletRB.velocity *= -1;
+            bulletRB.tag == "UpgradeNone";
         }
     }
 
