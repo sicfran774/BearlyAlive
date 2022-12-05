@@ -243,14 +243,13 @@ public class RoomManager : MonoBehaviour
 
     GameObject PickRandomRoom()
     {
-        int num = rand.Next(0, 5);
+        int num = rand.Next(0, 4);
         switch (num)
         {
-            case 0: return emptyRoom;
+            case 0: return roomFour;
             case 1: return roomOne;
             case 2: return roomTwo;
             case 3: return roomThree;
-            case 4: return roomFour;
             default: return emptyRoom;
         }
     }

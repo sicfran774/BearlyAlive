@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7935020432855941158}
   m_Layer: 0
-  m_Name: RoomThree
+  m_Name: RoomPrisonerThree
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
