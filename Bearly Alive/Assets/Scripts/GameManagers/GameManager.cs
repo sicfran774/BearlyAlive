@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                //play audio clip
+                SoundManager.instance.playPickedUpgradeSound();
+
                 UpgradeUI.instance.ToggleUpgradeMenu();
                 print("Toggle Upgrade menu");
             }
@@ -52,6 +55,9 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                //play audio sound
+                SoundManager.instance.playPickedTechniqueSound();
+
                 TechniqueUIManager.instance.ToggleWeaponMenu();
                 print("Toggle Weapon menu");
             }

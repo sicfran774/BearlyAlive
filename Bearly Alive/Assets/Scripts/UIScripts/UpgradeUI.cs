@@ -127,12 +127,12 @@ public class UpgradeUI : MonoBehaviour
         }
 
         //Add upgrade and description to the UI 
-        upgradeLabel.text = PlayerController.instance.pickedUpgrade.name;
+        upgradeLabel.text = PlayerController.instance.pickedUpgrade.name.Replace("(Clone)", "");
         //Add sprite of upgrade to UI
         upgradeSprite = PlayerController.instance.pickedUpgrade.GetComponent<SpriteRenderer>().sprite;
         upgradeImage.GetComponent<UnityEngine.UI.Image>().sprite = upgradeSprite;
 
-        switch (PlayerController.instance.pickedUpgrade.name)
+        switch (PlayerController.instance.pickedUpgrade.name.Replace("(Clone)", ""))
         {
             case "Tajin Rubdown":
                 upgradeDescriptionLabel.text = "Upgrade will deal Fire Damage";
