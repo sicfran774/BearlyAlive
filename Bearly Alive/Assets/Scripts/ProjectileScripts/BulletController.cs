@@ -48,7 +48,10 @@ public class BulletController : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             DestoryProjectile();
-        }
+        } else if (collision.gameObject.tag == "Wall")
+        {
+            DestoryProjectile();
+        };
     }
 
 
