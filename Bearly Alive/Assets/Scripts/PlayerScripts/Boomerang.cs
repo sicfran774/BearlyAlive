@@ -175,10 +175,10 @@ public class Boomerang : Technique
         while (t < duration)
         {
             //distance (in angles) to rotate on each frame. distance = speed * time
-            float angle = rotationSpeed * Time.deltaTime;
-            
+            float angle = rotationSpeed * Time.fixedDeltaTime;
+
             boomerang.transform.Rotate(Vector3.forward * angle, Space.World);
-            t += Time.deltaTime;
+            t += Time.fixedDeltaTime;
 
             yield return null;
         }
@@ -191,10 +191,10 @@ public class Boomerang : Technique
         while (t < standDuration)
         {
             //distance (in angles) to rotate on each frame. distance = speed * time
-            float angle = rotationSpeed * Time.deltaTime;
+            float angle = rotationSpeed * Time.fixedDeltaTime;
 
             boomerang.transform.Rotate(Vector3.forward * angle, Space.World);
-            t += Time.deltaTime;
+            t += Time.fixedDeltaTime;
             yield return null;
         }
 
@@ -202,7 +202,7 @@ public class Boomerang : Technique
         returning = true;
         while (returning)
         {
-            float angle = rotationSpeed * Time.deltaTime;
+            float angle = rotationSpeed * Time.fixedDeltaTime;
 
             boomerang.transform.Rotate(Vector3.forward * angle, Space.World);
 
