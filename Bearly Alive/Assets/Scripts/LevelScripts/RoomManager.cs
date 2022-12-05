@@ -34,6 +34,8 @@ public class RoomManager : MonoBehaviour
     public GameObject roomTwo;
     public GameObject roomThree;
     public GameObject roomFour;
+    public GameObject lootRoom;
+    public GameObject bossRoom;
     public GameObject emptyRoom;
     public GameObject entranceWall;
 
@@ -48,8 +50,8 @@ public class RoomManager : MonoBehaviour
     private Queue<int> cellQueue;
     private GameObject roomsParent;
 
-    private GameObject bossRoom;
-    private List<GameObject> lootRooms;
+    public int bossRoomIndex { get; set; }
+    public int lootRoomIndex { get; set; }
 
     private AstarData data;
 
@@ -95,14 +97,6 @@ public class RoomManager : MonoBehaviour
 
     private void Update()
     {
-        if (doneGeneratingRooms)
-        {
-            doneGeneratingRooms = false;
-            
-            PickLootRoom(maxLootRooms);
-            PickBossRoom(endRooms);
-        }
-
         if (addRoomsToGrid)
         {
             StartCoroutine(AddRoomsToGrid());
@@ -126,6 +120,8 @@ public class RoomManager : MonoBehaviour
 
             if(roomCount >= minRooms)
             {
+                PickBossRoom(endRooms);
+                PickLootRoom(maxLootRooms);
                 StartCoroutine(CreateRoomsInScene());
                 StartCoroutine(CloseWalls());
                 doneGeneratingRooms = true;
@@ -205,6 +201,7 @@ public class RoomManager : MonoBehaviour
 
     IEnumerator CreateRoomsInScene()
     {
+        //Create GameObjects for every room and place them in level
         foreach (int i in roomList)
         {
             float x = (i % 10) * 100 + OriginOffsetX;
@@ -216,6 +213,14 @@ public class RoomManager : MonoBehaviour
             if (i == 45)
             {
                 newRoom = Instantiate(emptyRoom); //Origin will always be empty room
+            } 
+            else if (i == bossRoomIndex)
+            {
+                newRoom = Instantiate(bossRoom);
+            }
+            else if (i == lootRoomIndex)
+            {
+                newRoom = Instantiate(lootRoom);
             }
             else
             {
@@ -294,21 +299,26 @@ public class RoomManager : MonoBehaviour
     void PickBossRoom(List<int> endRooms)
     {
         int randomEndRoom = rand.Next(0, endRooms.Count);
-        bossRoom = GameObject.Find(endRooms[randomEndRoom].ToString());
+        bossRoomIndex = endRooms[randomEndRoom];
+        print("Boss Room: " + bossRoomIndex);
     }
 
     void PickLootRoom(int maxLootRooms)
     {
         for(int i = 0; i < maxLootRooms; i++)
         {
-            rand.Next(0, roomCount);
-
+            int lootRoom = rand.Next(0, roomCount);
+            if (roomList[lootRoom] != bossRoomIndex)
+            {
+                lootRoomIndex = roomList[lootRoom];
+            }
         }
+        print("Loot Room: " + lootRoomIndex);
     }
 
     void RenderMap()
     {
-
+        
     }
 
     public GameObject AddWall(int i, int dir) //dir --> 0, left; 1, right; 2, below; 3, above
