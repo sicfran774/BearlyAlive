@@ -7,6 +7,8 @@ public class GameOverUIManager : MonoBehaviour
     // Allow user to try agian 
     public void RestartGame()
     {
+        //Enable gameplay music and load level1 scene
+        GameManager.instance.GetComponent<AudioSource>().Play();
         GameManager.instance.TryAgain();
     }
     
