@@ -24,7 +24,7 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    public static RoomManager instance = null;
+    //public static RoomManager instance = null;
 
     public int minRooms;
     public int maxRooms;
@@ -57,7 +57,7 @@ public class RoomManager : MonoBehaviour
 
     System.Random rand = new System.Random();
 
-    private void Awake()
+    /*private void Awake()
     {
         if (instance == null)
         {
@@ -68,7 +68,7 @@ public class RoomManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-    }
+    }*/
 
     private void Start()
     {
