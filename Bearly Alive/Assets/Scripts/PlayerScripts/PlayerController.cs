@@ -366,7 +366,7 @@ public class PlayerController : MonoBehaviour
         if (time < dodgeRollDuration)
         {
             Vector2 currPosition = transform.position;
-            currPosition += movement * rollSpeed * Time.deltaTime;
+            currPosition += movement * rollSpeed * Time.fixedDeltaTime;
 
             // calculate rotation about z
             float zRotation = Mathf.Lerp(startRotation, endRotation, time / dodgeRollDuration) % 360f;
@@ -377,7 +377,7 @@ public class PlayerController : MonoBehaviour
             // apply movemnt
             player.MovePosition(currPosition);
 
-            time += Time.deltaTime;
+            time += Time.fixedDeltaTime;
         }
         else
         {
