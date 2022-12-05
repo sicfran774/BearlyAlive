@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour
 
         }
 
-        if (currentTime > 0 && currentTime % 2 == 0)
+        if (currentTime == 0)
         {
             if (isSpicy)
             {
