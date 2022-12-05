@@ -160,8 +160,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6275468654462305797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.29, z: 0}
-  m_LocalScale: {x: 1.775, y: 1, z: 1}
+  m_LocalPosition: {x: 3.77, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6275468656299779777}
@@ -250,7 +250,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
+      scalar: 1
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -303,8 +303,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 200
-      minScalar: 150
+      scalar: 30
+      minScalar: 15
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -420,7 +420,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 10
-      minScalar: 6
+      minScalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -684,7 +684,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.1415925
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -795,14 +795,14 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 10
     angle: 10
     length: 1
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: -90}
+    m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -1001,7 +1001,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 300
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4067,7 +4067,7 @@ ParticleSystem:
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
