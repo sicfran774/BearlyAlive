@@ -156,7 +156,7 @@ public class EnemyController : MonoBehaviour
         //TODO: Change to random chance and not guarantee
         if(collision.tag == "UpgradeSour")
         {
-            if(Random.Range(1, 100) <= 11)
+            if(Random.Range(1, 100) <= 80)
             {
                 isSour = true;
             } else {
@@ -166,7 +166,7 @@ public class EnemyController : MonoBehaviour
 
         if(collision.tag == "UpgradeSpicy")
         {
-            if(Random.Range(1, 100) <= 11)
+            if(Random.Range(1, 100) <= 80)
             {
                 isSpicy = true;
             } else {
