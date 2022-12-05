@@ -316,6 +316,9 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                //play audio clip 
+                SoundManager.instance.playHitSound();
+
                 healthBar.TookDamage(5);
                 if (healthBar.currentHealth <= 0)
                 {
