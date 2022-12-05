@@ -108,7 +108,7 @@ MonoBehaviour:
   projectileSpeed: 4
   hud: {fileID: 0}
   player: {fileID: 7575347867245439747, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
-  bullet: {fileID: 6768108042419747499, guid: 9c89962e100d6944d8330f5c2e2eecb4, type: 3}
+  bullet: {fileID: 6768108042419747499, guid: 6248e03f250797f40bda04e55492232c, type: 3}
   bulletSpawnPoint: {fileID: 8667829567553451782}
   shootingRange: 2.75
   fireRate: 0.42
