@@ -119,7 +119,8 @@ public class RoomEventHandler : MonoBehaviour
         upgrade = Instantiate(upgrades[randNum], transform.parent);
         upgrade.transform.position = new Vector2(upgrade.transform.position.x + 5, upgrade.transform.position.y);
 
-        technique = Instantiate(techniques[randNum], transform.parent);
+        //Drop in loot rooms
+        //technique = Instantiate(techniques[randNum], transform.parent);
 
     }
 
