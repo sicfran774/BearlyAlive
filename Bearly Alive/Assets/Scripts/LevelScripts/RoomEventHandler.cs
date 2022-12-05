@@ -51,6 +51,7 @@ public class RoomEventHandler : MonoBehaviour
 
         upgrades = new GameObject[] { jellyInfusion, malicAcid, popRocks, rockCandy, tajinRubdown };
         techniques = new GameObject[] { boomerang, chiSpit, slash, slingShot, whip};
+        AstarPath.active.Scan();
     }
 
     void LateUpdate()
@@ -117,7 +118,7 @@ public class RoomEventHandler : MonoBehaviour
         GameObject technique;
 
         upgrade = Instantiate(upgrades[randNum], transform.parent);
-        upgrade.transform.position = new Vector2(upgrade.transform.position.x + 5, upgrade.transform.position.y);
+        upgrade.transform.position = new Vector2(upgrade.transform.position.x, upgrade.transform.position.y);
 
         //Drop in loot rooms
         //technique = Instantiate(techniques[randNum], transform.parent);

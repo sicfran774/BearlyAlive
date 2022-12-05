@@ -2,6 +2,7 @@ using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 /*  Room generation must consist of a few things:
@@ -28,6 +29,7 @@ public class RoomManager : MonoBehaviour
 
     public int minRooms;
     public int maxRooms;
+    public int maxLootRooms;
     public GameObject roomOne;
     public GameObject roomTwo;
     public GameObject roomThree;
@@ -41,9 +43,13 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField] private int roomCount = 0;
     private int[] rooms;
+    private List<int> roomList;
     private List<int> endRooms;
     private Queue<int> cellQueue;
     private GameObject roomsParent;
+
+    private GameObject bossRoom;
+    private List<GameObject> lootRooms;
 
     private AstarData data;
 
@@ -79,6 +85,7 @@ public class RoomManager : MonoBehaviour
         //Level generation
         roomsParent = GameObject.Find("Rooms");
         rooms = new int[maxRooms * 10];
+        roomList = new List<int>();
         endRooms = new List<int>();
         cellQueue = new Queue<int>();
 
@@ -88,6 +95,14 @@ public class RoomManager : MonoBehaviour
 
     private void Update()
     {
+        if (doneGeneratingRooms)
+        {
+            doneGeneratingRooms = false;
+            
+            PickLootRoom(maxLootRooms);
+            PickBossRoom(endRooms);
+        }
+
         if (addRoomsToGrid)
         {
             StartCoroutine(AddRoomsToGrid());
@@ -102,6 +117,7 @@ public class RoomManager : MonoBehaviour
             {
                 rooms[i] = 0;
             }
+            roomList.Clear();
             endRooms.Clear();
             cellQueue.Clear();
             roomCount = 0;
@@ -110,9 +126,10 @@ public class RoomManager : MonoBehaviour
 
             if(roomCount >= minRooms)
             {
+                StartCoroutine(CreateRoomsInScene());
                 StartCoroutine(CloseWalls());
                 doneGeneratingRooms = true;
-                
+
                 yield break;
             }
 
@@ -181,49 +198,51 @@ public class RoomManager : MonoBehaviour
         cellQueue.Enqueue(i);
         rooms[i] = 1;
         ++roomCount;
-
-        //WIP
-        CreateRoomInScene(i);
+        roomList.Add(i);
 
         return true;
     }
 
-    void CreateRoomInScene(int i)
+    IEnumerator CreateRoomsInScene()
     {
-        float x = (i % 10) * 100 + OriginOffsetX;
-        float y = (i / 10) * 50 + OriginOffsetY;
-        GameObject newRoom;
-
-        CreateGridGraph(x, y);
-
-        if (i == 45) 
-        { 
-            newRoom = Instantiate(emptyRoom); //Origin will always be empty room
-        }
-        else 
+        foreach (int i in roomList)
         {
-            newRoom = Instantiate(PickRandomRoom()); //Other rooms can be any variation
-        }
+            float x = (i % 10) * 100 + OriginOffsetX;
+            float y = (i / 10) * 50 + OriginOffsetY;
+            GameObject newRoom;
 
-        newRoom.transform.position = new Vector2(x, y);
-        newRoom.tag = "Wall";
-        newRoom.name = i.ToString();
+            CreateGridGraph(x, y);
 
-        if (roomsParent != null)
-        {
-            newRoom.transform.parent = roomsParent.transform;
-        }
-        else
-        {
-            try
+            if (i == 45)
             {
-                roomsParent = GameObject.Find("Rooms");
+                newRoom = Instantiate(emptyRoom); //Origin will always be empty room
+            }
+            else
+            {
+                newRoom = Instantiate(PickRandomRoomPrefab()); //Other rooms can be any variation
+            }
+
+            newRoom.transform.position = new Vector2(x, y);
+            newRoom.tag = "Wall";
+            newRoom.name = i.ToString();
+
+            if (roomsParent != null)
+            {
                 newRoom.transform.parent = roomsParent.transform;
             }
-            catch 
+            else
             {
-                addRoomsToGrid = true;
+                try
+                {
+                    roomsParent = GameObject.Find("Rooms");
+                    newRoom.transform.parent = roomsParent.transform;
+                }
+                catch
+                {
+                    addRoomsToGrid = true;
+                }
             }
+            yield return null;
         }
     }
 
@@ -231,7 +250,7 @@ public class RoomManager : MonoBehaviour
     {
         data = AstarPath.active.data;
         GridGraph gg = data.AddGraph(typeof(GridGraph)) as GridGraph;
-        int width = 90, depth = 40;
+        int width = 85, depth = 35;
         float nodeSize = 1.2f;
         gg.center = new Vector3(x, y, 0);
         gg.SetDimensions(width, depth, nodeSize);
@@ -242,7 +261,7 @@ public class RoomManager : MonoBehaviour
         gg.collision.mask = ignoreLayer;
     }
 
-    GameObject PickRandomRoom()
+    GameObject PickRandomRoomPrefab()
     {
         int num = rand.Next(0, 4);
         switch (num)
@@ -270,6 +289,26 @@ public class RoomManager : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    void PickBossRoom(List<int> endRooms)
+    {
+        int randomEndRoom = rand.Next(0, endRooms.Count);
+        bossRoom = GameObject.Find(endRooms[randomEndRoom].ToString());
+    }
+
+    void PickLootRoom(int maxLootRooms)
+    {
+        for(int i = 0; i < maxLootRooms; i++)
+        {
+            rand.Next(0, roomCount);
+
+        }
+    }
+
+    void RenderMap()
+    {
+
     }
 
     public GameObject AddWall(int i, int dir) //dir --> 0, left; 1, right; 2, below; 3, above
