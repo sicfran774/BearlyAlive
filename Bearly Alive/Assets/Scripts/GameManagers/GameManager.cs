@@ -69,8 +69,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        //Disable upgrade menu when game first starts 
-        //UpgradeUI.instance.upgradeMenu.SetActive(!UpgradeUI.instance.upgradeMenu.activeSelf);
+        /*//Enable gameplay music
+        GetComponent<AudioSource>().Play();*/
 
         if (instance == null)
         {
