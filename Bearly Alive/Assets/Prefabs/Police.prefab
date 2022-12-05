@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 1735724731975648028}
   - component: {fileID: 4064551643397478215}
   - component: {fileID: 5561056083849472926}
-  - component: {fileID: 7873124524600333998}
   m_Layer: 7
   m_Name: Police
   m_TagString: Enemy
@@ -32,11 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8667829567553451782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: -21.486427, y: 17.271824, z: 1}
-=======
-  m_LocalPosition: {x: -21.486427, y: 17.271824, z: -22.674913}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -242,20 +237,3 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b97a9162f22e042d4a418407cf0c78ba, type: 3}
   - {fileID: 21300000, guid: e48ae3594d56748b4a7b18da45a629ab, type: 3}
   framerate: 0.16666667
---- !u!114 &7873124524600333998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8667829567553451782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d0ef184ae6048ff94f316fe5848a96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: b97a9162f22e042d4a418407cf0c78ba, type: 3}
-  - {fileID: 21300000, guid: 94471e270a0c7453aa61012bf7aaa501, type: 3}
-  framerate: 0.16666667
-  spriteRenderer: {fileID: 0}

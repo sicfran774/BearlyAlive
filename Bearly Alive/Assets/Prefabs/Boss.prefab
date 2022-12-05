@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 1735724731975648028}
   - component: {fileID: 4064551643397478215}
   - component: {fileID: 5561056083849472926}
-  - component: {fileID: 3220135971254920778}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Enemy
@@ -32,13 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8667829567553451782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: -21.486427, y: 17.271824, z: 1}
   m_LocalScale: {x: 0.1875, y: 0.1875, z: 1}
-=======
-  m_LocalPosition: {x: -21.486427, y: 17.271824, z: -22.674913}
-  m_LocalScale: {x: 1, y: 1, z: 1}
->>>>>>> Stashed changes
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -109,7 +103,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -120,7 +114,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6, y: 7}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &2208610958130710475
 MonoBehaviour:
@@ -243,20 +237,3 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cf3dcb85a1b714a4c89bbcd04fc26548, type: 3}
   - {fileID: 21300000, guid: 8a2dddf09de414eecbcf8b8adc8ea533, type: 3}
   framerate: 0.16666667
---- !u!114 &3220135971254920778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8667829567553451782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d0ef184ae6048ff94f316fe5848a96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: df6c3a123ecdb4ee0a875b39022952f9, type: 3}
-  - {fileID: 21300000, guid: da828238543364ef88da211e74f7adda, type: 3}
-  framerate: 0.16666667
-  spriteRenderer: {fileID: 0}
