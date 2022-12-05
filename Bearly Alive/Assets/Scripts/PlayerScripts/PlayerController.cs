@@ -311,7 +311,10 @@ public class PlayerController : MonoBehaviour
                     // TODO GetComponent<DeathAnimation>().enabled = true;
                     print("YOU HAVE DIED!");
 
-                    //Load game over scene 
+                    //Stop gameplay music
+                    GameManager.instance.GetComponent<AudioSource>().Stop();
+
+                    //Load game over scene
                     SceneManager.LoadScene("GameOver");
                 }
             }
