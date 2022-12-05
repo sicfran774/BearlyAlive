@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
     public HudManager hud;
     int healthRemaining;
 
+    public bool isDead;
+
     //Bullet things
     public GameObject player;
     public GameObject bullet;
@@ -86,13 +88,14 @@ public class EnemyController : MonoBehaviour
                 x++;
             if(x == 3)
                 isSpicy = false;
-        }
+        } 
         
         //See how health is doing every frame
         if(healthRemaining <= 0) 
         {
             GameManager.instance.IncreaseScore(1);
-            Destroy(gameObject);
+            isDead = true;
+            //Destroy(gameObject);
         }
 
         //Timer for attacks and passive damage

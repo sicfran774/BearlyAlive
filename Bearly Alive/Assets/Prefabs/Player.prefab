@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 6201662383608174917}
   - component: {fileID: 5277514853334967068}
   - component: {fileID: 4041506838383961885}
+  - component: {fileID: 5587743056809569498}
+  - component: {fileID: 6951323756449758901}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -214,4 +216,44 @@ MonoBehaviour:
   moving: {fileID: 6201662383608174917}
   idle: {fileID: 21300000, guid: 98b5e1977ef43479ba0c8fff3852208e, type: 3}
   dying: {fileID: 5277514853334967068}
-  techniques: []
+  techniques:
+  - {fileID: 5587743056809569498}
+  - {fileID: 6951323756449758901}
+--- !u!114 &5587743056809569498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7575347867245439747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14e5ad7d9faa41ac9dc4766f9e91bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  framerate: 0.16666667
+  sprites:
+  - {fileID: 21300000, guid: 79a950acdcebd4189826b6cedff7fd2c, type: 3}
+  - {fileID: 21300000, guid: e568e2f0de4944a41bdd50a98970c661, type: 3}
+  - {fileID: 21300000, guid: 79a950acdcebd4189826b6cedff7fd2c, type: 3}
+  spriteRenderer: {fileID: 7575347867245439772}
+--- !u!114 &6951323756449758901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7575347867245439747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14e5ad7d9faa41ac9dc4766f9e91bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  framerate: 0.16666667
+  sprites:
+  - {fileID: 21300000, guid: a861c8b9f278043fc810bca1b981eea7, type: 3}
+  - {fileID: 21300000, guid: 1bcdf6b9e0f084912862dd8589196271, type: 3}
+  - {fileID: 21300000, guid: 3d246888b6dbc46e7b6dd09e62d99e1c, type: 3}
+  - {fileID: 21300000, guid: 1bcdf6b9e0f084912862dd8589196271, type: 3}
+  - {fileID: 21300000, guid: a861c8b9f278043fc810bca1b981eea7, type: 3}
+  spriteRenderer: {fileID: 7575347867245439772}

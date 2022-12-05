@@ -21,6 +21,8 @@ public class PlayerSpriteRenderer : MonoBehaviour
     public AnimatedSprite moving;
     public Sprite idle;
     public DeathAnimation dying;
+
+    // order: spit, whip
     public TechniqueAnimation[] techniques;
 
     private PlayerController playerController;

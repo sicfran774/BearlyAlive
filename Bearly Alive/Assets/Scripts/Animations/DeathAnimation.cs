@@ -22,12 +22,9 @@ public class DeathAnimation : MonoBehaviour
 
    public SpriteRenderer spriteRenderer;
 
-   private PlayerController controller;
-
    private void Awake()
    {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        controller = GetComponent<PlayerController>();
    }
 
    private void OnEnable() 
