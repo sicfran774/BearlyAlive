@@ -1,9 +1,11 @@
+using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor.EditorTools;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RoomEventHandler : MonoBehaviour
 {
@@ -43,7 +45,9 @@ public class RoomEventHandler : MonoBehaviour
             index = Int32.Parse(roomManager.playerCurrentRoom.name);
 
             CloseWalls();
+            AstarPath.active.Scan();
             //StartCoroutine(PlaceEnemies(enemyOrder));
+            ActivateEnemyMovement();
         }
 
         if (playerInRoom)
@@ -70,6 +74,15 @@ public class RoomEventHandler : MonoBehaviour
     {
         //This converts the name (which is just the cell number) so that we can use it later to generate walls in the correct position
         roomManager.playerCurrentRoom = transform.parent.gameObject;
+    }
+
+    void ActivateEnemyMovement()
+    {
+        foreach(Transform enemyTransform in transform)
+        {
+            AIDestinationSetter enemy = enemyTransform.gameObject.GetComponent<AIDestinationSetter>();
+            enemy.target = GameObject.FindWithTag("Player").transform;
+        }
     }
 
     void DropLoot()
