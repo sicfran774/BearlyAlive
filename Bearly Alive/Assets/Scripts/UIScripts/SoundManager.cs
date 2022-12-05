@@ -48,6 +48,37 @@ public class SoundManager : MonoBehaviour
         audioSource.Play();
     }
 
+    public void playPickedTechniqueSound()
+    {
+        audioSource.clip = soundEffects[3];
+        audioSource.Play();
+    }
+
+    public void playPickedUpgradeSound()
+    {
+        audioSource.clip = soundEffects[4];
+        audioSource.Play();
+    }
+
+    public void playPauseSound()
+    {
+        audioSource.clip = soundEffects[5];
+        audioSource.Play();
+    }
+
+
+    public void playUnpauseSound()
+    {
+        audioSource.clip = soundEffects[6];
+        audioSource.Play();
+    }
+
+    public void playHitSound()
+    {
+        audioSource.clip = soundEffects[7];
+        audioSource.Play();
+    }
+
 
 }
 
