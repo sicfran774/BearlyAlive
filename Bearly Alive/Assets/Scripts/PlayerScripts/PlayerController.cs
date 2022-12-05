@@ -308,7 +308,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (collision.gameObject.tag == "EnemyBullet")
+        if (collision.gameObject.tag == "EnemyBullet" || collision.gameObject.name == "EnemyBullet")
         {
             if (isInvulnerable)
             {
