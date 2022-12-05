@@ -22,6 +22,6 @@ public class HelperMethods : MonoBehaviour
 		//Get the angle between the points
 		float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-		return Quaternion.Euler(new Vector3(0f, 0f, angle + -90f));
+		return Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 }
