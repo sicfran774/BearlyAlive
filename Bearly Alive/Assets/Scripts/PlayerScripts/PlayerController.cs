@@ -56,6 +56,13 @@ public class PlayerController : MonoBehaviour
     // Variable to implement dodgeroll function
     float currRollSpeed;
 
+
+    float time = 0f;
+
+    float startRotation;
+    float endRotation;
+
+
     // Boolean to mark death for animation
     // player is currently alive
     public bool isDead = false;
@@ -90,6 +97,7 @@ public class PlayerController : MonoBehaviour
     public GameObject pickedUpgrade;
 
     public GameObject pickedTechnique;
+
 
 
     //public Animation reference
@@ -200,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
         }
         else{
-
+            HandleDodgeRoll();
         }
 
     }
@@ -257,8 +265,13 @@ public class PlayerController : MonoBehaviour
                 currRollSpeed = rollSpeed;
                 isInvulnerable = true;
                 playerRolling = true; //Prevents movement
-                playerRolled = true; // Prevents from other actions to be used
-                StartCoroutine(PerformDodgeRoll(dodgeRollDuration));
+                playerRolled = true; // Prevents from other actions to be used\
+
+                time = 0f;
+                
+                startRotation = transform.eulerAngles.x;
+                endRotation = startRotation - 360f;
+
             }
         }
     }
@@ -350,61 +363,75 @@ public class PlayerController : MonoBehaviour
     // to move and the cooldown timer begins.
     void HandleDodgeRoll()
     {
-        Vector2 currPosition = transform.position;
-        currPosition += movement * currRollSpeed * Time.deltaTime;
-        player.MovePosition(currPosition);
-        currRollSpeed -= currRollSpeed * dodgeRollDuration * Time.deltaTime;
-        if(currRollSpeed < 5f)
-        {
-            playerRolling = false;
-            isInvulnerable = false;
-            // Player has stopped rolling, startTimer to reset cooldown
-            Invoke("ResetDodgeRoll", dodgeRollCooldownTimer);
-        }
-    }
-
-
-
-    IEnumerator PerformDodgeRoll(float duration)
-    {
-        float startRotation = transform.eulerAngles.x;
-        float endRotation = startRotation - 360f;
-
-        float yRot = transform.eulerAngles.y;
-        float yEndRot = yRot - 360f;
-
-
-        float t = 0.0f;
-
-
-        movement = movement.normalized;
-
-        while (t < duration)
+        if (time < dodgeRollDuration)
         {
             Vector2 currPosition = transform.position;
             currPosition += movement * rollSpeed * Time.fixedDeltaTime;
 
-            float xRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
-            float yRotation = Mathf.Lerp(yRot, yEndRot, t / duration) % 360f;
-
             // calculate rotation about z
-            float zRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
+            float zRotation = Mathf.Lerp(startRotation, endRotation, time / dodgeRollDuration) % 360f;
 
-			// apply rotation about z
-			transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
+            // apply rotation about z
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
 
             // apply movemnt
-			player.MovePosition(currPosition);
+            player.MovePosition(currPosition);
 
-            t += Time.fixedDeltaTime;
+            time += Time.fixedDeltaTime;
+        }
+        else
+        {
+            playerRolling = false;
+            isInvulnerable = false;
 
-            yield return null;
+            // Player has stopped rolling, startTimer to reset cooldown
+            Invoke("ResetDodgeRoll", dodgeRollCooldownTimer);
         }
 
-        isInvulnerable = false;
-        playerRolling = false;
-        Invoke("ResetDodgeRoll", dodgeRollCooldownTimer);
     }
+
+
+
+   // IEnumerator PerformDodgeRoll(float duration)
+   // {
+   //     float startRotation = transform.eulerAngles.x;
+   //     float endRotation = startRotation - 360f;
+
+   //     float yRot = transform.eulerAngles.y;
+   //     float yEndRot = yRot - 360f;
+
+
+   //     float t = 0.0f;
+
+
+   //     movement = movement.normalized;
+
+   //     while (t < duration)
+   //     {
+   //         Vector2 currPosition = transform.position;
+   //         currPosition += movement * rollSpeed * Time.fixedDeltaTime;
+
+   //         float xRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
+   //         float yRotation = Mathf.Lerp(yRot, yEndRot, t / duration) % 360f;
+
+   //         // calculate rotation about z
+   //         float zRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
+
+			//// apply rotation about z
+			//transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
+
+   //         // apply movemnt
+			//player.MovePosition(currPosition);
+
+   //         t += Time.deltaTime;
+
+   //         yield return null;
+   //     }
+
+   //     isInvulnerable = false;
+   //     playerRolling = false;
+   //     Invoke("ResetDodgeRoll", dodgeRollCooldownTimer);
+   // }
 
 
 
