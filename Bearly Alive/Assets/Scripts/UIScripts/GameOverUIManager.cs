@@ -15,6 +15,8 @@ public class GameOverUIManager : MonoBehaviour
     //Reset the game
     public void MainMenu()
     {
-       GameManager.instance.Reset();
+        //Stop gameplay music
+        GameManager.instance.GetComponent<AudioSource>().Stop();
+        GameManager.instance.Reset();
     }
 }
