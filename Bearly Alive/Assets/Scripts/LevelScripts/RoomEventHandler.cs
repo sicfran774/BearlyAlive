@@ -1,9 +1,11 @@
+using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor.EditorTools;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RoomEventHandler : MonoBehaviour
 {
@@ -43,6 +45,7 @@ public class RoomEventHandler : MonoBehaviour
             index = Int32.Parse(roomManager.playerCurrentRoom.name);
 
             CloseWalls();
+            AstarPath.active.Scan();
             //StartCoroutine(PlaceEnemies(enemyOrder));
         }
 
