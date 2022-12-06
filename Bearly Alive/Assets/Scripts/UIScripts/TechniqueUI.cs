@@ -40,7 +40,7 @@ public class TechniqueUI : MonoBehaviour
                     + "Cooldown: " + Slingshot.defaultCooldown + "\n" + "Damage: " + Slingshot.defaultDamage;
                     break;
                 case "ChiSpit":
-                case "ChitSpit(Clone)":
+                case "ChiSpit(Clone)":
                     techniqueDescription.text = "Rapid fire projectiles channeled by the universe’s candy energy\n"
                         + "Cooldown: " + ChiSpit.defaultCooldown + "\n" + "Damage: " + ChiSpit.defaultDamage;
                     break;
