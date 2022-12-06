@@ -21,7 +21,7 @@ public class BossController : MonoBehaviour
     public Transform transform;
     public GameObject player;
     public Collider2D coll;
-    public int MAX_HEALTH = 30;
+    public int MAX_HEALTH = 20;
     public int healthRemaining;
     public GameObject bullet;
     private Vector2 velocity;
@@ -75,7 +75,6 @@ public class BossController : MonoBehaviour
 
     private IEnumerator BossMovement()
     {
-        moving.enabled = true;
         float playerDistance = Vector2.Distance(transform.position, player.transform.position);
         if (playerDistance <= range && !isJumping) {
             if (playerDistance <= shootingRange) {
@@ -83,6 +82,7 @@ public class BossController : MonoBehaviour
                 rigidbody.Sleep();
                 isShooting = true;
                 StartCoroutine(Shoot());
+                yield return new WaitForSeconds(5f);
                 Move();
                 yield break;
             }
@@ -110,7 +110,7 @@ public class BossController : MonoBehaviour
         velocity.x = direction.x * speed;
         velocity.y = direction.y;
 
-        rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
+        rigidbody.MovePosition(rigidbody.position + -velocity * Time.fixedDeltaTime / 10);
          if (rigidbody.Raycast(direction)) {
             direction = -direction;
          }
@@ -137,7 +137,7 @@ public class BossController : MonoBehaviour
         GameObject newBullet = Instantiate(bullet, shootPos.position, Quaternion.identity);
 
         newBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y);
-        if (count == 5) {
+        if (count == 2) {
             count = 0;
             yield break;
         }
