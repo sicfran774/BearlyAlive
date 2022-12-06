@@ -1,3 +1,13 @@
+/***************************************************************
+*File: Slingshot.cs
+*Author: Radical Cadavical
+*Class: CS 4700 – Game Development
+*Assignment: Program 4
+*Date last modified: 12/5/2022
+*
+*Purpose: This program implements the Slingshot Technique by
+*implementing the functions inherited from Technique Class.
+****************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +33,10 @@ public class Slingshot : Technique
     // for manipulating direciton
     HelperMethods helper;
 
-    // MUST BE CALLED AFTER ADD COMPONENT
+    // ALWAYS call after add component
+    //function: Initialize
+    //purpose: Sets the default damage and cooldown values when technique
+    //has been learned/equipped by the player
     public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
 
         // obtain reference to weapon GameObject. <<<<< IT MUST BE THE 0th CHILD >>>>
@@ -39,7 +52,12 @@ public class Slingshot : Technique
         
     }
 
-    // When called, the referenced GameObject will stop moving, slide back, then shoot forward with a damaging hitbox.
+
+    //function: Act
+    //purpose: Overrides Action's Act method to perform
+    //Whip and start technique's cooldown. When called, the referenced
+    //GameObject will stop moving, slide back, then shoot forward with
+    //a damaging hitbox.
     public override void Act()
     {
         if (!techsCooling && !selfCooling)
@@ -52,13 +70,19 @@ public class Slingshot : Technique
 
     }
 
-    // sets the weapon object's tag to upgrade
+    //function: SetUpgrade
+    //purpose: Sets the pickedUp upgrade to the technique
+    // and slingshot box to trigger upgrade effects
     public override void SetUpgrade(string newUpgrade) {
         upgrade = newUpgrade;
 
         SlingshotBox.tag = newUpgrade;
     }
     
+
+    //function: move
+    //purpose: Handles the slingshot movement when 
+    //technique that begun to perform
     private void move() {
 
         Vector2 currPosition = transform.position;
@@ -68,6 +92,11 @@ public class Slingshot : Technique
     
     }
 
+
+    //function: HandleSlingShot
+    //purpose: Handles the Slingshot action to pause
+    //for a short duration and then begin charging
+    //in the direction of the mouse cursor.
     IEnumerator HandleSlingShot(float duration)
     {
         ParticleSystem.MainModule colorSystem = SlingshotBox.GetComponentInChildren<ParticleSystem>().main;
@@ -184,7 +213,6 @@ public class Slingshot : Technique
             yield return null;
         }
         print(t);
-        print("self cooled");
         selfCooling = false;
     }
 

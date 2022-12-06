@@ -1,3 +1,14 @@
+/***************************************************************
+*File: PlayerController.cs
+*Author: Radical Cadavical
+*Class: CS 4700 – Game Development
+*Assignment: Program 4
+*Date last modified: 12/5/2022
+*
+*Purpose: This program handles handles player movement,
+*handles player's health bar, handles collisions and triggers 
+*for the player, and stores player's equipped techniques.
+****************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,19 +27,16 @@ public class PlayerController : MonoBehaviour
     // Player's Movement Speed
     public float walkSpeed = 5f;
 
+    // Player's Health Bar max value
     public int maxHealth = 100;
     private int currentHealth;
-
     public HealthBar healthBar;
 
 
-    //
     // HUD Manager for Player's Actions 
     public HudManager hudManager;
 
-
-   // Cooldown Value for Using Slash Technique
-    public float slashCooldown = 0.7f;
+    // Keeps tracks of bullets remaining
     int rounds;
     
     // Used for animating
@@ -56,9 +64,8 @@ public class PlayerController : MonoBehaviour
     // Variable to implement dodgeroll function
     float currRollSpeed;
 
-
+    // Used to implement dodge roll ability
     float time = 0f;
-
     float startRotation;
     float endRotation;
 
@@ -102,7 +109,12 @@ public class PlayerController : MonoBehaviour
 
     //public Animation reference
     private AnimatedSprite animating;
-    // Start is called before the first frame update
+
+
+    //function: Start()
+    //purpose: Initializes player's health bar, toggle menu function,
+    //rigidbody, collider, animation sprite, resets player's ability to
+    //pickup techniques and upgrades
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
@@ -143,6 +155,10 @@ public class PlayerController : MonoBehaviour
         pressEForTechLabel.enabled = false;
     }
 
+
+    //function: Awake, Unity Function
+    //purpose: Initializes player's technique array, and player
+    // instance
     private void Awake()
     {
         techniques = new Technique[2];
@@ -152,13 +168,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     // Update is called once per frame
     void Update()
     {
         DoActions();
     }
 
-    //Handle what happens when upgrade menu is toggled  
+
+    //function: OnWeaponMenuToggle
+    //purpose: Handle what happens when upgrade menu is toggled  
     void OnUpgradeMenuToggle(bool active)
     {
         //Disable player movement and shooting
@@ -170,7 +189,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    //function: OnWeaponMenuToggle
+    //purpose: Handle what happens when weapon swap menu is toggled  
     void OnWeaponMenuToggle(bool active)
     {
         //Disable player movement and shooting
@@ -183,12 +203,18 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    //function: FixedUpdate, Unity Function
+    //purpose: Updates the player's movement every fixed frame-rate
+    //frame
     private void FixedUpdate()
     {
         HorizontalMovement();
     }
 
-    // Checks inputs mapped to actions then calls Act() if all conditions are met
+
+
+    //function: DoActions
+    //purpose: Checks inputs mapped to actions then calls Act() if all conditions are met
     private void DoActions() {
         if (!playerRolling)
         {
@@ -213,7 +239,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Handles Player's movement based on WASD Input Keys Pressed
+
+    //function: HorizontalMovement
+    //purpose: Handles Player's movement based on WASD Input Keys Pressed
     // If Player is performing Dodge roll, we prevent player from moving 
     // until action is completed.
     void HorizontalMovement()
@@ -255,8 +283,13 @@ public class PlayerController : MonoBehaviour
             player.MovePosition(newPosition);
         }
     }
-    // Handles the implementation of the player's ability: Dodge Roll
-    // 2 Second Cooldown between uses
+
+
+    //function: PlayerRollAbility
+    //purpose: Implements the player's horizontal movement by
+    //applying the correct speed based on input controls. Checks
+    //if player is powered up and applies the powerup's speed
+    //mulitplier 
     void PlayerRollAbility()
     {
        
@@ -369,7 +402,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Handles Players dodge roll action. Player is not allowed to move when 
+
+    //function: HandleDodgeRoll
+    //purpose: Handles Players dodge roll action. Player is not allowed to move when 
     // player is rolling. After rollSpeed reaches below 5f, player is allowed
     // to move and the cooldown timer begins.
     void HandleDodgeRoll()
@@ -400,50 +435,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-
-
-   // IEnumerator PerformDodgeRoll(float duration)
-   // {
-   //     float startRotation = transform.eulerAngles.x;
-   //     float endRotation = startRotation - 360f;
-
-   //     float yRot = transform.eulerAngles.y;
-   //     float yEndRot = yRot - 360f;
-
-
-   //     float t = 0.0f;
-
-
-   //     movement = movement.normalized;
-
-   //     while (t < duration)
-   //     {
-   //         Vector2 currPosition = transform.position;
-   //         currPosition += movement * rollSpeed * Time.fixedDeltaTime;
-
-   //         float xRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
-   //         float yRotation = Mathf.Lerp(yRot, yEndRot, t / duration) % 360f;
-
-   //         // calculate rotation about z
-   //         float zRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360f;
-
-			//// apply rotation about z
-			//transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
-
-   //         // apply movemnt
-			//player.MovePosition(currPosition);
-
-   //         t += Time.deltaTime;
-
-   //         yield return null;
-   //     }
-
-   //     isInvulnerable = false;
-   //     playerRolling = false;
-   //     Invoke("ResetDodgeRoll", dodgeRollCooldownTimer);
-   // }
-
 
 
 
