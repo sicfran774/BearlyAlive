@@ -183,9 +183,10 @@ public class EnemyController : MonoBehaviour
 
         if (collision.tag == "UpgradeKnockback")
         {
-            Vector2 d = (GetComponent<Collider2D>().transform.position - transform.position).normalized;
-            Vector2 knockback = d * 100;
-            enemy.AddForce(knockback, ForceMode2D.Impulse);
+            if (Random.Range(1, 100) <= 2) {
+                shootingRange = 1f;
+            }
+
             healthRemaining--;
         }
     }
