@@ -35,7 +35,7 @@ public class BossSpriteRenderer : MonoBehaviour
         death.enabled = boss.isDead;
         shoot.enabled = boss.isShooting;
         if (boss.isJumping) {
-            spriteRenderer.sprite = shadow;
+            spriteRenderer.enabled = false;
         }
     }
 

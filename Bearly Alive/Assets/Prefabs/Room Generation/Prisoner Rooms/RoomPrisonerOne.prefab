@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7935020432855941158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RoomPrisonerOne
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -789,6 +789,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1903762294825985177}
     m_Modifications:
+    - target: {fileID: 2146847664769774150, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280994989101918837, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -837,6 +845,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prisoner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8667829567553451782, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
 --- !u!1001 &4255078316202526650
@@ -846,6 +858,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1903762294825985177}
     m_Modifications:
+    - target: {fileID: 2146847664769774150, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280994989101918837, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -893,6 +913,10 @@ PrefabInstance:
     - target: {fileID: 8667829567553451782, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: m_Name
       value: Prisoner (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667829567553451782, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
@@ -951,6 +975,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemies
       objectReference: {fileID: 0}
+    - target: {fileID: 7532132027882336123, guid: fdd515c2f337c35449682903e2b3aea8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd515c2f337c35449682903e2b3aea8, type: 3}
 --- !u!4 &1903762294825985177 stripped
@@ -965,6 +993,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1903762294825985177}
     m_Modifications:
+    - target: {fileID: 2146847664769774150, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280994989101918837, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1013,6 +1049,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prisoner (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8667829567553451782, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
 --- !u!1001 &9219682903509086734
@@ -1022,6 +1062,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1903762294825985177}
     m_Modifications:
+    - target: {fileID: 2146847664769774150, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280994989101918837, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1069,6 +1117,10 @@ PrefabInstance:
     - target: {fileID: 8667829567553451782, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
       propertyPath: m_Name
       value: Prisoner
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667829567553451782, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac133fb687f31cd428a2a7b226a28f54, type: 3}
