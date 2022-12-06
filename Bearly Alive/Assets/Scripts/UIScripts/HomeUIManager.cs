@@ -14,6 +14,6 @@ public class HomeUIManager : MonoBehaviour
             GameManager.instance.GetComponent<AudioSource>().Play();
         }
 
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadSceneAsync("Level1");
     }
 }
