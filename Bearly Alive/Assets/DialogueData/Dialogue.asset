@@ -13,11 +13,25 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   dialogue:
-  - "You rescued Worm from candy prison \nFight through the mutant candy hordes to
-    escape candy prison! \t[Space to Continue]"
-  - "Upgrades and techniques can be found \nTo pick them up press E and equip to
-    your inventory\n\t[Space to Continue]\n"
-  - "Goodluck on your journey and know that an reward is given after all enemies
-    are killed!\n\t[Space to Continue]"
-  - "To use your weapon left-click \nTo use your upgrade right-click \n\t[Space to
-    Continue]"
+  - "You rescued Worm from candy prison! \nFight through the mutant candy hordes
+    to escape!\t\n[Space to Continue]"
+  - 'Upgrades and techniques can be found when completing some rooms.
+
+    To pick
+    them up press E and equip them to your inventory
+
+    [Space to Continue]
+
+'
+  - 'To use your primary weapon, left-click.
+
+    To use your secondary weapon, right-click.
+
+    [Space
+    to Continue]'
+  - 'Move with W-A-S-D
+
+    Dodge with Space
+
+    [Space to Continue]'
+  - "Rip and tear... \nuntil it is done.\n[Space to End Dialogue]"

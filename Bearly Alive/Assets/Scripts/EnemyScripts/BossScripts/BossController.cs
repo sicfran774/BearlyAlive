@@ -12,8 +12,10 @@ public class BossController : MonoBehaviour
     public float range = 25f;
     public float shootingRange = 20f;
     private bool shot;
+    public float timeBTWShots = 3f;
+    public Transform shootPos;
 
-    public Vector2 direction = Vector2.left;
+    public Vector2 direction;
     public float speed = 1f;
     private Rigidbody2D rigidbody;
     public Transform transform;
@@ -21,8 +23,10 @@ public class BossController : MonoBehaviour
     public Collider2D coll;
     public int MAX_HEALTH = 30;
     private int healthRemaining;
-
+    public GameObject bullet;
     private Vector2 velocity;
+
+    public AnimatedSprite moving;
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -59,29 +63,40 @@ public class BossController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        int i = 3;
+        while (i >= 0 ) {
+            StartCoroutine(Shoot());
+        }
+        
         float playerDistance = Vector2.Distance(transform.position, player.transform.position);
-        int num = 10 % 3;
+        float t = Random.Range(0,100);
         if (playerDistance <= range && !isJumping) {
-            if (num == 0 && playerDistance <= shootingRange) {
+            if (t == 0f && playerDistance <= shootingRange) {
+                print("shoot");
                 rigidbody.Sleep();
                 isShooting = true;
-                Shoot();
+                StartCoroutine(Shoot());
             }
-            else if (num == 1) {
+            else if (t == 1f) {
                 Slam();
                 if (playerDistance <= slamRange) {
                     player.GetComponent<PlayerController>().healthBar.TookDamage(20);
                 }
             }
             else {
+                print("move");
                 Move();
             }
+        }
+        if (healthRemaining <= 0) {
+            isDead = true;
         }
     }
     private void Move()
     {
         isMoving = true;
-        Vector2 direction = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
+        moving.enabled = true;
+        direction = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
         velocity.x = direction.x * speed;
         velocity.y = direction.y * speed;
 
@@ -96,14 +111,17 @@ public class BossController : MonoBehaviour
         // TODO write slam
         isJumping = true;
         print("SLAM");
-         Vector2 direction = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
+        direction = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
         
     }
 
-    private void Shoot()
+    private IEnumerator Shoot()
     {
         isShooting = true;
+        yield return new WaitForSeconds(timeBTWShots);
+        GameObject newBullet = Instantiate(bullet, shootPos.position, Quaternion.identity);
 
+        newBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y);
     }
 
     // Handles Enemy's objects trigger collisions
