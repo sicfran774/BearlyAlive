@@ -27,6 +27,7 @@ public class BossController : MonoBehaviour
     private Vector2 velocity;
 
     public AnimatedSprite moving;
+    public SpriteRenderer spriteRenderer;
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -66,6 +67,7 @@ public class BossController : MonoBehaviour
         int i = 3;
         while (i >= 0 ) {
             StartCoroutine(Shoot());
+            i --;
         }
         
         float playerDistance = Vector2.Distance(transform.position, player.transform.position);
@@ -78,7 +80,7 @@ public class BossController : MonoBehaviour
                 StartCoroutine(Shoot());
             }
             else if (t == 1f) {
-                Slam();
+                StartCoroutine(Slam());
                 if (playerDistance <= slamRange) {
                     player.GetComponent<PlayerController>().healthBar.TookDamage(20);
                 }
@@ -106,13 +108,15 @@ public class BossController : MonoBehaviour
          }
     }
 
-    private void Slam()
+    private IEnumerator Slam()
     {
         // TODO write slam
         isJumping = true;
         print("SLAM");
-        direction = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
-        
+        spriteRenderer.enabled = false;
+        transform.position = player.transform.position;
+        yield return new WaitForSeconds(2f);
+        spriteRenderer.enabled = true;
     }
 
     private IEnumerator Shoot()
