@@ -92,6 +92,7 @@ public class BossController : MonoBehaviour
                 StartCoroutine(Shoot());
                 yield return new WaitForSeconds(5f);
                 Move();
+                Slam();
                 yield break;
             }
             else{
@@ -127,9 +128,9 @@ public class BossController : MonoBehaviour
         print("SLAM");
         spriteRenderer.enabled = false;
         transform.position = player.transform.position;
-        new WaitForSeconds(2f);
         spriteRenderer.enabled = true;
         spriteRenderer.sprite = boss;
+         rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
 
     }
 
