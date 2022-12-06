@@ -12,6 +12,9 @@ public class RoomEventHandler : MonoBehaviour
     [Header("Level Name")]
     public string levelName;
 
+    [Header("Player Health Gain")]
+    int healthGain = 10;
+
     //must import specific enemy types
     [Header("Types of Enemies")]
     public GameObject enemyOne;
@@ -41,6 +44,7 @@ public class RoomEventHandler : MonoBehaviour
     private List<EnemyDataJson> enemyOrder;
     private List<GameObject> tempWalls;
     private RoomManager roomManager;
+    private PlayerController player;
     private int index;
     
 
@@ -49,6 +53,7 @@ public class RoomEventHandler : MonoBehaviour
         //enemyOrder = EnemyPlaceScript.LoadEnemyData(Application.persistentDataPath + "/" + levelName + ".json");
         tempWalls = new List<GameObject>();
         roomManager = GameObject.Find("RoomManager").GetComponent<RoomManager>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
         upgrades = new GameObject[] { jellyInfusion, malicAcid, popRocks, rockCandy, tajinRubdown };
         techniques = new GameObject[] { boomerang, chiSpit, slash, slingShot, whip};
@@ -131,6 +136,7 @@ public class RoomEventHandler : MonoBehaviour
     {
         Debug.Log("Room cleared, dropping loot!");
         rewarded = true;
+        RegainHealth();
 
         //Randomly generate upgrade/techniques
         System.Random rand = new System.Random();
@@ -152,6 +158,13 @@ public class RoomEventHandler : MonoBehaviour
             technique = Instantiate(techniques[randTechniqueNum], transform.parent);
             technique.transform.position = new Vector2(technique.transform.position.x + 5, technique.transform.position.y);
         }
+    }
+
+    void RegainHealth()
+    {
+        print("Player gained " + healthGain + "HP.");
+        print("Current HP: " + player.healthBar.currentHealth);
+        player.healthBar.ReceivedHealth(healthGain);
     }
 
     void CloseWalls()

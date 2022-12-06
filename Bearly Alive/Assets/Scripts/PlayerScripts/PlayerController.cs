@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     // Player's Health Bar max value
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
     public HealthBar healthBar;
 
 
