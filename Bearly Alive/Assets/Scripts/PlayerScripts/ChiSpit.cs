@@ -1,3 +1,14 @@
+/***************************************************************
+*File: ChiSpit.cs
+*Author: Radical Cadavical
+*Class: CS 4700 – Game Development
+*Assignment: Program 4
+*Date last modified: 12/5/2022
+*
+*Purpose: This program implements the ChiSpit Technique by
+*implementing the functions inherited from Technique Class.
+****************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +25,7 @@ public class ChiSpit : Technique
     // grab HelperMethods for angling the bullets
     public HelperMethods helpers;
 
+    // Max ammo 
     int rounds = 15;
 
 
@@ -22,13 +34,20 @@ public class ChiSpit : Technique
     public const float defaultCooldown = 0.4f;
 
     // ALWAYS call after add component
+    //function: Initialize
+    //purpose: Sets the default damage and cooldown values when technique
+    //has been learned/equipped by the player
     public override void Initialize (int damage = defaultDamage, float cooldown = defaultCooldown) {
         base.Initialize(defaultDamage, defaultCooldown);
         helpers = GetComponent<HelperMethods>();
         hudManager = gameObject.GetComponent<PlayerController>().hudManager;
     }
 
-    // call when the actor should perform chiSpit
+
+
+    //function: Act
+    //purpose: Overrides Action's Act method to perform
+    //Chispit firing and start technique's cooldown
     public override void Act() {
         if (!techsCooling)
         {
@@ -37,12 +56,14 @@ public class ChiSpit : Technique
         }
     }
 
-    // Act will have different behavior depending on which upgrade is set.
+    //function: SetUpgrade
+    //purpose: Sets the pickedUp upgrade to the technique
     public override void SetUpgrade(string newUpgrade) {
         upgrade = newUpgrade;
     }
 
-    // Handles Player's firing, Projectile Sound, reloading and Weapon's Ammo UI.
+    //function: FireWeapon
+    //purpose: Handles Player's firing, Projectile Sound, reloading and Weapon's Ammo UI.
     // If the weapon has no ammo left, Reload Method is invoke after 2 second delay.
     // Use Left Crtl or Mouse Click to fire weapon
     void FireWeapon()
@@ -61,12 +82,10 @@ public class ChiSpit : Technique
             GameObject latestBullet = Instantiate(GameManager.instance.ChiSpitProjectile, transform.position, helpers.CursorAngle());
             latestBullet.tag = upgrade;
 
-            // debug print("Bullets Remaining: " + rounds);
         }
 
         if(rounds == 0)
         {
-            print("Reloading");
             //Reload, wait 2 seconds
             Invoke("Reload", 2f);        
         }
@@ -74,7 +93,8 @@ public class ChiSpit : Technique
     }
 
 
-    // Handles Weapon Reload for Basic Weapon
+    //function: Reload
+    //purpose: Handles Weapon Reload for Chispit Technique
     void Reload()
     {
         rounds = GameManager.instance._MAX_AMMO;

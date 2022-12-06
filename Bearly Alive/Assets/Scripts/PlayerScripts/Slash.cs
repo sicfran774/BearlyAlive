@@ -1,3 +1,14 @@
+/***************************************************************
+*File: Slash.cs
+*Author: Radical Cadavical
+*Class: CS 4700 – Game Development
+*Assignment: Program 4
+*Date last modified: 12/5/2022
+*
+*Purpose: This program implements the Slash Technique by
+*implementing the functions inherited from Technique Class.
+****************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -22,8 +33,10 @@ public class Slash : Technique
     private GameObject swordChildObject;
 
 
-    // Makes the sword hidden when it is first initializes when the game starts
     // ALWAYS call after add component
+    //function: Initialize
+    //purpose: Sets the default damage and cooldown values when technique
+    //has been learned/equipped by the player and set sword object to be disabled
     public override void Initialize(int damage = defaultDamage, float cooldown = defaultCooldown)
     {
         base.Initialize(defaultDamage, defaultCooldown);
@@ -34,6 +47,11 @@ public class Slash : Technique
         swordChildObject = Instantiate(sword, new Vector2(transform.position.x, transform.position.y + 3.5f), Quaternion.Euler(0f, 0f, 0f), transform);
     }
 
+
+
+    //function: Act
+    //purpose: Overrides Action's Act method to perform
+    //Slash and start technique's cooldown
     public override void Act()
     {
         if (!techsCooling)
@@ -45,6 +63,8 @@ public class Slash : Technique
     }
 
 
+    //function: SetUpgrade
+    //purpose: Sets the pickedUp upgrade to the technique
     public override void SetUpgrade(string newUpgrade)
     {
         upgrade = newUpgrade;
@@ -58,7 +78,6 @@ public class Slash : Technique
     // and performing the circular slash
     private void OnEnable()
     {
-        //speed = slashSpeed;
         swordRigidBody = GetComponentInChildren<Rigidbody2D>();
         coll = GetComponentInChildren<Collider2D>();
 
@@ -73,7 +92,8 @@ public class Slash : Technique
     }
 
 
-    // Coroutine that handles the circular slash technique.
+    //function: Rotate
+    //purpose: Coroutine that handles the circular slash technique.
     // The amount of time it takes to complete the action is 
     // based on the argument passed.
     IEnumerator Rotate(float duration)

@@ -1,3 +1,16 @@
+/***************************************************************
+*File: Boomerang.cs
+*Author: Radical Cadavical
+*Class: CS 4700 – Game Development
+*Assignment: Program 4
+*Date last modified: 12/5/2022
+*
+*Purpose: This program implements the Boomerang Technique by
+*implementing the functions inherited from Technique Class.
+****************************************************************/
+
+
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,9 +19,10 @@ using UnityEngine;
 public class Boomerang : Technique
 {
 
+    // Reference to boomerang spawned
     private GameObject boomerang;
 
-    // The amount of time for slash action to finish
+    // Boomerang's Speed & Duration Values
     public float duration = 0.4f;
 
     public float tossSpeed = 4f;
@@ -30,13 +44,18 @@ public class Boomerang : Technique
     public const float defaultCooldown = 1f;
 
 
-    // Makes the sword hidden when it is first initializes when the game starts
     // ALWAYS call after add component
+    //function: Initialize
+    //purpose: Sets the default damage and cooldown values when technique
+    //has been learned/equipped by the player
     public override void Initialize(int damage = defaultDamage, float cooldown = defaultCooldown)
     {
         base.Initialize(defaultDamage, defaultCooldown);
     }
 
+    //function: Act
+    //purpose: Overrides Action's Act method to perform
+    //boomerang toss and start technique's cooldown
     public override void Act()
     {
         if (!techsCooling)
@@ -47,28 +66,32 @@ public class Boomerang : Technique
     }
 
 
+    //function: SetUpgrade
+    //purpose: Sets the pickedUp upgrade to the technique
     public override void SetUpgrade(string newUpgrade)
     {
         upgrade = newUpgrade;
     }
 
 
-
+    //function: OnTriggerStay2D
+    //purpose: Handles the boomerang catch after the player
+    //has tossed the boomerang by checking if the boomerang
+    //has collided with the player
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.gameObject.name == "Boomerang(Clone)")
         {
             if (returning)
             {
-                print("Player Caught Boomerang");
                 returning = false;
             }
         }
     }
 
 
-
-    // Coroutine that handles the boomerang technique.
+    //function: HandleBoomerangToss
+    //purpose: Coroutine that handles the boomerang technique.
     IEnumerator HandleBoomerangToss(float duration)
     {
 
