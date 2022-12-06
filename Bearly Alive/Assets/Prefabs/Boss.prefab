@@ -162,8 +162,11 @@ MonoBehaviour:
   player: {fileID: 7575347867245439747, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
   coll: {fileID: 2167879515779462648}
   MAX_HEALTH: 30
+  healthRemaining: 0
   bullet: {fileID: 6768108042419747499, guid: 9c89962e100d6944d8330f5c2e2eecb4, type: 3}
   moving: {fileID: 2167879515779462646}
+  dying: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!114 &2167879515779462646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3123479313307100910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: shootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2950658413349845678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.17, y: -0.06, z: 0.88240176}
+  m_LocalPosition: {x: -0.13, y: -0.06, z: 10}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
