@@ -2913,12 +2913,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 104647611}
     - target: {fileID: 2167879515779462647, guid: bb1a5baaa092c44e392c35f7c1611700, type: 3}
+      propertyPath: MAX_HEALTH
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2167879515779462647, guid: bb1a5baaa092c44e392c35f7c1611700, type: 3}
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 104647616}
     - target: {fileID: 2167879515779462647, guid: bb1a5baaa092c44e392c35f7c1611700, type: 3}
       propertyPath: healthRemaining
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2167879515779462649, guid: bb1a5baaa092c44e392c35f7c1611700, type: 3}
       propertyPath: m_Constraints
@@ -2930,11 +2934,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2167879515779462651, guid: bb1a5baaa092c44e392c35f7c1611700, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.01
+      value: -26.72
       objectReference: {fileID: 0}
     - target: {fileID: 2167879515779462651, guid: bb1a5baaa092c44e392c35f7c1611700, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.6
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 2167879515779462651, guid: bb1a5baaa092c44e392c35f7c1611700, type: 3}
       propertyPath: m_LocalPosition.z
