@@ -5,13 +5,14 @@ using UnityEngine;
 public class PauseGameController : MonoBehaviour
 {
 
-    public GameObject pauseButton, pausePanel;
+    public GameObject pauseButton, pausePanel, exitButton;
 
 
     private void Start()
     {
         pausePanel.SetActive(false);
         pauseButton.SetActive(true);
+        exitButton.SetActive(false);
     }
 
 

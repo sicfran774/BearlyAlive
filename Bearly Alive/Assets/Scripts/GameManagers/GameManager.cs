@@ -69,9 +69,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        /*//Enable gameplay music
-        GetComponent<AudioSource>().Play();*/
-
         if (instance == null)
         {
             instance = this;

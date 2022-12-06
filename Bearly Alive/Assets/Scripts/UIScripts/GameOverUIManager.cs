@@ -18,5 +18,8 @@ public class GameOverUIManager : MonoBehaviour
         //Stop gameplay music
         GameManager.instance.GetComponent<AudioSource>().Stop();
         GameManager.instance.Reset();
+
+        //Unpause game when player exits game from pause menu and restarts game
+        Time.timeScale = 1;
     }
 }
