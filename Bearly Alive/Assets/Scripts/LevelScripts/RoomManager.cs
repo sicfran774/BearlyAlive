@@ -327,7 +327,7 @@ public class RoomManager : MonoBehaviour
             while (true)
             {
                 int lootRoom = rand.Next(0, roomCount);
-                if (roomList[lootRoom] != bossRoomIndex)
+                if (roomList[lootRoom] != bossRoomIndex && roomList[lootRoom] != 45)
                 {
                     lootRoomIndex = roomList[lootRoom];
                     break;
