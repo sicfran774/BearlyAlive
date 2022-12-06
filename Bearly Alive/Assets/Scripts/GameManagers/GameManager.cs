@@ -1,3 +1,15 @@
+/***************************************************************
+*File: GameManager.cs
+*Author: Radical Cadavical
+*Class: CS 4700 – Game Development
+*Assignment: Program 4
+*Date last modified: 12/5/2022
+*
+*Purpose: This program stores the technique's weapon objects.The 
+*program handles Scene transitions, Starting Screen to starting 
+*the game at Level 1, displaying Game Over, and Finished Screen.
+*Handles Technique and upgrade menu toggles.
+****************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,6 +79,7 @@ public class GameManager : MonoBehaviour
     }
  
 
+
     private void Awake()
     {
         if (instance == null)
@@ -81,21 +94,24 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Decrements weapon's ammo
+
+    //function: DecreaseAmmo
+    //purpose: Decrements Chispit's ammo
     public void DecreaseAmmo(int amount)
     {
         bullets -= amount;
     }
 
-    // Sets the weapon's ammo back to max capacity
-    // Used in Reload function
-
+    //function: SetAmmo
+    //purpose: Sets the weapon's ammo back to max
+    //capacity Used in Reload function
     public void SetAmmo()
     {
         bullets = _MAX_AMMO;
     }
 
-    //Increase the score 
+    //function: IncreaseScore
+    //purpose: Increases the score
     public void IncreaseScore(int amount)
     {
         //Increase the score by given amount 
@@ -112,7 +128,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Restart game and refresh score and reset back to level 1
+    //function Reset()
+    //purpose: Restarts game and refresh score and reset back to
+    //level 1
     public void Reset()
     {
         //Reset score
@@ -132,7 +150,9 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //Allow the player to try again, this keeps the high score and curr level and rests the score 
+    //function: TryAgain
+    //purpose: Allow the player to try again, this keeps the high score
+    //and curr level and rests the score 
     public void TryAgain()
     {
         //reset score 
@@ -143,13 +163,17 @@ public class GameManager : MonoBehaviour
     }
 
 
+    //function: RestartGame
+    //purpose: Triggers to display Game Over
+    //screen when player dies
     public void RestartGame()
     {
         SceneManager.LoadScene("GameOver");
     }
 
 
-    //Go to next level 
+    //function: IncreaseLevel
+    //purpose: Loads next level in scenemanagement
     public void IncreaseLevel()
     {
         //Check current level, and if at last level reset to level 1 
