@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
     public float shootingRange;
     public float fireRate;
     private float nextFireTime;
-    
+
     //Help get enemy angle and direction for attacks
     private Vector2 direction;
     private float angle;
@@ -72,15 +72,15 @@ public class EnemyController : MonoBehaviour
 
         //We want to shoot when the enemy "sees" the player, still every few seconds though
         //Shoot();
-        if(currentTime == 0) 
+        if (currentTime == 0)
         {
-            if(isSour)
+            if (isSour)
             {
-                tickDamage();
+                tickDamage("Sour");
                 x++;
             }
 
-            if(x == 5)
+            if (x == 5)
             {
                 isSour = false;
                 GetComponentInChildren<ParticleSystem>().Stop();
@@ -88,36 +88,34 @@ public class EnemyController : MonoBehaviour
 
         }
 
-        if (currentTime > 0 && currentTime % 2 == 0)
+        if (currentTime == 0)
         {
             if (isSpicy)
             {
-                tickDamage();
+                tickDamage("Spicy");
                 x++;
             }
 
-            if(x == 3)
+            if (x == 3)
             {
                 isSpicy = false;
                 GetComponentInChildren<ParticleSystem>().Stop();
             }
 
-
-
         }
 
         //See how health is doing every frame
-        if (healthRemaining <= 0) 
+        if (healthRemaining <= 0)
         {
             GameManager.instance.IncreaseScore(1);
             Destroy(gameObject);
         }
 
         //Timer for attacks and passive damage
-        if(currentTime < waitTime)
+        if (currentTime < waitTime)
             currentTime += 1 * Time.deltaTime;
 
-        if(currentTime >= waitTime)
+        if (currentTime >= waitTime)
             currentTime = 0;
     }
 
@@ -125,27 +123,27 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //If hit with bullet, damage the enemy
-        if(collision.gameObject.name == "Bullet(Clone)")
+        if (collision.gameObject.name == "Bullet(Clone)")
         {
             healthRemaining--;
         }
 
-        if(collision.gameObject.name == "Boomerang(Clone)")
+        if (collision.gameObject.name == "Boomerang(Clone)")
         {
             healthRemaining--;
         }
 
-        if(collision.gameObject.name == "Sword(Clone)")
+        if (collision.gameObject.name == "Sword(Clone)")
         {
             healthRemaining--;
         }
 
-        if(collision.gameObject.name == "Slingshot(Clone)")
+        if (collision.gameObject.name == "Slingshot(Clone)")
         {
             healthRemaining--;
         }
 
-        if(collision.gameObject.name == "Whip(Clone)")
+        if (collision.gameObject.name == "Whip(Clone)")
         {
             healthRemaining--;
         }
@@ -154,27 +152,31 @@ public class EnemyController : MonoBehaviour
         //If the enemy is affected by an explosion, push the enemy a certain distance
 
         //TODO: Change to random chance and not guarantee
-        if(collision.tag == "UpgradeSour")
+        if (collision.tag == "UpgradeSour")
         {
-            if(Random.Range(1, 100) <= 80)
+            if (Random.Range(1, 100) <= 25)
             {
                 isSour = true;
-            } else {
+            }
+            else
+            {
                 isSour = false;
             }
         }
 
-        if(collision.tag == "UpgradeSpicy")
+        if (collision.tag == "UpgradeSpicy")
         {
-            if(Random.Range(1, 100) <= 80)
+            if (Random.Range(1, 100) <= 25)
             {
                 isSpicy = true;
-            } else {
+            }
+            else
+            {
                 isSpicy = false;
             }
         }
 
-        if(collision.tag == "UpgradeKnockback")
+        if (collision.tag == "UpgradeKnockback")
         {
             Vector2 d = (GetComponent<Collider>().transform.position - transform.position).normalized;
             Vector2 knockback = d * 100;
@@ -183,7 +185,7 @@ public class EnemyController : MonoBehaviour
     }
 
     //Deal damage as per the timer given by each enemies' wait time variable
-    void tickDamage()
+    void tickDamage(string effect)
     {
 
         ParticleSystem.MainModule colorSystem = GetComponentInChildren<ParticleSystem>().main;
@@ -193,9 +195,9 @@ public class EnemyController : MonoBehaviour
         GradientColorKey[] colorKeys = new GradientColorKey[2];
         GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
 
-        switch (isSpicy)
+        switch (effect)
         {
-            case true: 
+            case "Spicy":
                 colorSystem.startColor = new ParticleSystem.MinMaxGradient(Color.red);
                 colorKeys[0].color = colorSystem.startColor.color;
                 colorKeys[0].time = 0f;
@@ -203,27 +205,9 @@ public class EnemyController : MonoBehaviour
                 colorKeys[1].color = new Color(0.937255f, 0.6235294f, 0.1372549f, 1f);
                 colorKeys[1].time = 0.25f;
 
-                alphaKeys[0].alpha = 1f;
-                alphaKeys[0].time = 0f;
-
-                alphaKeys[1].alpha = 0.5f;
-                alphaKeys[1].time = 0.7f;
-
-                gradient.SetKeys(colorKeys, alphaKeys);
-
-                colorSystem.startColor = gradient;
-
-                GetComponentInChildren<ParticleSystem>().Play();
-
                 break;
-            case false:
 
-                break;
-        }
-
-        switch (isSour)
-        {
-            case true:
+            case "Sour":
                 colorSystem.startColor = new ParticleSystem.MinMaxGradient(Color.green);
                 colorKeys[0].color = colorSystem.startColor.color;
                 colorKeys[0].time = 0f;
@@ -231,24 +215,21 @@ public class EnemyController : MonoBehaviour
                 colorKeys[1].color = new Color(0f, 1f, 0.5668461f, 1f);
                 colorKeys[1].time = 0.25f;
 
-                alphaKeys[0].alpha = 1f;
-                alphaKeys[0].time = 0f;
-
-                alphaKeys[1].alpha = 0.5f;
-                alphaKeys[1].time = 0.7f;
-
-                gradient.SetKeys(colorKeys, alphaKeys);
-
-                colorSystem.startColor = gradient;
-
-                GetComponentInChildren<ParticleSystem>().Play();
-
                 break;
 
-            case false:
-                break;
         }
 
+        alphaKeys[0].alpha = 1f;
+        alphaKeys[0].time = 0f;
+
+        alphaKeys[1].alpha = 0.5f;
+        alphaKeys[1].time = 0.7f;
+
+        gradient.SetKeys(colorKeys, alphaKeys);
+
+        colorSystem.startColor = gradient;
+
+        GetComponentInChildren<ParticleSystem>().Play();
 
         healthRemaining--;
     }
@@ -257,7 +238,7 @@ public class EnemyController : MonoBehaviour
     void OnUpgradeMenuToggle(bool active)
     {
         shot = !active;
-     
+
         //Enemy movement in slow motion
         Time.timeScale = 0.1f;
 

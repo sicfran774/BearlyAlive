@@ -10,7 +10,8 @@ public class PauseGameController : MonoBehaviour
 
     private void Start()
     {
-        ResumeGame();
+        pausePanel.SetActive(false);
+        pauseButton.SetActive(true);
     }
 
 
