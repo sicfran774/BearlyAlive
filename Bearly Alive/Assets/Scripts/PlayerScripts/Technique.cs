@@ -31,6 +31,12 @@ public abstract class Technique : Action
         protected set;
     }
 
+    public static bool rotationLock
+    {
+        get;
+        protected set;
+    }
+
     // different values of upgrade cause different actions
     public string upgrade {
         get;
