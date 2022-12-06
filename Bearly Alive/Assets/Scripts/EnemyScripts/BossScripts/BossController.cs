@@ -12,7 +12,7 @@ public class BossController : MonoBehaviour
     public float range = 25f;
     public float shootingRange = 20f;
     private bool shot;
-    public float timeBTWShots = 30f;
+    public float timeBTWShots = 1f;
     public Transform shootPos;
 
     public Vector2 direction;
@@ -21,7 +21,7 @@ public class BossController : MonoBehaviour
     public Transform transform;
     public GameObject player;
     public Collider2D coll;
-    public int MAX_HEALTH = 20;
+    public int MAX_HEALTH = 1;
     public int healthRemaining;
     public GameObject bullet;
     private Vector2 velocity;
@@ -70,7 +70,15 @@ public class BossController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        StartCoroutine(BossMovement());
+         if (healthRemaining <= 0) {
+            isDead = true;
+            rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            moving.enabled = false;
+            dying.enabled = true;
+        } else {
+            StartCoroutine(BossMovement());
+        }
+      
     }
 
     private IEnumerator BossMovement()
@@ -84,6 +92,7 @@ public class BossController : MonoBehaviour
                 StartCoroutine(Shoot());
                 yield return new WaitForSeconds(5f);
                 Move();
+                Slam();
                 yield break;
             }
             else{
@@ -95,11 +104,7 @@ public class BossController : MonoBehaviour
                 yield break;
             }
         }
-        if (healthRemaining <= 0) {
-            isDead = true;
-            moving.enabled = false;
-            dying.enabled = true;
-        }
+       
     }
 
     private void Move()
@@ -123,9 +128,9 @@ public class BossController : MonoBehaviour
         print("SLAM");
         spriteRenderer.enabled = false;
         transform.position = player.transform.position;
-        new WaitForSeconds(2f);
         spriteRenderer.enabled = true;
         spriteRenderer.sprite = boss;
+         rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
 
     }
 
@@ -133,7 +138,7 @@ public class BossController : MonoBehaviour
     {
         isShooting = true;
         count ++;
-        yield return new WaitForSeconds(timeBTWShots);
+        yield return new WaitForSeconds(10);
         GameObject newBullet = Instantiate(bullet, shootPos.position, Quaternion.identity);
 
         newBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y);

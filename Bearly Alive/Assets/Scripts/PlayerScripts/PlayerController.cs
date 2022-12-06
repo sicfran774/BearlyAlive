@@ -127,10 +127,10 @@ public class PlayerController : MonoBehaviour
         //For testing: give player starting moves
         //LearnTechnique<Slingshot>(1);
         //LearnTechnique<Slash>(1);
-        LearnTechnique<Slingshot>(2);
+        //LearnTechnique<Slingshot>(2);
         //LearnTechnique<Whip>(1);
-        LearnTechnique<ChiSpit>(2);
-        LearnTechnique<Boomerang>(1);
+        //LearnTechnique<ChiSpit>(2);
+        //LearnTechnique<Boomerang>(1);
 
         //Upgrade pick up attributes 
         pressEForUpgradeLabel.enabled = false;
