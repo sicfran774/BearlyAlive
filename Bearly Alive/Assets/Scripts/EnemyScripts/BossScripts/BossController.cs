@@ -29,7 +29,7 @@ public class BossController : MonoBehaviour
 
     public Vector2 direction;
     public float speed = 1f;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidBody;
     public Transform transform;
     public GameObject player;
     public Collider2D coll;
@@ -45,10 +45,10 @@ public class BossController : MonoBehaviour
     private Sprite boss;
 
     private int count = 0;
-    private void Start()
+    private void Awake()
     {
         player = GameObject.FindWithTag("Player");
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         boss = spriteRenderer.sprite;
         healthRemaining = MAX_HEALTH;
@@ -72,19 +72,19 @@ public class BossController : MonoBehaviour
 
     private void OnEnable()
     {
-        rigidbody.WakeUp();
+        rigidBody.WakeUp();
     }
 
     private void OnDisable()
     {
-        rigidbody.velocity = Vector2.zero;
-        rigidbody.Sleep();
+        rigidBody.velocity = Vector2.zero;
+        rigidBody.Sleep();
     }
     private void FixedUpdate()
     {
          if (healthRemaining <= 0) {
             isDead = true;
-            rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
             moving.enabled = false;
             dying.enabled = true;
             StartCoroutine(KillBoss());
@@ -106,7 +106,7 @@ public class BossController : MonoBehaviour
         if (playerDistance <= range && !isJumping) {
             if (playerDistance <= shootingRange) {
                 print("shoot");
-                rigidbody.Sleep();
+                rigidBody.Sleep();
                 isShooting = true;
                 StartCoroutine(Shoot());
                 yield return new WaitForSeconds(5f);
@@ -134,8 +134,8 @@ public class BossController : MonoBehaviour
         velocity.x = direction.x * speed;
         velocity.y = direction.y;
 
-        rigidbody.MovePosition(rigidbody.position + -velocity * Time.fixedDeltaTime / 10);
-         if (rigidbody.Raycast(direction)) {
+        rigidBody.MovePosition(rigidBody.position + -velocity * Time.fixedDeltaTime / 10);
+         if (rigidBody.Raycast(direction)) {
             direction = -direction;
          }
     }
@@ -149,7 +149,7 @@ public class BossController : MonoBehaviour
         transform.position = player.transform.position;
         spriteRenderer.enabled = true;
         spriteRenderer.sprite = boss;
-         rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
+        rigidBody.MovePosition(rigidBody.position + velocity * Time.fixedDeltaTime);
 
     }
 

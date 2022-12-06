@@ -131,8 +131,11 @@ public class RoomEventHandler : MonoBehaviour
     {
         foreach(Transform enemyTransform in transform)
         {
-            AIDestinationSetter enemy = enemyTransform.gameObject.GetComponent<AIDestinationSetter>();
-            enemy.target = GameObject.FindWithTag("Player").transform;
+            if (!bossRoom)
+            {
+                AIDestinationSetter enemy = enemyTransform.gameObject.GetComponent<AIDestinationSetter>();
+                enemy.target = GameObject.FindWithTag("Player").transform;
+            }
         }
     }
 
