@@ -1697,6 +1697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseButton: {fileID: 1141189629}
   pausePanel: {fileID: 1832348852}
+  exitButton: {fileID: 0}
 --- !u!114 &484627891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3666,7 +3667,7 @@ PrefabInstance:
     - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
       propertyPath: lootImage
       value: 
-      objectReference: {fileID: 102555795654610316, guid: 6fb76aa8e09cc2146b6fef20dbcdcb16, type: 3}
+      objectReference: {fileID: 102555795654610316, guid: ce36790126671e94cb986443a4442081, type: 3}
     - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
       propertyPath: roomImage
       value: 
@@ -4449,7 +4450,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 484627889}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
