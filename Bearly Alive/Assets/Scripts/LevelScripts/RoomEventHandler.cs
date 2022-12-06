@@ -133,7 +133,7 @@ public class RoomEventHandler : MonoBehaviour
         GameObject upgrade;
         GameObject technique;
 
-        if (index != roomManager.lootRoomIndex && rand.Next(0, 2) == 0) //50% chance to drop upgrade
+        if (index != roomManager.lootRoomIndex && index != 45 && rand.Next(0, 2) == 0) //50% chance to drop upgrade
         {
             upgrade = Instantiate(upgrades[randUpgradeNum], transform.parent);
             upgrade.transform.position = new Vector2(upgrade.transform.position.x, upgrade.transform.position.y);
