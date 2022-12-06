@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RoomEventHandler : MonoBehaviour
@@ -35,6 +36,7 @@ public class RoomEventHandler : MonoBehaviour
     [SerializeField] private bool playerInRoom = false;
     [SerializeField] private bool noEnemiesRemaining = false;
     [SerializeField] private bool rewarded = false;
+    [SerializeField] public bool bossRoom = false;
 
     private List<EnemyDataJson> enemyOrder;
     private List<GameObject> tempWalls;
@@ -81,6 +83,11 @@ public class RoomEventHandler : MonoBehaviour
         if (noEnemiesRemaining && playerInRoom && !rewarded && index != 45 || (index == 45 && !GameObject.Find("DialogueBox") && !rewarded)) //If player cleared room OR its origin room
         {
             RemoveWalls();
+            if (bossRoom)
+            {
+                WinCondition();
+            }
+
             DropLoot();
         } 
     }
@@ -213,7 +220,8 @@ public class RoomEventHandler : MonoBehaviour
 
     void WinCondition()
     {
-
+        GameManager.instance.GetComponent<AudioSource>().Stop();
+        SceneManager.LoadScene("Victory");
     }
 
 

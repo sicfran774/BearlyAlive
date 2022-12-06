@@ -231,6 +231,7 @@ public class RoomManager : MonoBehaviour
             else if (i == bossRoomIndex)
             {
                 newRoom = Instantiate(bossRoom);
+                newRoom.GetComponentInChildren<RoomEventHandler>().bossRoom = true;
             }
             else if (i == lootRoomIndex)
             {
