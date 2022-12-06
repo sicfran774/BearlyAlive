@@ -4949,14 +4949,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd38e76f45c96e84ea2a33b14237f3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MAX_HEALTH: 5
+  _MAX_HEALTH: 6
   projectileSpeed: 4
   hud: {fileID: 0}
   player: {fileID: 7575347867245439747, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
   bullet: {fileID: 6768108042419747499, guid: 6248e03f250797f40bda04e55492232c, type: 3}
   bulletSpawnPoint: {fileID: 8667829567553451782}
   shootingRange: 2.75
-  fireRate: 0.42
+  fireRate: 0.3
   waitTime: 1
 --- !u!114 &8794955684243271479
 MonoBehaviour:
@@ -5016,7 +5016,7 @@ MonoBehaviour:
   radius: 0.95
   height: 2.06
   canMove: 1
-  maxSpeed: 10.13
+  maxSpeed: 15.65
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -5085,7 +5085,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0

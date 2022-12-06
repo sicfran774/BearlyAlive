@@ -7,10 +7,10 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     //Straightforward variables to control enemy basic attributes
-    public int _MAX_HEALTH = 2;
+    public float _MAX_HEALTH = 2f;
     public float projectileSpeed = 4f;
     public HudManager hud;
-    int healthRemaining;
+    float healthRemaining;
 
     //Bullet things
     public GameObject player;
@@ -130,7 +130,7 @@ public class EnemyController : MonoBehaviour
 
         if (collision.gameObject.name == "Boomerang(Clone)")
         {
-            healthRemaining--;
+            healthRemaining -= 0.5f;
         }
 
         if (collision.gameObject.name == "Sword(Clone)")
@@ -144,6 +144,11 @@ public class EnemyController : MonoBehaviour
         }
 
         if (collision.gameObject.name == "Whip(Clone)")
+        {
+            healthRemaining -= 2;
+        }
+
+        if (collision.gameObject.name == "EnemyBullet" && collision.tag == "UpgradeNone") 
         {
             healthRemaining--;
         }
@@ -181,6 +186,7 @@ public class EnemyController : MonoBehaviour
             Vector2 d = (GetComponent<Collider2D>().transform.position - transform.position).normalized;
             Vector2 knockback = d * 100;
             enemy.AddForce(knockback, ForceMode2D.Impulse);
+            healthRemaining--;
         }
     }
 
