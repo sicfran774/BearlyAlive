@@ -76,7 +76,7 @@ public class RoomManager : MonoBehaviour
     private const float OriginOffsetX = -500;
     private const float OriginOffsetY = -200;
 
-    private const float MapOffsetX = 225;
+    private const float MapOffsetX = 215;
     private const float MapOffsetY = -300;
 
     System.Random rand = new System.Random();
@@ -345,8 +345,8 @@ public class RoomManager : MonoBehaviour
         {
             mostRightRoom = Math.Max(mostRightRoom % 10, i % 10);
             mostBelowRoom = Math.Min(mostBelowRoom / 10, i / 10);
-            x = (i % 10) * 45;
-            y = (i / 10) * 22.5f;
+            x = (i % 10) * 40 * map.transform.localScale.x;
+            y = (i / 10) * 20 * map.transform.localScale.y;
             GameObject cellImage;
             if(i == lootRoomIndex)
             {
@@ -361,10 +361,10 @@ public class RoomManager : MonoBehaviour
                 cellImage = Instantiate(roomImage);
             }
             cellImage.transform.SetParent(map.transform, false);
+            cellImage.transform.localScale = map.transform.localScale;
             cellImage.transform.position = new Vector2(cellImage.transform.position.x + x, cellImage.transform.position.y + y);
             cellImage.name = i + "image";
         }
-        print(mostRightRoom);
         mostRightRoom = (int)(MapOffsetX - (mostRightRoom * 10));
         mostBelowRoom = (int)(MapOffsetY - (mostBelowRoom * 10));
         map.transform.position = new Vector2(map.transform.position.x + mostRightRoom, map.transform.position.y + mostBelowRoom);
