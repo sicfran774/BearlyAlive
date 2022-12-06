@@ -458,7 +458,10 @@ public class PlayerController : MonoBehaviour
     // upgrade string can be: "none", "poison", "fire", "reflect",
     public void setUpgrade(int slot, string upgrade) {
         if (slot == 1 || slot == 2) {
-            techniques[slot-1].SetUpgrade(upgrade);
+            if (techniques[slot - 1] != null)
+            {
+                techniques[slot - 1].SetUpgrade(upgrade);
+            }
         }
     }
 

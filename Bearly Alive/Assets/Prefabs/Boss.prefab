@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7865946113086584549}
   - component: {fileID: 4898774389534848306}
   - component: {fileID: 6617995989977339712}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3123479313307100910}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: shootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
