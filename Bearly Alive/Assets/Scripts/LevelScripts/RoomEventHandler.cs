@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor.EditorTools;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class RoomEventHandler : MonoBehaviour
 {
@@ -58,22 +58,22 @@ public class RoomEventHandler : MonoBehaviour
     {
         if (playerEnteredRoom)
         {
-            playerEnteredRoom = false;
-            playerInRoom = true;
-
-            SetCurrentRoom();
-            index = Int32.Parse(roomManager.playerCurrentRoom.name);
-
-            CloseWalls();
-            AstarPath.active.Scan();
-            //StartCoroutine(PlaceEnemies(enemyOrder));
-            ActivateEnemyMovement();
+            PlayerEnteredRoom();
         }
 
         if (playerInRoom)
         {
             SetCurrentRoom();
             noEnemiesRemaining = CheckIfRoomIsClear();
+            ColorCurrentRoom(roomManager.playerCurrentRoom.name + "image", Color.white);
+        }
+        else if (rewarded)
+        {
+            ColorCurrentRoom(transform.parent.name + "image", Color.gray);
+        }
+        else
+        {
+            ColorCurrentRoom(transform.parent.name + "image", Color.black);
         }
         
         if (noEnemiesRemaining && playerInRoom && !rewarded)
@@ -82,6 +82,20 @@ public class RoomEventHandler : MonoBehaviour
             DropLoot();
         }
         //print(currentRoom);
+    }
+
+    void PlayerEnteredRoom()
+    {
+        playerEnteredRoom = false;
+        playerInRoom = true;
+
+        SetCurrentRoom();
+        index = Int32.Parse(roomManager.playerCurrentRoom.name);
+
+        CloseWalls();
+        AstarPath.active.Scan();
+        //StartCoroutine(PlaceEnemies(enemyOrder));
+        ActivateEnemyMovement();
     }
 
     bool CheckIfRoomIsClear()
@@ -145,6 +159,11 @@ public class RoomEventHandler : MonoBehaviour
         {
             Destroy(wall);
         }
+    }
+
+    void ColorCurrentRoom(string currentRoom, Color color)
+    {
+        GameObject.Find(currentRoom).GetComponent<Image>().color = color;
     }
 
     IEnumerator PlaceEnemies(List<EnemyDataJson> enemyOrder)

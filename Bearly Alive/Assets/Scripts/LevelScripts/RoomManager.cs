@@ -30,16 +30,28 @@ public class RoomManager : MonoBehaviour
     public int minRooms;
     public int maxRooms;
     public int maxLootRooms;
+
+    [Space(20)]
+    [Header("Types of Rooms")]
     public GameObject roomOne;
     public GameObject roomTwo;
     public GameObject roomThree;
     public GameObject roomFour;
     public GameObject lootRoom;
     public GameObject bossRoom;
+
+    [Header("Basic Room Pieces")]
     public GameObject emptyRoom;
     public GameObject entranceWall;
 
     [Space(20)]
+    [Header("Map Generation Images")]
+    public GameObject roomImage;
+    public GameObject lootImage;
+    public GameObject bossImage;
+
+    [Header("Canvas Map")]
+    public GameObject map;
 
     public LayerMask ignoreLayer;
 
@@ -49,6 +61,7 @@ public class RoomManager : MonoBehaviour
     private List<int> endRooms;
     private Queue<int> cellQueue;
     private GameObject roomsParent;
+
 
     public int bossRoomIndex { get; set; }
     public int lootRoomIndex { get; set; }
@@ -125,6 +138,7 @@ public class RoomManager : MonoBehaviour
                 StartCoroutine(CreateRoomsInScene());
                 StartCoroutine(CloseWalls());
                 doneGeneratingRooms = true;
+                RenderMap();
 
                 yield break;
             }
@@ -307,10 +321,14 @@ public class RoomManager : MonoBehaviour
     {
         for(int i = 0; i < maxLootRooms; i++)
         {
-            int lootRoom = rand.Next(0, roomCount);
-            if (roomList[lootRoom] != bossRoomIndex)
+            while (true)
             {
-                lootRoomIndex = roomList[lootRoom];
+                int lootRoom = rand.Next(0, roomCount);
+                if (roomList[lootRoom] != bossRoomIndex)
+                {
+                    lootRoomIndex = roomList[lootRoom];
+                    break;
+                }
             }
         }
         print("Loot Room: " + lootRoomIndex);
@@ -318,7 +336,33 @@ public class RoomManager : MonoBehaviour
 
     void RenderMap()
     {
-        
+        float x, y;
+        int mostRightRoom = 0;
+        foreach (int i in roomList)
+        {
+            mostRightRoom = Math.Max(mostRightRoom % 10, i % 10);
+            x = (i % 10) * 45;
+            y = (i / 10) * 22.5f;
+            GameObject cellImage;
+            if(i == lootRoomIndex)
+            {
+                cellImage = Instantiate(lootImage);
+            }
+            else if(i == bossRoomIndex)
+            {
+                cellImage = Instantiate(bossImage);
+            }
+            else
+            {
+                cellImage = Instantiate(roomImage);
+            }
+            cellImage.transform.SetParent(map.transform, false);
+            cellImage.transform.position = new Vector2(cellImage.transform.position.x + x, cellImage.transform.position.y + y);
+            cellImage.name = i + "image";
+        }
+        print(mostRightRoom);
+        mostRightRoom *= 10;
+        map.transform.position = new Vector2(map.transform.position.x + mostRightRoom, map.transform.position.y);
     }
 
     public GameObject AddWall(int i, int dir) //dir --> 0, left; 1, right; 2, below; 3, above
