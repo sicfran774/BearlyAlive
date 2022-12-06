@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -79,16 +78,11 @@ public class RoomEventHandler : MonoBehaviour
             DisableEnemies();
         }
         
-        if (noEnemiesRemaining && playerInRoom && !rewarded && index != 45)
+        if (noEnemiesRemaining && playerInRoom && !rewarded && index != 45 || (index == 45 && !GameObject.Find("DialogueBox") && !rewarded)) //If player cleared room OR its origin room
         {
             RemoveWalls();
             DropLoot();
         } 
-        else if(index == 45 && !GameObject.Find("DialogueBox"))  //For starting room
-        {
-            RemoveWalls();
-        }
-        //print(currentRoom);
     }
 
     void PlayerEnteredRoom()
@@ -139,19 +133,18 @@ public class RoomEventHandler : MonoBehaviour
         GameObject upgrade;
         GameObject technique;
 
-        if (index != roomManager.lootRoomIndex && rand.Next(0, 4) == 0) //25% chance to drop upgrade
+        if (index != roomManager.lootRoomIndex && index != 45 && rand.Next(0, 2) == 0) //50% chance to drop upgrade
         {
             upgrade = Instantiate(upgrades[randUpgradeNum], transform.parent);
             upgrade.transform.position = new Vector2(upgrade.transform.position.x, upgrade.transform.position.y);
         }
-        else if(index == roomManager.lootRoomIndex) //Drop in loot rooms
+        else if(index == roomManager.lootRoomIndex || index == 45) //Drop in loot rooms and origin room
         {
             upgrade = Instantiate(upgrades[randUpgradeNum], transform.parent);
             upgrade.transform.position = new Vector2(upgrade.transform.position.x, upgrade.transform.position.y);
             technique = Instantiate(techniques[randTechniqueNum], transform.parent);
             technique.transform.position = new Vector2(technique.transform.position.x + 5, technique.transform.position.y);
         }
-
     }
 
     void CloseWalls()

@@ -138,14 +138,14 @@ public class EnemyController : MonoBehaviour
             healthRemaining--;
         }
 
-        if (collision.gameObject.name == "Slingshot(Clone)")
+        if (collision.gameObject.name == "SlingshotBox")
         {
-            healthRemaining--;
+            healthRemaining -= 3;
         }
 
         if (collision.gameObject.name == "Whip(Clone)")
         {
-            healthRemaining -= 2;
+            healthRemaining -= 3;
         }
 
         if (collision.gameObject.name == "EnemyBullet" && collision.tag == "UpgradeNone") 

@@ -327,7 +327,7 @@ public class RoomManager : MonoBehaviour
             while (true)
             {
                 int lootRoom = rand.Next(0, roomCount);
-                if (roomList[lootRoom] != bossRoomIndex)
+                if (roomList[lootRoom] != bossRoomIndex && roomList[lootRoom] != 45)
                 {
                     lootRoomIndex = roomList[lootRoom];
                     break;
@@ -339,15 +339,20 @@ public class RoomManager : MonoBehaviour
 
     void RenderMap()
     {
+        List<GameObject> cellImages = new List<GameObject>();
         float x, y;
-        int mostRightRoom = 0, mostBelowRoom = 10;
+        int mostRightRoom = 0, mostBelowRoom = 90;
         foreach (int i in roomList)
         {
             mostRightRoom = Math.Max(mostRightRoom % 10, i % 10);
-            mostBelowRoom = Math.Min(mostBelowRoom / 10, i / 10);
+            mostBelowRoom = Math.Min(mostBelowRoom / 10, i / 10) * 10;
+            print(mostBelowRoom);
+
             x = (i % 10) * 40 * map.transform.localScale.x;
             y = (i / 10) * 20 * map.transform.localScale.y;
+
             GameObject cellImage;
+
             if(i == lootRoomIndex)
             {
                 cellImage = Instantiate(lootImage);
@@ -360,14 +365,21 @@ public class RoomManager : MonoBehaviour
             {
                 cellImage = Instantiate(roomImage);
             }
+
             cellImage.transform.SetParent(map.transform, false);
             cellImage.transform.localScale = map.transform.localScale;
-            cellImage.transform.position = new Vector2(cellImage.transform.position.x + x, cellImage.transform.position.y + y);
+            cellImage.transform.localPosition = new Vector2(cellImage.transform.localPosition.x + x, cellImage.transform.localPosition.y + y);
             cellImage.name = i + "image";
+            cellImages.Add(cellImage);
         }
-        mostRightRoom = (int)(MapOffsetX - (mostRightRoom * 10));
-        mostBelowRoom = (int)(MapOffsetY - (mostBelowRoom * 10));
-        map.transform.position = new Vector2(map.transform.position.x + mostRightRoom, map.transform.position.y + mostBelowRoom);
+        foreach (GameObject cellImage in cellImages)
+        {
+            int moveRoomsLeft = mostRightRoom * 25; 
+            int moveRoomsDown = mostBelowRoom * 3;
+
+            cellImage.transform.localPosition = new Vector2(cellImage.transform.localPosition.x - moveRoomsLeft, cellImage.transform.localPosition.y - moveRoomsDown);
+        }
+
         StartCoroutine(RemoveLoadingScreen());
     }
 
