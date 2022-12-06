@@ -52,6 +52,7 @@ public class RoomManager : MonoBehaviour
 
     [Header("Canvas Map")]
     public GameObject map;
+    public GameObject loadingScreen;
 
     public LayerMask ignoreLayer;
 
@@ -140,7 +141,6 @@ public class RoomManager : MonoBehaviour
                 PickLootRoom(maxLootRooms);
                 StartCoroutine(CreateRoomsInScene());
                 StartCoroutine(CloseWalls());
-                doneGeneratingRooms = true;
                 RenderMap();
 
                 yield break;
@@ -368,6 +368,14 @@ public class RoomManager : MonoBehaviour
         mostRightRoom = (int)(MapOffsetX - (mostRightRoom * 10));
         mostBelowRoom = (int)(MapOffsetY - (mostBelowRoom * 10));
         map.transform.position = new Vector2(map.transform.position.x + mostRightRoom, map.transform.position.y + mostBelowRoom);
+        StartCoroutine(RemoveLoadingScreen());
+    }
+
+    IEnumerator RemoveLoadingScreen()
+    {
+        yield return new WaitForSeconds(1.5f);
+        map.transform.GetComponentInParent<DialogueUI>().ShowDialogue(map.transform.GetComponentInParent<DialogueUI>().testDialogue);
+        loadingScreen.SetActive(false);
     }
 
     public GameObject AddWall(int i, int dir) //dir --> 0, left; 1, right; 2, below; 3, above

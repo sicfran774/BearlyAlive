@@ -5,7 +5,7 @@ using System.Collections;
 public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text dialogueTextLabel;
-    [SerializeField] private DialogueObject testDialogue;
+    [SerializeField] public DialogueObject testDialogue;
     [SerializeField] private GameObject dialogueBox;
 
     private TypewriterEffect typewriterEffect;
@@ -13,8 +13,6 @@ public class DialogueUI : MonoBehaviour
     private void Start()
     {
         typewriterEffect = GetComponent<TypewriterEffect>();
-        CloseDialogueBox();
-        ShowDialogue(testDialogue);
     }
 
     public void ShowDialogue(DialogueObject dialogueObject)
@@ -24,7 +22,7 @@ public class DialogueUI : MonoBehaviour
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
 
-    private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
+    public IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
     {
         yield return new WaitForSeconds(1);
 
