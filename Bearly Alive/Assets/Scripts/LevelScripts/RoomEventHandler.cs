@@ -79,6 +79,10 @@ public class RoomEventHandler : MonoBehaviour
         {
             ColorCurrentRoom(transform.parent.name + "image", Color.gray);
         }
+        else if(bossRoom)
+        {
+            ColorCurrentRoom(transform.parent.name + "image", new Color(0, 0, 0, 0.75f));
+        }
         else
         {
             ColorCurrentRoom(transform.parent.name + "image", new Color(0, 0, 0, 0.75f));

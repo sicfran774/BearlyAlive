@@ -75,10 +75,17 @@ public class BossController : MonoBehaviour
             rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             moving.enabled = false;
             dying.enabled = true;
+            StartCoroutine(KillBoss());
         } else {
             StartCoroutine(BossMovement());
         }
       
+    }
+
+    IEnumerator KillBoss()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 
     private IEnumerator BossMovement()

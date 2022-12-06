@@ -112,7 +112,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &2167879515779462648
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -162,8 +162,11 @@ MonoBehaviour:
   player: {fileID: 7575347867245439747, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
   coll: {fileID: 2167879515779462648}
   MAX_HEALTH: 30
+  healthRemaining: 0
   bullet: {fileID: 6768108042419747499, guid: 9c89962e100d6944d8330f5c2e2eecb4, type: 3}
   moving: {fileID: 2167879515779462646}
+  dying: {fileID: 4898774389534848306}
+  spriteRenderer: {fileID: 2167879515779462650}
 --- !u!114 &2167879515779462646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +190,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2167879515779462645}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9696da76ddf37406298a65705a8ad5a0, type: 3}
   m_Name: 
@@ -213,7 +216,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: df6c3a123ecdb4ee0a875b39022952f9, type: 3}
   - {fileID: 21300000, guid: da828238543364ef88da211e74f7adda, type: 3}
   framerate: 0.16666667
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 2167879515779462650}
 --- !u!114 &6617995989977339712
 MonoBehaviour:
   m_ObjectHideFlags: 0
