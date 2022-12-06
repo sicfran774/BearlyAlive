@@ -52,6 +52,7 @@ public class RoomEventHandler : MonoBehaviour
         upgrades = new GameObject[] { jellyInfusion, malicAcid, popRocks, rockCandy, tajinRubdown };
         techniques = new GameObject[] { boomerang, chiSpit, slash, slingShot, whip};
         AstarPath.active.Scan();
+        
     }
 
     void LateUpdate()
@@ -65,7 +66,8 @@ public class RoomEventHandler : MonoBehaviour
         {
             SetCurrentRoom();
             noEnemiesRemaining = CheckIfRoomIsClear();
-            ColorCurrentRoom(roomManager.playerCurrentRoom.name + "image", Color.white);
+            ColorCurrentRoom(roomManager.playerCurrentRoom.name + "image", new Color(256, 256, 256, 0.75f));
+            EnableEnemies();
         }
         else if (rewarded)
         {
@@ -73,7 +75,8 @@ public class RoomEventHandler : MonoBehaviour
         }
         else
         {
-            ColorCurrentRoom(transform.parent.name + "image", Color.black);
+            ColorCurrentRoom(transform.parent.name + "image", new Color(0, 0, 0, 0.75f));
+            DisableEnemies();
         }
         
         if (noEnemiesRemaining && playerInRoom && !rewarded)
@@ -191,6 +194,23 @@ public class RoomEventHandler : MonoBehaviour
                 return Instantiate(enemyOne, transform);
         }
     }
+
+    void EnableEnemies()
+    {
+        foreach (Transform enemy in transform)
+        {
+            enemy.gameObject.SetActive(true);
+        }
+    }
+
+    void DisableEnemies()
+    {
+        foreach(Transform enemy in transform)
+        {
+            enemy.gameObject.SetActive(false);
+        }
+    }
+
 
     void SaveEnemyLocationsIntoFile()
     {

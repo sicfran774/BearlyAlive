@@ -76,6 +76,9 @@ public class RoomManager : MonoBehaviour
     private const float OriginOffsetX = -500;
     private const float OriginOffsetY = -200;
 
+    private const float MapOffsetX = 225;
+    private const float MapOffsetY = -300;
+
     System.Random rand = new System.Random();
 
     /*private void Awake()
@@ -337,10 +340,11 @@ public class RoomManager : MonoBehaviour
     void RenderMap()
     {
         float x, y;
-        int mostRightRoom = 0;
+        int mostRightRoom = 0, mostBelowRoom = 10;
         foreach (int i in roomList)
         {
             mostRightRoom = Math.Max(mostRightRoom % 10, i % 10);
+            mostBelowRoom = Math.Min(mostBelowRoom / 10, i / 10);
             x = (i % 10) * 45;
             y = (i / 10) * 22.5f;
             GameObject cellImage;
@@ -361,8 +365,9 @@ public class RoomManager : MonoBehaviour
             cellImage.name = i + "image";
         }
         print(mostRightRoom);
-        mostRightRoom *= 10;
-        map.transform.position = new Vector2(map.transform.position.x + mostRightRoom, map.transform.position.y);
+        mostRightRoom = (int)(MapOffsetX - (mostRightRoom * 10));
+        mostBelowRoom = (int)(MapOffsetY - (mostBelowRoom * 10));
+        map.transform.position = new Vector2(map.transform.position.x + mostRightRoom, map.transform.position.y + mostBelowRoom);
     }
 
     public GameObject AddWall(int i, int dir) //dir --> 0, left; 1, right; 2, below; 3, above
