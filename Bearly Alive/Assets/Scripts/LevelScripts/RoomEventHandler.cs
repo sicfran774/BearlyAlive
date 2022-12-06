@@ -79,10 +79,14 @@ public class RoomEventHandler : MonoBehaviour
             DisableEnemies();
         }
         
-        if (noEnemiesRemaining && playerInRoom && !rewarded)
+        if (noEnemiesRemaining && playerInRoom && !rewarded && index != 45)
         {
             RemoveWalls();
             DropLoot();
+        } 
+        else if(index == 45 && !GameObject.Find("DialogueBox"))  //For starting room
+        {
+            RemoveWalls();
         }
         //print(currentRoom);
     }
@@ -135,14 +139,17 @@ public class RoomEventHandler : MonoBehaviour
         GameObject upgrade;
         GameObject technique;
 
-        upgrade = Instantiate(upgrades[randUpgradeNum], transform.parent);
-        upgrade.transform.position = new Vector2(upgrade.transform.position.x, upgrade.transform.position.y);
-
-        //Drop in loot rooms
-        if (index == roomManager.lootRoomIndex)
+        if (index != roomManager.lootRoomIndex && rand.Next(0, 4) == 0) //25% chance to drop upgrade
         {
+            upgrade = Instantiate(upgrades[randUpgradeNum], transform.parent);
+            upgrade.transform.position = new Vector2(upgrade.transform.position.x, upgrade.transform.position.y);
+        }
+        else if(index == roomManager.lootRoomIndex) //Drop in loot rooms
+        {
+            upgrade = Instantiate(upgrades[randUpgradeNum], transform.parent);
+            upgrade.transform.position = new Vector2(upgrade.transform.position.x, upgrade.transform.position.y);
             technique = Instantiate(techniques[randTechniqueNum], transform.parent);
-            technique.transform.position = new Vector2(upgrade.transform.position.x + 5, upgrade.transform.position.y);
+            technique.transform.position = new Vector2(technique.transform.position.x + 5, technique.transform.position.y);
         }
 
     }

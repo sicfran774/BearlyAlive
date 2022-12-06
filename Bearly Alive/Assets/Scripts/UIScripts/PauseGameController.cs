@@ -12,7 +12,7 @@ public class PauseGameController : MonoBehaviour
     {
         pausePanel.SetActive(false);
         pauseButton.SetActive(true);
-        exitButton.SetActive(false);
+        //exitButton.SetActive(false);
     }
 
 
