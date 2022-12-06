@@ -5,7 +5,7 @@
 *Assignment: Program 4
 *Date last modified: 12/5/2022
 *
-*Purpose: This program handles handles player movement,
+*Purpose: This program handles player movement,
 *handles player's health bar, handles collisions and triggers 
 *for the player, and stores player's equipped techniques.
 ****************************************************************/
