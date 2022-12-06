@@ -164,7 +164,7 @@ public class Slash : Technique
 
 
         cursorLock = true;
-        moveLock = true;
+        rotationLock = true;
 
         float startRotation = transform.eulerAngles.z + 45f;
         float endRotation = startRotation - 405.0f;
@@ -177,7 +177,7 @@ public class Slash : Technique
             yield return null;
         }
         cursorLock = false;
-        moveLock = false;
+        rotationLock = false;
         swordChildObject.SetActive(false);
     }
 

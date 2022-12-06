@@ -235,12 +235,19 @@ public class PlayerController : MonoBehaviour
             // player is moving if displacement is not zero
             isMoving = (displacement != Vector2.zero);
 
-            // set sprite rotation based on displacement
-            if (movement.x > 0f) {
-                transform.eulerAngles = Vector3.zero;
-            } else if (movement.x < 0f) {
-                transform.eulerAngles = new Vector3(0f, 180f, 0f);
+            if (!Technique.rotationLock)
+            {
+                // set sprite rotation based on displacement
+                if (movement.x > 0f)
+                {
+                    transform.eulerAngles = Vector3.zero;
+                }
+                else if (movement.x < 0f)
+                {
+                    transform.eulerAngles = new Vector3(0f, 180f, 0f);
+                }
             }
+
 
             //Play walking audio 
             //SoundManager.instance.playWalkSound();
