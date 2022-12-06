@@ -162,7 +162,7 @@ MonoBehaviour:
   player: {fileID: 7575347867245439747, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
   coll: {fileID: 2167879515779462648}
   MAX_HEALTH: 30
-  healthRemaining: 0
+  healthRemaining: 30
   bullet: {fileID: 6768108042419747499, guid: 9c89962e100d6944d8330f5c2e2eecb4, type: 3}
   moving: {fileID: 2167879515779462646}
   dying: {fileID: 4898774389534848306}

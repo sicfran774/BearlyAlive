@@ -186,7 +186,7 @@ public class BossController : MonoBehaviour
             healthRemaining--;
         }
 
-        if (collision.gameObject.name == "Slingshot(Clone)")
+        if (collision.gameObject.name == "SlingshotBox")
         {
             healthRemaining--;
         }
