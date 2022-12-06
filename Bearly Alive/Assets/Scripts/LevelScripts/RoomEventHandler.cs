@@ -211,6 +211,11 @@ public class RoomEventHandler : MonoBehaviour
         }
     }
 
+    void WinCondition()
+    {
+
+    }
+
 
     void SaveEnemyLocationsIntoFile()
     {

@@ -33,10 +33,7 @@ public class RoomManager : MonoBehaviour
 
     [Space(20)]
     [Header("Types of Rooms")]
-    public GameObject roomOne;
-    public GameObject roomTwo;
-    public GameObject roomThree;
-    public GameObject roomFour;
+    public List<GameObject> roomPrefabList;
     public GameObject lootRoom;
     public GameObject bossRoom;
 
@@ -285,15 +282,8 @@ public class RoomManager : MonoBehaviour
 
     GameObject PickRandomRoomPrefab()
     {
-        int num = rand.Next(0, 4);
-        switch (num)
-        {
-            case 0: return roomFour;
-            case 1: return roomOne;
-            case 2: return roomTwo;
-            case 3: return roomThree;
-            default: return emptyRoom;
-        }
+        int num = rand.Next(0, roomPrefabList.Count);
+        return roomPrefabList[num];
     }
 
     //For blocking off entrances that don't have a room in that direction
