@@ -16,6 +16,10 @@ GameObject:
   - component: {fileID: 1735724731975648028}
   - component: {fileID: 4064551643397478215}
   - component: {fileID: 5561056083849472926}
+  - component: {fileID: 4458855703050791012}
+  - component: {fileID: 2078072539845467321}
+  - component: {fileID: 5009214986589955808}
+  - component: {fileID: 6394679420213525150}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Enemy
@@ -123,7 +127,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8667829567553451782}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd38e76f45c96e84ea2a33b14237f3db, type: 3}
   m_Name: 
@@ -237,3 +241,76 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cf3dcb85a1b714a4c89bbcd04fc26548, type: 3}
   - {fileID: 21300000, guid: 8a2dddf09de414eecbcf8b8adc8ea533, type: 3}
   framerate: 0.16666667
+--- !u!114 &4458855703050791012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667829567553451782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b32adac046904d3c8ce8b937962f246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slamRange: 15
+  range: 25
+  shootingRange: 20
+  direction: {x: -1, y: 0}
+  speed: 0.5
+  transform: {fileID: 8667829567553451780}
+  player: {fileID: 7575347867245439747, guid: ae9fdb1a8c2124c4dbbf1b97fb0741cd, type: 3}
+  coll: {fileID: -504844212981979422}
+  MAX_HEALTH: 30
+--- !u!114 &2078072539845467321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667829567553451782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9696da76ddf37406298a65705a8ad5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  death: {fileID: 5009214986589955808}
+  idle: {fileID: 21300000, guid: 8a2dddf09de414eecbcf8b8adc8ea533, type: 3}
+  shoot: {fileID: 6394679420213525150}
+  moving: {fileID: 5561056083849472926}
+  shadow: {fileID: 0}
+--- !u!114 &5009214986589955808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667829567553451782}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d0ef184ae6048ff94f316fe5848a96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: df6c3a123ecdb4ee0a875b39022952f9, type: 3}
+  - {fileID: 21300000, guid: da828238543364ef88da211e74f7adda, type: 3}
+  framerate: 0.16666667
+  spriteRenderer: {fileID: 0}
+--- !u!114 &6394679420213525150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667829567553451782}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d0ef184ae6048ff94f316fe5848a96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 8a2dddf09de414eecbcf8b8adc8ea533, type: 3}
+  - {fileID: 21300000, guid: cf3dcb85a1b714a4c89bbcd04fc26548, type: 3}
+  - {fileID: 21300000, guid: 8a2dddf09de414eecbcf8b8adc8ea533, type: 3}
+  framerate: 0.16666667
+  spriteRenderer: {fileID: 0}
