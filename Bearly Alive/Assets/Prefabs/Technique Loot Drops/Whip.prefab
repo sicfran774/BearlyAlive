@@ -146,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d3c6d2bf6f1194da254dfde4f9d5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  techniqueSprite: {fileID: 21300000, guid: 67144cd839f6a3f4abb4472c96292860, type: 3}
+  techniqueSprite: {fileID: 21300000, guid: a861c8b9f278043fc810bca1b981eea7, type: 3}
