@@ -3935,7 +3935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
       propertyPath: roomPrefabList.Array.size
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
       propertyPath: roomPrefabList.Array.data[0]
@@ -3956,7 +3956,31 @@ PrefabInstance:
     - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
       propertyPath: roomPrefabList.Array.data[4]
       value: 
+<<<<<<< Updated upstream
       objectReference: {fileID: 142334216049624477, guid: c97aa2c40fa190446aa10ee4100d9594, type: 3}
+=======
+      objectReference: {fileID: 142334216049624477, guid: e4c15e0bbef0d52459e583a3f8da03ad, type: 3}
+    - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
+      propertyPath: roomPrefabList.Array.data[5]
+      value: 
+      objectReference: {fileID: 142334216049624477, guid: 9337e92b5239c6f40ae4dc4db30d271a, type: 3}
+    - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
+      propertyPath: roomPrefabList.Array.data[6]
+      value: 
+      objectReference: {fileID: 142334216049624477, guid: 4b0b4f9f8b1b28d47a2bd1ea6ce517d6, type: 3}
+    - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
+      propertyPath: roomPrefabList.Array.data[7]
+      value: 
+      objectReference: {fileID: 142334216049624477, guid: fd0c51bdbefea2443b6b711d8e5c7ddb, type: 3}
+    - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
+      propertyPath: roomPrefabList.Array.data[8]
+      value: 
+      objectReference: {fileID: 142334216049624477, guid: 2dc194e8388425d4c8f7978e2a245ee8, type: 3}
+    - target: {fileID: 3161201147904095825, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
+      propertyPath: roomPrefabList.Array.data[9]
+      value: 
+      objectReference: {fileID: 142334216049624477, guid: 2dc194e8388425d4c8f7978e2a245ee8, type: 3}
+>>>>>>> Stashed changes
     - target: {fileID: 3161201147904095826, guid: 1b22b1362c1cd6b43a514903d9e1bf8d, type: 3}
       propertyPath: m_RootOrder
       value: 8

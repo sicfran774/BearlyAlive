@@ -1,3 +1,13 @@
+/***************************************************************
+*File: BulletController.cs
+*Author: Radical Cadavical
+*Class: CS 4700 – Game Development
+*Assignment: Program 4
+*Date last modified: 12/5/2022
+*
+*Purpose: This program handles Chispit's projectiles spawn and 
+*rotation when technique is performed
+****************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +22,7 @@ public class BulletController : MonoBehaviour
     Vector3 velocity;
 
     public int timeToLive = 3;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +40,8 @@ public class BulletController : MonoBehaviour
 
     }
 
-    // Handles the direction and velocity the bullet should travel based on 
+    //function: Movement
+    //purpose: Handles the direction and velocity the bullet should travel based on 
     // Player Object. GameObject's EulerAngles are initialized in playerController.
     void Movement() {
         //Get the Screen position of the mouse
@@ -70,7 +82,8 @@ public class BulletController : MonoBehaviour
 
 
 
-    // Destorys the projectile if the projectile has not collided with anything
+    //function: DestroyProjectile
+    //porpose: Destorys the projectile if the projectile has not collided with anything
     // Called by Unity's Invoke method 5 seconds after gameobject has been instantiated
     void DestoryProjectile()
     {
