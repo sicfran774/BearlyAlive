@@ -266,7 +266,8 @@ public class PlayerController : MonoBehaviour
             //DO SOMETHING
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-            if (!playerRolled)
+            movement = movement.normalized;
+            if (!playerRolled && (movement.x != 0 || movement.y != 0))
             {
                 // Do Roll Animation for now teleport 
                 currRollSpeed = rollSpeed;
@@ -376,7 +377,7 @@ public class PlayerController : MonoBehaviour
         if (time < dodgeRollDuration)
         {
             Vector2 currPosition = transform.position;
-            currPosition += movement * rollSpeed * Time.fixedDeltaTime;
+            currPosition += movement * rollSpeed * Time.deltaTime;
 
             // calculate rotation about z
             float zRotation = Mathf.Lerp(startRotation, endRotation, time / dodgeRollDuration) % 360f;
@@ -387,7 +388,7 @@ public class PlayerController : MonoBehaviour
             // apply movemnt
             player.MovePosition(currPosition);
 
-            time += Time.fixedDeltaTime;
+            time += Time.deltaTime;
         }
         else
         {
