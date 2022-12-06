@@ -12,7 +12,7 @@ public class BossController : MonoBehaviour
     public float range = 25f;
     public float shootingRange = 20f;
     private bool shot;
-    public float timeBTWShots = 3f;
+    public float timeBTWShots = 30f;
     public Transform shootPos;
 
     public Vector2 direction;
@@ -22,17 +22,23 @@ public class BossController : MonoBehaviour
     public GameObject player;
     public Collider2D coll;
     public int MAX_HEALTH = 30;
-    private int healthRemaining;
+    public int healthRemaining;
     public GameObject bullet;
     private Vector2 velocity;
 
     public AnimatedSprite moving;
+    public DeathAnimation dying;
     public SpriteRenderer spriteRenderer;
+
+    private Sprite boss;
+
+    private int count = 0;
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
         rigidbody = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        boss = spriteRenderer.sprite;
         healthRemaining = MAX_HEALTH;
         enabled = false;
 
@@ -64,43 +70,45 @@ public class BossController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        int i = 3;
-        while (i >= 0 ) {
-            StartCoroutine(Shoot());
-            i --;
-        }
-        
+        StartCoroutine(BossMovement());
+    }
+
+    private IEnumerator BossMovement()
+    {
+        moving.enabled = true;
         float playerDistance = Vector2.Distance(transform.position, player.transform.position);
-        float t = Random.Range(0,100);
         if (playerDistance <= range && !isJumping) {
-            if (t == 0f && playerDistance <= shootingRange) {
+            if (playerDistance <= shootingRange) {
                 print("shoot");
                 rigidbody.Sleep();
                 isShooting = true;
                 StartCoroutine(Shoot());
+                Move();
+                yield break;
             }
-            else if (t == 1f) {
-                StartCoroutine(Slam());
+            else{
                 if (playerDistance <= slamRange) {
+                    
                     player.GetComponent<PlayerController>().healthBar.TookDamage(20);
                 }
-            }
-            else {
-                print("move");
                 Move();
+                yield break;
             }
         }
         if (healthRemaining <= 0) {
             isDead = true;
+            moving.enabled = false;
+            dying.enabled = true;
         }
     }
+
     private void Move()
     {
         isMoving = true;
         moving.enabled = true;
         direction = new Vector2(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y);
         velocity.x = direction.x * speed;
-        velocity.y = direction.y * speed;
+        velocity.y = direction.y;
 
         rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
          if (rigidbody.Raycast(direction)) {
@@ -108,24 +116,31 @@ public class BossController : MonoBehaviour
          }
     }
 
-    private IEnumerator Slam()
+    private void Slam()
     {
         // TODO write slam
         isJumping = true;
         print("SLAM");
         spriteRenderer.enabled = false;
         transform.position = player.transform.position;
-        yield return new WaitForSeconds(2f);
+        new WaitForSeconds(2f);
         spriteRenderer.enabled = true;
+        spriteRenderer.sprite = boss;
+
     }
 
     private IEnumerator Shoot()
     {
         isShooting = true;
+        count ++;
         yield return new WaitForSeconds(timeBTWShots);
         GameObject newBullet = Instantiate(bullet, shootPos.position, Quaternion.identity);
 
         newBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y);
+        if (count == 5) {
+            count = 0;
+            yield break;
+        }
     }
 
     // Handles Enemy's objects trigger collisions
