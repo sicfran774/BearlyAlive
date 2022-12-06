@@ -45,7 +45,7 @@ public class BulletController : MonoBehaviour
     // Handles Collision Triggers for Bullet GameObjects
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Enemy" && gameObject.tag != "UpgradeRock")
         {
             DestoryProjectile();
         } else if (collision.gameObject.tag == "Wall")
