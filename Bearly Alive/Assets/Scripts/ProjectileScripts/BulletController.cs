@@ -11,6 +11,8 @@ public class BulletController : MonoBehaviour
     Collider2D coll;
     Vector3 velocity;
 
+    public int timeToLive = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,9 +50,13 @@ public class BulletController : MonoBehaviour
         if(collision.gameObject.tag == "Enemy" && gameObject.tag != "UpgradeRock")
         {
             DestoryProjectile();
-        } else if (collision.gameObject.tag == "Wall")
+
+        } 
+        else if (collision.gameObject.tag == "Wall" )
         {
-            DestoryProjectile();
+            if (gameObject.tag != "UpgradeJello" || timeToLive <= 0) {
+				DestoryProjectile();
+            } else timeToLive -= 1;
         };
     }
 
