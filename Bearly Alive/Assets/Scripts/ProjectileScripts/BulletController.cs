@@ -20,14 +20,14 @@ public class BulletController : MonoBehaviour
         coll = GetComponent<Collider2D>();
         Movement();
         Invoke("DestoryProjectile", 5f);
+
+
+        // allow bouncing if Jello upgrade
+        if (gameObject.tag == "UpgradeJello") {
+            gameObject.AddComponent<CircleCollider2D>();
+        }
+
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     // Handles the direction and velocity the bullet should travel based on 
     // Player Object. GameObject's EulerAngles are initialized in playerController.
@@ -54,10 +54,18 @@ public class BulletController : MonoBehaviour
         } 
         else if (collision.gameObject.tag == "Wall" )
         {
-            if (gameObject.tag != "UpgradeJello" || timeToLive <= 0) {
+            if (gameObject.tag != "UpgradeJello") {
 				DestoryProjectile();
-            } else timeToLive -= 1;
-        };
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col) 
+    {
+        timeToLive -= 1;
+        if (gameObject.tag == "Enemy" || timeToLive <=0) {
+            DestoryProjectile();
+        }
     }
 
 

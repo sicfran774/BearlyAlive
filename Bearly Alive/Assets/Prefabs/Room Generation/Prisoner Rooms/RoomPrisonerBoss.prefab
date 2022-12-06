@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7935020432855941158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RoomPrisonerBoss
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -629,6 +629,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2146065630866643356}
     m_Modifications:
+    - target: {fileID: 2211317713143514992, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068773414629662829, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -676,6 +684,10 @@ PrefabInstance:
     - target: {fileID: 8667829567553451782, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
       propertyPath: m_Name
       value: Police (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667829567553451782, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
@@ -734,6 +746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemies
       objectReference: {fileID: 0}
+    - target: {fileID: 7532132027882336123, guid: fdd515c2f337c35449682903e2b3aea8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd515c2f337c35449682903e2b3aea8, type: 3}
 --- !u!4 &2146065630866643356 stripped
@@ -748,6 +764,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2146065630866643356}
     m_Modifications:
+    - target: {fileID: 2211317713143514992, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068773414629662829, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -796,6 +820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Police
       objectReference: {fileID: 0}
+    - target: {fileID: 8667829567553451782, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
 --- !u!1001 &4700322257278363561
@@ -805,6 +833,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2146065630866643356}
     m_Modifications:
+    - target: {fileID: 2211317713143514992, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068773414629662829, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -853,6 +889,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Police (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8667829567553451782, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
 --- !u!1001 &6653506685909352139
@@ -862,6 +902,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2146065630866643356}
     m_Modifications:
+    - target: {fileID: 2211317713143514992, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068773414629662829, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8667829567553451780, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -909,6 +957,10 @@ PrefabInstance:
     - target: {fileID: 8667829567553451782, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
       propertyPath: m_Name
       value: Police (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667829567553451782, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1004d099cc6d941e79c541f158e636e8, type: 3}
