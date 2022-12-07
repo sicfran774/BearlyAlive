@@ -153,10 +153,19 @@ public class RoomEventHandler : MonoBehaviour
         GameObject upgrade;
         GameObject technique;
 
-        if (index != roomManager.lootRoomIndex && index != 45 && rand.Next(0, 2) == 0) //50% chance to drop upgrade
+        if (index != roomManager.lootRoomIndex && index != 45 && rand.Next(0, 2) == 0) //50% chance to drop anything
         {
-            upgrade = Instantiate(upgrades[randUpgradeNum], transform.parent);
-            upgrade.transform.position = new Vector2(upgrade.transform.position.x, upgrade.transform.position.y);
+            if(rand.Next(0,3) != 0) //66% chance to be an upgrade
+            {
+                upgrade = Instantiate(upgrades[randUpgradeNum], transform.parent);
+                upgrade.transform.position = new Vector2(upgrade.transform.position.x, upgrade.transform.position.y);
+            }
+            else //33% chance to be a technique
+            {
+                technique = Instantiate(techniques[randTechniqueNum], transform.parent);
+                technique.transform.position = new Vector2(technique.transform.position.x + 5, technique.transform.position.y);
+            }
+            
         }
         else if(index == roomManager.lootRoomIndex || index == 45) //Drop in loot rooms and origin room
         {
