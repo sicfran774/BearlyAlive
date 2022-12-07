@@ -9,8 +9,8 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     AudioClip[] soundEffects;
-    AudioSource audioSource;
-    System.Random random;
+    public AudioSource audioSource;
+    public AudioSource audioSourceOther;
 
     private void Awake()
     {
@@ -24,13 +24,6 @@ public class SoundManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-        random = new System.Random();
-    }
-
 
     public void playBulletSound()
     {
@@ -82,8 +75,8 @@ public class SoundManager : MonoBehaviour
     }
     public void playHitmarkerSound()
     {
-        audioSource.clip = soundEffects[8];
-        audioSource.Play();
+        audioSourceOther.clip = soundEffects[8];
+        audioSourceOther.Play();
     }
 }
 
