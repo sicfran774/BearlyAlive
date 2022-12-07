@@ -4861,6 +4861,7 @@ GameObject:
   - component: {fileID: 5561056083849472926}
   - component: {fileID: 8744740591939310542}
   - component: {fileID: 1603684129924246529}
+  - component: {fileID: 6399391003188712335}
   m_Layer: 7
   m_Name: Police
   m_TagString: Enemy
@@ -5094,3 +5095,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6399391003188712335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667829567553451782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8941a8066f597ee4a9ec243b8f6a25e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}

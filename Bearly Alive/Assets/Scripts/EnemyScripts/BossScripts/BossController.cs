@@ -87,6 +87,7 @@ public class BossController : MonoBehaviour
             rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
             moving.enabled = false;
             dying.enabled = true;
+            GameManager.instance.IncreaseScore(1);
             StartCoroutine(KillBoss());
         } else {
             StartCoroutine(BossMovement());
@@ -174,26 +175,31 @@ public class BossController : MonoBehaviour
         if (collision.gameObject.name == "Bullet(Clone)")
         {
             healthRemaining--;
+            SoundManager.instance.playHitmarkerSound();
         }
 
         if (collision.gameObject.name == "Boomerang(Clone)")
         {
             healthRemaining--;
+            SoundManager.instance.playHitmarkerSound();
         }
 
         if (collision.gameObject.name == "Sword(Clone)")
         {
             healthRemaining--;
+            SoundManager.instance.playHitmarkerSound();
         }
 
         if (collision.gameObject.name == "SlingshotBox")
         {
             healthRemaining--;
+            SoundManager.instance.playHitmarkerSound();
         }
 
         if (collision.gameObject.name == "Whip(Clone)")
         {
             healthRemaining--;
+            SoundManager.instance.playHitmarkerSound();
         }
     }
 

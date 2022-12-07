@@ -133,8 +133,11 @@ public class RoomEventHandler : MonoBehaviour
         {
             if (!bossRoom)
             {
-                AIDestinationSetter enemy = enemyTransform.gameObject.GetComponent<AIDestinationSetter>();
-                enemy.target = GameObject.FindWithTag("Player").transform;
+                GameObject enemy = enemyTransform.gameObject;
+                AIDestinationSetter enemyAI = enemy.GetComponent<AIDestinationSetter>();
+                SpriteFlip enemySprite = enemy.GetComponent<SpriteFlip>();
+                enemyAI.target = GameObject.FindWithTag("Player").transform;
+                enemySprite.player = GameObject.FindWithTag("Player").transform;
             }
         }
     }

@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     AudioClip[] soundEffects;
     AudioSource audioSource;
+    System.Random random;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        random = new System.Random();
     }
 
 
@@ -78,7 +80,10 @@ public class SoundManager : MonoBehaviour
         audioSource.clip = soundEffects[7];
         audioSource.Play();
     }
-
-
+    public void playHitmarkerSound()
+    {
+        audioSource.clip = soundEffects[8];
+        audioSource.Play();
+    }
 }
 

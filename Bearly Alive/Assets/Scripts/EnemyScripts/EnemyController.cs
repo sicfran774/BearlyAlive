@@ -126,31 +126,37 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.name == "Bullet(Clone)")
         {
             healthRemaining--;
+            HitSound();
         }
 
         if (collision.gameObject.name == "Boomerang(Clone)")
         {
             healthRemaining -= 0.5f;
+            HitSound();
         }
 
         if (collision.gameObject.name == "Sword(Clone)")
         {
             healthRemaining--;
+            HitSound();
         }
 
         if (collision.gameObject.name == "SlingshotBox")
         {
             healthRemaining -= 3;
+            HitSound();
         }
 
         if (collision.gameObject.name == "Whip(Clone)")
         {
             healthRemaining -= 3;
+            HitSound();
         }
 
         if (collision.gameObject.name == "EnemyBullet" && collision.tag == "UpgradeNone") 
         {
             healthRemaining--;
+            HitSound();
         }
 
         //If the enemy touches something spicy or sour, will become poisoned or burning
@@ -301,5 +307,10 @@ public class EnemyController : MonoBehaviour
         bulletSpawned = Instantiate(bullet.transform, bulletSpawnPoint.transform.position, Quaternion.identity);
         bulletSpawned.rotation = transform.rotation;
         bulletSpawned.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y).normalized * projectileSpeed * 10;
+    }
+
+    void HitSound()
+    {
+        SoundManager.instance.playHitmarkerSound();
     }
 }
