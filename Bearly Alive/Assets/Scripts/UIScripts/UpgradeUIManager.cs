@@ -107,7 +107,10 @@ public class UpgradeUIManager : MonoBehaviour
         }
 
         print("SelectedUpgrade" + selectedUpgrade);
-        PlayerController.instance.setUpgrade(slot, selectedUpgrade);
+        if(!PlayerController.instance.setUpgrade(slot, selectedUpgrade)) //If the technique is null go into if
+        {
+            return;
+        }
 
         print(selectedUpgrade + " upgrade applied to slot " + slot);
 
