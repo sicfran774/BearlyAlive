@@ -161,6 +161,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         techniques = new Technique[2];
+        isDead = false;
         if (instance == null)
         {
             instance = this;

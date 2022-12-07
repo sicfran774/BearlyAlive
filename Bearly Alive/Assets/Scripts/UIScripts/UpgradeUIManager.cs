@@ -8,7 +8,7 @@ public class UpgradeUIManager : MonoBehaviour
     //upgrade menu object
     public GameObject upgradeMenu;
     private bool[] isUpgraded = new bool[2];
-    public static Sprite[] upgradeSprites = new Sprite[2];
+    public static Sprite[] upgradeSprites;
 
     public Sprite emptySprite;
 
@@ -18,6 +18,7 @@ public class UpgradeUIManager : MonoBehaviour
 
     private void Awake()
     {
+        upgradeSprites = new Sprite[2];
         if (instance == null)
         {
             instance = this;

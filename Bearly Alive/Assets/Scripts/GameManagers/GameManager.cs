@@ -47,35 +47,40 @@ public class GameManager : MonoBehaviour
   
     void Update()
     {
-        //User can pick up upgrade, which toggles upgrade menu 
-        if (PlayerController.instance.canpickupUpgrade == true)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                //play audio clip
-                SoundManager.instance.playPickedUpgradeSound();
 
-                UpgradeUI.instance.ToggleUpgradeMenu();
-                print("Toggle Upgrade menu");
+        if(PlayerController.instance != null)
+        {
+            //User can pick up upgrade, which toggles upgrade menu 
+            if (PlayerController.instance.canpickupUpgrade)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    //play audio clip
+                    SoundManager.instance.playPickedUpgradeSound();
+
+                    UpgradeUI.instance.ToggleUpgradeMenu();
+                    print("Toggle Upgrade menu");
+                }
+
+
+
             }
 
-       
+            if (PlayerController.instance.canpickupTechnique)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    //play audio sound
+                    SoundManager.instance.playPickedTechniqueSound();
+
+                    TechniqueUIManager.instance.ToggleWeaponMenu();
+                    print("Toggle Weapon menu");
+                }
+            }
 
         }
 
-        if (PlayerController.instance.canpickupTechnique)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                //play audio sound
-                SoundManager.instance.playPickedTechniqueSound();
 
-                TechniqueUIManager.instance.ToggleWeaponMenu();
-                print("Toggle Weapon menu");
-            }
-        }
-
-        
     }
  
 
