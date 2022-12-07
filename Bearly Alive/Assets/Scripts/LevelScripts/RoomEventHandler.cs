@@ -163,7 +163,7 @@ public class RoomEventHandler : MonoBehaviour
             else //33% chance to be a technique
             {
                 technique = Instantiate(techniques[randTechniqueNum], transform.parent);
-                technique.transform.position = new Vector2(technique.transform.position.x + 5, technique.transform.position.y);
+                technique.transform.position = new Vector2(technique.transform.position.x, technique.transform.position.y);
             }
             
         }
