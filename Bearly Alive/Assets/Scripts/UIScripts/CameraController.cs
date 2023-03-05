@@ -6,19 +6,18 @@ public class CameraController : MonoBehaviour
 {
     public GameObject player;
     public RoomManager roomManager;
+    public float cameraTransitionSpeed = 1.0f;
 
-    void LateUpdate()
+    //This code below will move camera to each room
+    public IEnumerator cameraMovement(Vector3 newPosition)
     {
-        cameraMovement();
-    }
-
-    // Follows Player Objects Movement
-    void cameraMovement()
-    {
-        //This code below will snap camera to each room
-        if (roomManager.playerCurrentRoom != null)
+        float t = 0.0f;
+        Vector3 startingPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        while(t < 1.0f)
         {
-            transform.position = new Vector3(roomManager.playerCurrentRoom.transform.position.x, roomManager.playerCurrentRoom.transform.position.y, transform.position.z);
+            t += Time.deltaTime * (Time.timeScale / cameraTransitionSpeed);
+            transform.position = Vector3.Lerp(startingPos, newPosition, t);
+            yield return 0;
         }
 
         //Old code

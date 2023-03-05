@@ -45,6 +45,7 @@ public class RoomEventHandler : MonoBehaviour
     private List<GameObject> tempWalls;
     private RoomManager roomManager;
     private PlayerController player;
+    private CameraController camera;
     private int index;
     
 
@@ -54,6 +55,7 @@ public class RoomEventHandler : MonoBehaviour
         tempWalls = new List<GameObject>();
         roomManager = GameObject.Find("RoomManager").GetComponent<RoomManager>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        camera = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
 
         upgrades = new GameObject[] { jellyInfusion, malicAcid, popRocks, rockCandy, tajinRubdown };
         techniques = new GameObject[] { boomerang, chiSpit, slash, slingShot, whip};
@@ -125,6 +127,7 @@ public class RoomEventHandler : MonoBehaviour
     {
         //This converts the name (which is just the cell number) so that we can use it later to generate walls in the correct position
         roomManager.playerCurrentRoom = transform.parent.gameObject;
+        StartCoroutine(camera.cameraMovement(new Vector3(roomManager.playerCurrentRoom.transform.position.x, roomManager.playerCurrentRoom.transform.position.y, -20)));
     }
 
     void ActivateEnemyMovement()

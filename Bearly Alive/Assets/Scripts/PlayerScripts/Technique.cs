@@ -87,4 +87,14 @@ public abstract class Technique : Action
     private void ResetTechniqueCooldown() {
         techsCooling = false;
     }
+
+    //function: OnDestroy (MonoBehaviour)
+    //purpose: Reset all cooldowns for technique if level is restarted
+    void OnDestroy()
+    {
+        ResetTechniqueCooldown();
+        moveLock = false;
+        cursorLock = false;
+        rotationLock = false;
+    }
 }
